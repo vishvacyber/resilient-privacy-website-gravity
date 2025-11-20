@@ -1,14 +1,8 @@
 import express from 'express';
 import { getDb } from '../database.js';
-const router = express.Router();
+import { authenticate } from '../middleware/auth.js';
 
-// Middleware to check auth (simplified for now)
-const authenticate = (req, res, next) => {
-    const token = req.headers.authorization?.split(' ')[1];
-    if (!token) return res.status(401).json({ error: 'Unauthorized' });
-    // In real app, verify token here
-    next();
-};
+const router = express.Router();
 
 // GET all jobs (Public)
 router.get('/', async (req, res) => {

@@ -33,7 +33,25 @@ const Careers = () => {
             name: '',
             email: '',
             phone: '',
-            cover_letter: ''
+            cover_letter: '',
+            work_authorized: '',
+            requires_sponsorship: '',
+            veteran_status: '',
+            disability_status: '',
+            gender: '',
+            race_ethnicity: '',
+            criminal_history: '',
+            criminal_history_explanation: '',
+            linkedin_url: '',
+            current_employer: '',
+            years_experience: '',
+            education_level: '',
+            start_date: '',
+            salary_expectations: '',
+            willing_to_relocate: '',
+            referral_source: '',
+            portfolio_url: '',
+            references: ''
         });
         const [resume, setResume] = useState(null);
 
@@ -47,6 +65,24 @@ const Careers = () => {
             data.append('email', formData.email);
             data.append('phone', formData.phone);
             data.append('cover_letter', formData.cover_letter);
+            data.append('work_authorized', formData.work_authorized);
+            data.append('requires_sponsorship', formData.requires_sponsorship);
+            data.append('veteran_status', formData.veteran_status);
+            data.append('disability_status', formData.disability_status);
+            data.append('gender', formData.gender);
+            data.append('race_ethnicity', formData.race_ethnicity);
+            data.append('criminal_history', formData.criminal_history);
+            data.append('criminal_history_explanation', formData.criminal_history_explanation);
+            data.append('linkedin_url', formData.linkedin_url);
+            data.append('current_employer', formData.current_employer);
+            data.append('years_experience', formData.years_experience);
+            data.append('education_level', formData.education_level);
+            data.append('start_date', formData.start_date);
+            data.append('salary_expectations', formData.salary_expectations);
+            data.append('willing_to_relocate', formData.willing_to_relocate);
+            data.append('referral_source', formData.referral_source);
+            data.append('portfolio_url', formData.portfolio_url);
+            data.append('references', formData.references);
             if (resume) {
                 data.append('resume', resume);
             }
@@ -71,6 +107,15 @@ const Careers = () => {
             }
         };
 
+        const inputStyle = {
+            padding: '0.75rem',
+            background: 'rgba(255,255,255,0.05)',
+            border: '1px solid var(--border-color)',
+            borderRadius: '6px',
+            color: 'white',
+            width: '100%'
+        };
+
         return (
             <div style={{
                 position: 'fixed',
@@ -91,7 +136,7 @@ const Careers = () => {
                         padding: '2rem',
                         borderRadius: '12px',
                         width: '100%',
-                        maxWidth: '500px',
+                        maxWidth: '650px',
                         maxHeight: '90vh',
                         overflowY: 'auto',
                         position: 'relative',
@@ -116,53 +161,357 @@ const Careers = () => {
                             <h2 style={{ marginBottom: '0.5rem' }}>Apply for {job.title}</h2>
                             <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem' }}>{job.location} • {job.type}</p>
 
-                            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                <input
-                                    placeholder="Full Name"
-                                    required
-                                    value={formData.name}
-                                    onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                    style={{ padding: '0.75rem', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border-color)', borderRadius: '6px', color: 'white' }}
-                                />
-                                <input
-                                    type="email"
-                                    placeholder="Email Address"
-                                    required
-                                    value={formData.email}
-                                    onChange={e => setFormData({ ...formData, email: e.target.value })}
-                                    style={{ padding: '0.75rem', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border-color)', borderRadius: '6px', color: 'white' }}
-                                />
-                                <input
-                                    type="tel"
-                                    placeholder="Phone Number"
-                                    value={formData.phone}
-                                    onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                                    style={{ padding: '0.75rem', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border-color)', borderRadius: '6px', color: 'white' }}
-                                />
-
-                                <div style={{ border: '1px dashed var(--border-color)', padding: '1rem', borderRadius: '6px', textAlign: 'center' }}>
-                                    <input
-                                        type="file"
-                                        id="resume-upload"
-                                        accept=".pdf,.doc,.docx"
-                                        onChange={e => setResume(e.target.files[0])}
-                                        style={{ display: 'none' }}
-                                    />
-                                    <label htmlFor="resume-upload" style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
-                                        <Upload size={24} color="var(--primary)" />
-                                        <span style={{ color: 'var(--text-muted)' }}>
-                                            {resume ? resume.name : 'Upload Resume (PDF/DOC)'}
-                                        </span>
-                                    </label>
+                            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                                {/* Personal Information */}
+                                <div>
+                                    <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>Personal Information</h3>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                        <input
+                                            placeholder="Full Name *"
+                                            required
+                                            value={formData.name}
+                                            onChange={e => setFormData({ ...formData, name: e.target.value })}
+                                            style={inputStyle}
+                                        />
+                                        <input
+                                            type="email"
+                                            placeholder="Email Address *"
+                                            required
+                                            value={formData.email}
+                                            onChange={e => setFormData({ ...formData, email: e.target.value })}
+                                            style={inputStyle}
+                                        />
+                                        <input
+                                            type="tel"
+                                            placeholder="Phone Number *"
+                                            required
+                                            value={formData.phone}
+                                            onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                                            style={inputStyle}
+                                        />
+                                    </div>
                                 </div>
 
-                                <textarea
-                                    placeholder="Cover Letter (Optional)"
-                                    rows="4"
-                                    value={formData.cover_letter}
-                                    onChange={e => setFormData({ ...formData, cover_letter: e.target.value })}
-                                    style={{ padding: '0.75rem', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border-color)', borderRadius: '6px', color: 'white' }}
-                                />
+                                {/* Work Authorization */}
+                                <div>
+                                    <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>Work Authorization</h3>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                        <div>
+                                            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                                                Are you legally authorized to work in the United States? *
+                                            </label>
+                                            <select
+                                                required
+                                                value={formData.work_authorized}
+                                                onChange={e => setFormData({ ...formData, work_authorized: e.target.value })}
+                                                style={inputStyle}
+                                            >
+                                                <option value="">Select...</option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                                                Will you now or in the future require sponsorship for employment visa status? *
+                                            </label>
+                                            <select
+                                                required
+                                                value={formData.requires_sponsorship}
+                                                onChange={e => setFormData({ ...formData, requires_sponsorship: e.target.value })}
+                                                style={inputStyle}
+                                            >
+                                                <option value="">Select...</option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Voluntary Self-Identification */}
+                                <div>
+                                    <h3 style={{ fontSize: '1.1rem', marginBottom: '0.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>Voluntary Self-Identification</h3>
+                                    <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1rem', lineHeight: '1.5' }}>
+                                        The following information is requested for compliance with federal Equal Employment Opportunity recordkeeping and reporting requirements. Providing this information is voluntary and will not affect your application or employment. This information will be kept confidential and used only for compliance purposes.
+                                    </p>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                        <div>
+                                            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                                                Veteran Status
+                                            </label>
+                                            <select
+                                                value={formData.veteran_status}
+                                                onChange={e => setFormData({ ...formData, veteran_status: e.target.value })}
+                                                style={inputStyle}
+                                            >
+                                                <option value="">Select...</option>
+                                                <option value="protected_veteran">I am a protected veteran</option>
+                                                <option value="not_veteran">I am not a protected veteran</option>
+                                                <option value="prefer_not_to_say">I don't wish to answer</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                                                Disability Status
+                                            </label>
+                                            <select
+                                                value={formData.disability_status}
+                                                onChange={e => setFormData({ ...formData, disability_status: e.target.value })}
+                                                style={inputStyle}
+                                            >
+                                                <option value="">Select...</option>
+                                                <option value="yes">Yes, I have a disability</option>
+                                                <option value="no">No, I don't have a disability</option>
+                                                <option value="prefer_not_to_say">I don't wish to answer</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                                                Gender
+                                            </label>
+                                            <select
+                                                value={formData.gender}
+                                                onChange={e => setFormData({ ...formData, gender: e.target.value })}
+                                                style={inputStyle}
+                                            >
+                                                <option value="">Select...</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="non_binary">Non-binary</option>
+                                                <option value="prefer_not_to_say">Prefer not to say</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                                                Race/Ethnicity
+                                            </label>
+                                            <select
+                                                value={formData.race_ethnicity}
+                                                onChange={e => setFormData({ ...formData, race_ethnicity: e.target.value })}
+                                                style={inputStyle}
+                                            >
+                                                <option value="">Select...</option>
+                                                <option value="hispanic_latino">Hispanic or Latino</option>
+                                                <option value="white">White (Not Hispanic or Latino)</option>
+                                                <option value="black">Black or African American (Not Hispanic or Latino)</option>
+                                                <option value="native_hawaiian">Native Hawaiian or Other Pacific Islander (Not Hispanic or Latino)</option>
+                                                <option value="asian">Asian (Not Hispanic or Latino)</option>
+                                                <option value="american_indian">American Indian or Alaska Native (Not Hispanic or Latino)</option>
+                                                <option value="two_or_more">Two or More Races (Not Hispanic or Latino)</option>
+                                                <option value="prefer_not_to_say">Prefer not to say</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Professional Background */}
+                                <div>
+                                    <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>Professional Background</h3>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                        <input
+                                            type="url"
+                                            placeholder="LinkedIn Profile URL"
+                                            value={formData.linkedin_url}
+                                            onChange={e => setFormData({ ...formData, linkedin_url: e.target.value })}
+                                            style={inputStyle}
+                                        />
+                                        <input
+                                            placeholder="Current/Most Recent Employer"
+                                            value={formData.current_employer}
+                                            onChange={e => setFormData({ ...formData, current_employer: e.target.value })}
+                                            style={inputStyle}
+                                        />
+                                        <div>
+                                            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                                                Years of Professional Experience
+                                            </label>
+                                            <select
+                                                value={formData.years_experience}
+                                                onChange={e => setFormData({ ...formData, years_experience: e.target.value })}
+                                                style={inputStyle}
+                                            >
+                                                <option value="">Select...</option>
+                                                <option value="0-1">Less than 1 year</option>
+                                                <option value="1-3">1-3 years</option>
+                                                <option value="3-5">3-5 years</option>
+                                                <option value="5-10">5-10 years</option>
+                                                <option value="10+">10+ years</option>
+                                            </select>
+                                        </div>
+                                        <input
+                                            type="url"
+                                            placeholder="Portfolio/Personal Website URL (Optional)"
+                                            value={formData.portfolio_url}
+                                            onChange={e => setFormData({ ...formData, portfolio_url: e.target.value })}
+                                            style={inputStyle}
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Education & Availability */}
+                                <div>
+                                    <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>Education & Availability</h3>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                        <div>
+                                            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                                                Highest Education Level
+                                            </label>
+                                            <select
+                                                value={formData.education_level}
+                                                onChange={e => setFormData({ ...formData, education_level: e.target.value })}
+                                                style={inputStyle}
+                                            >
+                                                <option value="">Select...</option>
+                                                <option value="high_school">High School Diploma/GED</option>
+                                                <option value="associate">Associate Degree</option>
+                                                <option value="bachelor">Bachelor's Degree</option>
+                                                <option value="master">Master's Degree</option>
+                                                <option value="doctorate">Doctorate/PhD</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                                                Earliest Start Date
+                                            </label>
+                                            <input
+                                                type="date"
+                                                value={formData.start_date}
+                                                onChange={e => setFormData({ ...formData, start_date: e.target.value })}
+                                                style={inputStyle}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Compensation & Preferences */}
+                                <div>
+                                    <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>Compensation & Preferences</h3>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                        <div>
+                                            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                                                Salary Expectations (Annual)
+                                            </label>
+                                            <select
+                                                value={formData.salary_expectations}
+                                                onChange={e => setFormData({ ...formData, salary_expectations: e.target.value })}
+                                                style={inputStyle}
+                                            >
+                                                <option value="">Select...</option>
+                                                <option value="under_50k">Under $50,000</option>
+                                                <option value="50k-75k">$50,000 - $75,000</option>
+                                                <option value="75k-100k">$75,000 - $100,000</option>
+                                                <option value="100k-125k">$100,000 - $125,000</option>
+                                                <option value="125k-150k">$125,000 - $150,000</option>
+                                                <option value="150k-200k">$150,000 - $200,000</option>
+                                                <option value="200k+">$200,000+</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                                                Are you willing to relocate?
+                                            </label>
+                                            <select
+                                                value={formData.willing_to_relocate}
+                                                onChange={e => setFormData({ ...formData, willing_to_relocate: e.target.value })}
+                                                style={inputStyle}
+                                            >
+                                                <option value="">Select...</option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                                <option value="maybe">Maybe</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* How Did You Hear About Us */}
+                                <div>
+                                    <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>How Did You Hear About Us?</h3>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                        <select
+                                            value={formData.referral_source}
+                                            onChange={e => setFormData({ ...formData, referral_source: e.target.value })}
+                                            style={inputStyle}
+                                        >
+                                            <option value="">Select...</option>
+                                            <option value="linkedin">LinkedIn</option>
+                                            <option value="indeed">Indeed</option>
+                                            <option value="company_website">Company Website</option>
+                                            <option value="referral">Employee Referral</option>
+                                            <option value="job_board">Job Board</option>
+                                            <option value="social_media">Social Media</option>
+                                            <option value="recruiter">Recruiter</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                {/* Additional Information */}
+                                <div>
+                                    <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>Additional Information</h3>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                        <div>
+                                            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                                                Have you ever been convicted of a felony?
+                                            </label>
+                                            <select
+                                                value={formData.criminal_history}
+                                                onChange={e => setFormData({ ...formData, criminal_history: e.target.value })}
+                                                style={inputStyle}
+                                            >
+                                                <option value="">Select...</option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                        {formData.criminal_history === 'true' && (
+                                            <div>
+                                                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                                                    Please explain
+                                                </label>
+                                                <textarea
+                                                    rows="3"
+                                                    value={formData.criminal_history_explanation}
+                                                    onChange={e => setFormData({ ...formData, criminal_history_explanation: e.target.value })}
+                                                    style={inputStyle}
+                                                    placeholder="Please provide details..."
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Resume & Cover Letter */}
+                                <div>
+                                    <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>Resume & Cover Letter</h3>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                        <div style={{ border: '1px dashed var(--border-color)', padding: '1rem', borderRadius: '6px', textAlign: 'center' }}>
+                                            <input
+                                                type="file"
+                                                id="resume-upload"
+                                                accept=".pdf,.doc,.docx"
+                                                onChange={e => setResume(e.target.files[0])}
+                                                style={{ display: 'none' }}
+                                            />
+                                            <label htmlFor="resume-upload" style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                                                <Upload size={24} color="var(--primary)" />
+                                                <span style={{ color: 'var(--text-muted)' }}>
+                                                    {resume ? resume.name : 'Upload Resume (PDF/DOC)'}
+                                                </span>
+                                            </label>
+                                        </div>
+
+                                        <textarea
+                                            placeholder="Cover Letter (Optional)"
+                                            rows="4"
+                                            value={formData.cover_letter}
+                                            onChange={e => setFormData({ ...formData, cover_letter: e.target.value })}
+                                            style={inputStyle}
+                                        />
+                                    </div>
+                                </div>
 
                                 {applicationStatus === 'error' && (
                                     <p style={{ color: '#ef4444', fontSize: '0.9rem' }}>Failed to submit application. Please try again.</p>

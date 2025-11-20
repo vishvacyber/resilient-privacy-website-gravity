@@ -7,7 +7,14 @@ import { sanitizeFormData, checkInputSafety } from '../utils/sanitize';
 import SECURITY_CONFIG from '../../security.config';
 
 const Contact = () => {
-    const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+    const [formState, setFormState] = useState({
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        subject: '',
+        message: ''
+    });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
@@ -79,7 +86,7 @@ const Contact = () => {
 
             lastSubmitTime.current = Date.now();
             setSubmitStatus('success');
-            setFormState({ name: '', email: '', message: '' });
+            setFormState({ name: '', email: '', company: '', phone: '', subject: '', message: '' });
 
             // Reset success message after 5 seconds
             setTimeout(() => setSubmitStatus(null), 5000);
@@ -188,7 +195,7 @@ const Contact = () => {
 
                         <div>
                             <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)' }}>
-                                Email <span style={{ color: '#ef4444' }}>*</span>
+                                Work Email <span style={{ color: '#ef4444' }}>*</span>
                             </label>
                             <input
                                 type="email"
@@ -211,6 +218,96 @@ const Contact = () => {
                             {errors.email && (
                                 <p style={{ color: '#ef4444', fontSize: '0.875rem', marginTop: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                     <AlertCircle size={16} /> {errors.email}
+                                </p>
+                            )}
+                            <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
+                                Personal emails (Gmail, Yahoo, etc.) are not allowed
+                            </p>
+                        </div>
+
+                        <div>
+                            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)' }}>
+                                Company <span style={{ color: '#ef4444' }}>*</span>
+                            </label>
+                            <input
+                                type="text"
+                                required
+                                maxLength={100}
+                                style={{
+                                    width: '100%',
+                                    padding: '1rem',
+                                    background: 'var(--bg-dark)',
+                                    border: `1px solid ${errors.company ? '#ef4444' : 'var(--border-color)'}`,
+                                    borderRadius: '4px',
+                                    color: 'var(--text-main)',
+                                    outline: 'none',
+                                    transition: 'border-color 0.2s'
+                                }}
+                                value={formState.company}
+                                onChange={(e) => handleInputChange('company', e.target.value)}
+                                placeholder="Acme Corporation"
+                            />
+                            {errors.company && (
+                                <p style={{ color: '#ef4444', fontSize: '0.875rem', marginTop: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <AlertCircle size={16} /> {errors.company}
+                                </p>
+                            )}
+                        </div>
+
+                        <div>
+                            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)' }}>
+                                Phone <span style={{ color: '#ef4444' }}>*</span>
+                            </label>
+                            <input
+                                type="tel"
+                                required
+                                maxLength={20}
+                                style={{
+                                    width: '100%',
+                                    padding: '1rem',
+                                    background: 'var(--bg-dark)',
+                                    border: `1px solid ${errors.phone ? '#ef4444' : 'var(--border-color)'}`,
+                                    borderRadius: '4px',
+                                    color: 'var(--text-main)',
+                                    outline: 'none',
+                                    transition: 'border-color 0.2s'
+                                }}
+                                value={formState.phone}
+                                onChange={(e) => handleInputChange('phone', e.target.value)}
+                                placeholder="+1 (555) 123-4567"
+                            />
+                            {errors.phone && (
+                                <p style={{ color: '#ef4444', fontSize: '0.875rem', marginTop: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <AlertCircle size={16} /> {errors.phone}
+                                </p>
+                            )}
+                        </div>
+
+                        <div>
+                            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)' }}>
+                                Subject <span style={{ color: '#ef4444' }}>*</span>
+                            </label>
+                            <input
+                                type="text"
+                                required
+                                maxLength={200}
+                                style={{
+                                    width: '100%',
+                                    padding: '1rem',
+                                    background: 'var(--bg-dark)',
+                                    border: `1px solid ${errors.subject ? '#ef4444' : 'var(--border-color)'}`,
+                                    borderRadius: '4px',
+                                    color: 'var(--text-main)',
+                                    outline: 'none',
+                                    transition: 'border-color 0.2s'
+                                }}
+                                value={formState.subject}
+                                onChange={(e) => handleInputChange('subject', e.target.value)}
+                                placeholder="API Security Inquiry"
+                            />
+                            {errors.subject && (
+                                <p style={{ color: '#ef4444', fontSize: '0.875rem', marginTop: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <AlertCircle size={16} /> {errors.subject}
                                 </p>
                             )}
                         </div>

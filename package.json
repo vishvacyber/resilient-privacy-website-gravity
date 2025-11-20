@@ -7,14 +7,19 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node server/index.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "concurrently": "^9.2.1",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
+    "express-validator": "^7.3.1",
     "framer-motion": "^12.23.24",
+    "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.554.0",
     "multer": "^2.0.2",

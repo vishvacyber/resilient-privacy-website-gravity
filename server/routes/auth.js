@@ -2,9 +2,18 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { getDb } from '../database.js';
+import { logActivityDirect } from '../middleware/activityLogger.js';
 
 const router = express.Router();
-const JWT_SECRET = 'your-secret-key-change-in-production'; // In a real app, use env var
+
+// Use environment variable for JWT secret
+const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-for-development';
+
+// Warn if using fallback secret
+if (!process.env.JWT_SECRET) {
+    console.warn('⚠️  WARNING: JWT_SECRET not set in environment variables.');
+    console.warn('⚠️  Set JWT_SECRET in your .env file for production.');
+}
 
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
@@ -28,8 +37,15 @@ router.post('/login', async (req, res) => {
 
         const token = jwt.sign({ id: admin.id, username: admin.username }, JWT_SECRET, { expiresIn: '24h' });
 
+        // Log successful login
+        await logActivityDirect(req, 'login', 'admin', {
+            admin_id: admin.id,
+            admin_username: admin.username
+        });
+
         res.json({ token, username: admin.username });
     } catch (error) {
+        console.error('Login error:', error);
         res.status(500).json({ error: 'Server error' });
     }
 });

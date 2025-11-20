@@ -50,6 +50,24 @@ export async function initializeDatabase() {
             phone TEXT,
             resume_path TEXT,
             cover_letter TEXT,
+            work_authorized BOOLEAN,
+            requires_sponsorship BOOLEAN,
+            veteran_status TEXT,
+            disability_status TEXT,
+            gender TEXT,
+            race_ethnicity TEXT,
+            criminal_history BOOLEAN,
+            criminal_history_explanation TEXT,
+            linkedin_url TEXT,
+            current_employer TEXT,
+            years_experience INTEGER,
+            education_level TEXT,
+            start_date TEXT,
+            salary_expectations TEXT,
+            willing_to_relocate BOOLEAN,
+            referral_source TEXT,
+            portfolio_url TEXT,
+            references TEXT,
             status TEXT DEFAULT 'new', -- new, reviewed, interview, rejected, hired
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY(job_id) REFERENCES jobs(id)
@@ -64,8 +82,27 @@ export async function initializeDatabase() {
             email TEXT NOT NULL,
             subject TEXT,
             message TEXT NOT NULL,
+            company TEXT,
+            phone TEXT,
             status TEXT DEFAULT 'new', -- new, read, replied
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    `);
+
+    // Create Activity Logs Table
+    await db.exec(`
+        CREATE TABLE IF NOT EXISTS activity_logs (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            admin_id INTEGER,
+            admin_username TEXT,
+            action_type TEXT NOT NULL, -- login, logout, create, update, delete, view
+            resource_type TEXT, -- job, application, contact, admin
+            resource_id INTEGER,
+            details TEXT, -- JSON string with additional details
+            ip_address TEXT,
+            user_agent TEXT,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY(admin_id) REFERENCES admins(id)
         )
     `);
 
@@ -74,7 +111,9 @@ export async function initializeDatabase() {
     if (!admin) {
         const hashedPassword = await bcrypt.hash('admin123', 10);
         await db.run('INSERT INTO admins (username, password_hash) VALUES (?, ?)', ['admin', hashedPassword]);
-        console.log('Default admin created: admin / admin123');
+        console.log('⚠️  Default admin account created with username: admin');
+        console.log('⚠️  SECURITY WARNING: Change the default password immediately!');
+        console.log('⚠️  Use server/reset-admin.js to set a new password.');
     }
 
     console.log('Database initialized');
