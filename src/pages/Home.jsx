@@ -1,76 +1,136 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Lock, Zap, Globe, ChevronRight } from 'lucide-react';
+import { Shield, Lock, Zap, Globe, ChevronRight, Activity, Server, Users, Cpu, Network, FileCheck } from 'lucide-react';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+    // SEO: Structured Data for AI Search Optimization
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Resilient Privacy",
+        "applicationCategory": "CybersecurityApplication",
+        "operatingSystem": "Cloud, Web",
+        "description": "Autonomous AI-driven API security and threat neutralization system.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    };
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: {
-                staggerChildren: 0.2
-            }
+            transition: { staggerChildren: 0.15, delayChildren: 0.2 }
         }
     };
 
     const itemVariants = {
         hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0 }
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
     };
 
     return (
         <>
+            {/* SEO Injection - Fixed for React */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+            />
+
             {/* Hero Section */}
             <section style={{ position: 'relative', minHeight: '90vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
-                {/* Background Elements */}
-                <div style={{ position: 'absolute', top: '-20%', right: '-10%', width: '600px', height: '600px', background: 'radial-gradient(circle, var(--primary-dim) 0%, transparent 70%)', filter: 'blur(50px)', zIndex: -1 }} />
-                <div style={{ position: 'absolute', bottom: '-10%', left: '-10%', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(112, 0, 255, 0.1) 0%, transparent 70%)', filter: 'blur(50px)', zIndex: -1 }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.03) 0%, transparent 50%)', zIndex: -1 }} />
 
                 <div className="container">
-                    <div className="grid-cols-2 flex-center">
-                        <motion.div
-                            variants={containerVariants}
-                            initial="hidden"
-                            animate="visible"
-                        >
-                            <motion.h1 variants={itemVariants} className="text-hero" style={{ fontWeight: '800', marginBottom: '1.5rem' }}>
-                                Secure Your <br />
-                                <span className="text-gradient">Digital Frontier</span>
+                    <div className="grid-cols-2 flex-center" style={{ gap: '4rem' }}>
+                        <motion.div variants={containerVariants} initial="hidden" animate="visible">
+                            <motion.div variants={itemVariants} className="flex-center" style={{ justifyContent: 'flex-start', gap: '0.75rem', marginBottom: '1.5rem' }}>
+                                <span style={{ padding: '0.25rem 0.75rem', borderRadius: '99px', background: 'rgba(124, 58, 237, 0.1)', border: '1px solid rgba(124, 58, 237, 0.2)', color: 'var(--primary)', fontSize: '0.85rem', fontWeight: '600' }}>
+                                    AI-Native Security
+                                </span>
+                                <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>v3.0 Neural Engine Live</span>
+                            </motion.div>
+
+                            <motion.h1 variants={itemVariants} className="text-hero" style={{ fontWeight: '800', marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>
+                                The Immune System for Your <span className="text-gradient">Digital Infrastructure.</span>
                             </motion.h1>
-                            <motion.p variants={itemVariants} className="text-lg" style={{ color: 'var(--text-muted)', marginBottom: '2rem', maxWidth: '500px' }}>
-                                Advanced API security solutions designed for the modern web. Protect your data, infrastructure, and reputation with Resilient Privacy.
+
+                            <motion.p variants={itemVariants} className="text-lg" style={{ color: 'var(--text-muted)', marginBottom: '2.5rem', maxWidth: '540px', lineHeight: '1.7' }}>
+                                Autonomous, AI-driven defense that neutralizes threats in nanoseconds. No rules to write. No false positives. Just pure, resilient protection.
                             </motion.p>
+
                             <motion.div variants={itemVariants} style={{ display: 'flex', gap: '1rem' }}>
                                 <Link to="/contact">
-                                    <Button variant="primary">Get Started <ChevronRight size={18} /></Button>
+                                    <Button variant="primary" style={{ padding: '1rem 2rem' }}>Deploy Shield <ChevronRight size={18} /></Button>
                                 </Link>
-                                <Link to="/services">
-                                    <Button variant="outline">Learn More</Button>
+                                <Link to="/demo">
+                                    <Button variant="outline" style={{ padding: '1rem 2rem' }}>Live Attack Demo</Button>
                                 </Link>
                             </motion.div>
                         </motion.div>
 
+                        {/* Hero Visual - Scanning Eye */}
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
+                            initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8 }}
-                            className="flex-center animate-float"
-                            style={{ position: 'relative' }}
+                            transition={{ duration: 1 }}
+                            style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}
                         >
-                            <div style={{ position: 'relative', width: '100%', maxWidth: '500px', aspectRatio: '1/1' }}>
-                                {/* Abstract Cyber Graphic */}
-                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
-                                    <circle cx="100" cy="100" r="80" fill="none" stroke="var(--primary)" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.5">
-                                        <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="20s" repeatCount="indefinite" />
+                            <div className="hero-visual">
+                                <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
+                                    <defs>
+                                        <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(200 200) rotate(90) scale(200)">
+                                            <stop stopColor="var(--primary)" stopOpacity="0.2" />
+                                            <stop offset="1" stopColor="var(--primary)" stopOpacity="0" />
+                                        </radialGradient>
+                                        <clipPath id="logoClip">
+                                            <circle cx="200" cy="200" r="60" />
+                                        </clipPath>
+                                        <path id="textCircle" d="M 200, 200 m -170, 0 a 170,170 0 1,1 340,0 a 170,170 0 1,1 -340,0" fill="none" />
+                                    </defs>
+
+                                    {/* Rotating Rings */}
+                                    <circle cx="200" cy="200" r="199" stroke="var(--border-color)" strokeOpacity="0.3" strokeDasharray="4 4">
+                                        <animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="60s" repeatCount="indefinite" />
                                     </circle>
-                                    <circle cx="100" cy="100" r="60" fill="none" stroke="var(--secondary)" strokeWidth="0.5" opacity="0.5">
-                                        <animateTransform attributeName="transform" type="rotate" from="360 100 100" to="0 100 100" dur="15s" repeatCount="indefinite" />
+                                    <circle cx="200" cy="200" r="150" stroke="var(--primary)" strokeOpacity="0.2" strokeWidth="1">
+                                        <animateTransform attributeName="transform" type="rotate" from="360 200 200" to="0 200 200" dur="30s" repeatCount="indefinite" />
                                     </circle>
-                                    <path d="M100,20 L100,180 M20,100 L180,100" stroke="var(--primary)" strokeWidth="0.2" opacity="0.3" />
-                                    <rect x="70" y="70" width="60" height="60" rx="10" fill="var(--bg-card)" stroke="var(--primary)" strokeWidth="2" />
-                                    <image href="/company_logo.jpg" x="75" y="75" height="50" width="50" clipPath="inset(0% round 10px)" />
+
+                                    {/* API Data Ring */}
+                                    <g opacity="0.7">
+                                        <animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="60s" repeatCount="indefinite" />
+                                        <text fontSize="10" fontFamily="monospace" style={{ letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 'bold' }}>
+                                            <textPath href="#textCircle" startOffset="0%" fill="var(--text-muted)">GET /api/v1/data</textPath>
+                                            <textPath href="#textCircle" startOffset="14%" fill="var(--text-muted)">403 FORBIDDEN</textPath>
+                                            <textPath href="#textCircle" startOffset="28%" fill="var(--text-muted)">SQL INJECTION BLOCKED</textPath>
+                                            <textPath href="#textCircle" startOffset="48%" fill="var(--text-muted)">XSS DETECTED</textPath>
+                                            <textPath href="#textCircle" startOffset="60%" fill="var(--text-muted)">200 OK</textPath>
+                                            <textPath href="#textCircle" startOffset="70%" fill="var(--text-muted)">RATE LIMIT</textPath>
+                                            <textPath href="#textCircle" startOffset="82%" fill="var(--text-muted)">POST /auth/login</textPath>
+                                        </text>
+                                    </g>
+
+                                    {/* Scanning Effect */}
+                                    <path d="M200,200 L400,100 A220,220 0 0,1 400,300 Z" fill="url(#glow)" opacity="0.5">
+                                        <animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="4s" repeatCount="indefinite" />
+                                    </path>
+
+                                    {/* Central Logo */}
+                                    <image
+                                        href="/company_logo.jpg"
+                                        x="140"
+                                        y="140"
+                                        height="120"
+                                        width="120"
+                                        clipPath="url(#logoClip)"
+                                        preserveAspectRatio="xMidYMid slice"
+                                    />
+                                    <circle cx="200" cy="200" r="60" stroke="var(--primary)" strokeWidth="2" fill="none" />
                                 </svg>
                             </div>
                         </motion.div>
@@ -78,50 +138,159 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Features Section */}
-            <section className="section-padding" style={{ background: 'var(--bg-card)' }}>
+            {/* Bento Grid Features */}
+            <section className="section-padding">
                 <div className="container">
-                    <div style={{ textAlign: 'center' }} className="mb-lg">
-                        <h2 className="text-h2" style={{ marginBottom: '1rem' }}>Why Choose <span className="text-gradient">Resilient</span>?</h2>
-                        <p className="text-body" style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto' }}>
-                            We provide comprehensive protection against the most sophisticated cyber threats targeting your APIs.
-                        </p>
+                    <div className="mb-lg" style={{ textAlign: 'center' }}>
+                        <h2 className="text-h2">Defense in <span className="text-gradient">Depth</span></h2>
+                        <p className="text-body" style={{ color: 'var(--text-muted)', marginTop: '1rem' }}>Comprehensive security layers working in unison.</p>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+                    <div className="bento-grid">
+                        {/* Card 1: Neural Core (Large) */}
+                        <motion.div
+                            whileHover={{ y: -5 }}
+                            style={{
+                                gridColumn: 'span 2',
+                                background: 'linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)',
+                                border: '1px solid var(--border-color)',
+                                borderRadius: '24px',
+                                padding: '2.5rem',
+                                position: 'relative',
+                                overflow: 'hidden'
+                            }}
+                        >
+                            <div style={{ position: 'absolute', top: 0, right: 0, padding: '2rem', opacity: 0.1 }}>
+                                <Cpu size={120} />
+                            </div>
+                            <Cpu size={40} color="var(--primary)" style={{ marginBottom: '1.5rem' }} />
+                            <h3 className="text-h3" style={{ marginBottom: '1rem' }}>Neural Detection Core</h3>
+                            <p className="text-body" style={{ color: 'var(--text-muted)', maxWidth: '500px' }}>
+                                Our proprietary AI models analyze traffic patterns in real-time, distinguishing between legitimate user behavior and sophisticated bot attacks with 99.99% accuracy.
+                            </p>
+                        </motion.div>
+
+                        {/* Card 2: Global Shield */}
+                        <motion.div
+                            whileHover={{ y: -5 }}
+                            style={{
+                                background: 'var(--bg-card)',
+                                border: '1px solid var(--border-color)',
+                                borderRadius: '24px',
+                                padding: '2rem'
+                            }}
+                        >
+                            <Globe size={32} color="var(--secondary)" style={{ marginBottom: '1.5rem' }} />
+                            <h3 className="text-lg" style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>Global Edge Network</h3>
+                            <p className="text-body" style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
+                                Low-latency protection deployed across 250+ edge locations worldwide.
+                            </p>
+                        </motion.div>
+
+                        {/* Card 3: Compliance */}
+                        <motion.div
+                            whileHover={{ y: -5 }}
+                            style={{
+                                background: 'var(--bg-card)',
+                                border: '1px solid var(--border-color)',
+                                borderRadius: '24px',
+                                padding: '2rem'
+                            }}
+                        >
+                            <FileCheck size={32} color="var(--primary)" style={{ marginBottom: '1.5rem' }} />
+                            <h3 className="text-lg" style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>Auto-Compliance</h3>
+                            <p className="text-body" style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
+                                GDPR, CCPA, and SOC2 compliance baked into every request inspection.
+                            </p>
+                        </motion.div>
+
+                        {/* Card 4: Zero Trust (Wide) */}
+                        <motion.div
+                            whileHover={{ y: -5 }}
+                            style={{
+                                gridColumn: 'span 2',
+                                background: 'linear-gradient(145deg, rgba(124, 58, 237, 0.05) 0%, rgba(0,0,0,0) 100%)',
+                                border: '1px solid var(--border-color)',
+                                borderRadius: '24px',
+                                padding: '2.5rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                flexWrap: 'wrap',
+                                gap: '2rem'
+                            }}
+                        >
+                            <div style={{ maxWidth: '400px' }}>
+                                <Lock size={40} color="var(--secondary)" style={{ marginBottom: '1.5rem' }} />
+                                <h3 className="text-h3" style={{ marginBottom: '1rem' }}>Zero Trust Architecture</h3>
+                                <p className="text-body" style={{ color: 'var(--text-muted)' }}>
+                                    Every request is treated as hostile until proven otherwise. Identity-aware proxies ensure only authorized traffic reaches your origin.
+                                </p>
+                            </div>
+                            <div style={{ flex: 1, minWidth: '200px', display: 'flex', justifyContent: 'center' }}>
+                                <Shield size={100} strokeWidth={0.5} color="var(--text-muted)" style={{ opacity: 0.2 }} />
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* How It Works - Process Flow */}
+            <section className="section-padding" style={{ background: 'var(--bg-card)' }}>
+                <div className="container">
+                    <div className="mb-lg" style={{ textAlign: 'center' }}>
+                        <h2 className="text-h2">The <span className="text-gradient">Neutralization</span> Process</h2>
+                    </div>
+
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '2rem' }}>
                         {[
-                            { icon: <Shield size={40} color="var(--primary)" />, title: 'Real-time Protection', desc: 'Instant threat detection and blocking using advanced AI algorithms.' },
-                            { icon: <Lock size={40} color="var(--secondary)" />, title: 'Zero Trust Architecture', desc: 'Never trust, always verify. Strict identity verification for every request.' },
-                            { icon: <Zap size={40} color="var(--primary)" />, title: 'Low Latency', desc: 'Security that doesn\'t slow you down. Optimized for high-performance APIs.' },
-                            { icon: <Globe size={40} color="var(--secondary)" />, title: 'Global Compliance', desc: 'Adhere to GDPR, CCPA, and other global privacy regulations effortlessly.' },
-                        ].map((feature, index) => (
-                            <motion.div
-                                key={index}
-                                whileHover={{ y: -10 }}
-                                style={{ background: 'var(--bg-dark)', padding: '2rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}
-                            >
-                                <div style={{ marginBottom: '1.5rem' }}>{feature.icon}</div>
-                                <h3 className="text-h3" style={{ marginBottom: '1rem' }}>{feature.title}</h3>
-                                <p className="text-body" style={{ color: 'var(--text-muted)' }}>{feature.desc}</p>
-                            </motion.div>
+                            { step: '01', title: 'Analyze', desc: 'Traffic ingestion via SDK' },
+                            { step: '02', title: 'Detect', desc: 'AI Anomaly Scoring' },
+                            { step: '03', title: 'Block', desc: 'Edge-level Mitigation' }
+                        ].map((item, i) => (
+                            <React.Fragment key={i}>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.2 }}
+                                    className="process-step"
+                                >
+                                    <div style={{ fontSize: '3rem', fontWeight: '900', color: 'var(--border-color)', marginBottom: '1rem' }}>{item.step}</div>
+                                    <h3 className="text-lg" style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>{item.title}</h3>
+                                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{item.desc}</p>
+                                </motion.div>
+                                {i < 2 && <ChevronRight size={32} color="var(--text-muted)" className="hidden-mobile" />}
+                            </React.Fragment>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* CTA Section */}
-            <section className="section-padding" style={{ position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: '0', left: '0', right: '0', bottom: '0', background: 'linear-gradient(45deg, var(--bg-dark), #1a1a1a)', zIndex: -1 }} />
-                <div className="container" style={{ textAlign: 'center' }}>
-                    <h2 className="text-h2" style={{ marginBottom: '2rem' }}>Ready to Secure Your APIs?</h2>
-                    <p className="text-lg" style={{ color: 'var(--text-muted)', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem' }}>
-                        Join leading companies who trust Resilient Privacy for their cybersecurity needs. Get a free audit today.
-                    </p>
-                    <Link to="/contact">
-                        <Button variant="primary" style={{ fontSize: '1.2rem', padding: '1rem 2.5rem' }}>
-                            Get Your Free Audit
-                        </Button>
-                    </Link>
+            {/* CTA */}
+            <section className="section-padding">
+                <div className="container">
+                    <div style={{
+                        background: 'linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%)',
+                        borderRadius: '24px',
+                        padding: '4rem 2rem',
+                        textAlign: 'center',
+                        position: 'relative',
+                        overflow: 'hidden'
+                    }}>
+                        <div style={{ position: 'absolute', inset: 0, background: 'black', opacity: 0.8 }} /> {/* Darken overlay */}
+                        <div style={{ position: 'relative', zIndex: 1 }}>
+                            <h2 className="text-h2" style={{ marginBottom: '1.5rem' }}>Ready to Bulletproof Your APIs?</h2>
+                            <p className="text-lg" style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '2.5rem', maxWidth: '600px', margin: '0 auto 2.5rem' }}>
+                                Join the new standard in cybersecurity. Deploy Resilient in under 15 minutes.
+                            </p>
+                            <Link to="/contact">
+                                <Button style={{ background: 'white', color: 'black', border: 'none', fontSize: '1.1rem', padding: '1rem 3rem', fontWeight: 'bold' }}>
+                                    Start Integration
+                                </Button>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </section>
         </>
