@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Linkedin, Instagram } from 'lucide-react';
+import { Linkedin, Instagram, Mail, MapPin } from 'lucide-react';
 import './Footer.css';
 
 const Footer = () => {
@@ -13,8 +13,8 @@ const Footer = () => {
     ];
 
     const legalLinks = [
-        { to: '/', label: 'Privacy Policy' },
-        { to: '/', label: 'Terms of Service' }
+        { to: '/privacy-policy', label: 'Privacy Policy' },
+        { to: '/terms-of-service', label: 'Terms of Service' }
     ];
 
     const socialLinks = [
@@ -47,8 +47,18 @@ const Footer = () => {
                             </span>
                         </div>
                         <p className="footer-description">
-                            Securing the digital frontier with advanced API protection and privacy-first architecture.
+                            A feature release engine company securing the digital frontier with advanced API protection and a privacy-first approach.
                         </p>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '1rem' }}>
+                            <a href="mailto:info@resilientprivacy.com" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)', textDecoration: 'none' }}>
+                                <Mail size={16} color="var(--primary)" />
+                                <span style={{ transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = 'var(--primary)'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>info@resilientprivacy.com</span>
+                            </a>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)' }}>
+                                <MapPin size={16} color="var(--primary)" />
+                                <span>Wilmington, Delaware</span>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Links Section */}

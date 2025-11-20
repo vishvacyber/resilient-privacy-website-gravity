@@ -2,15 +2,15 @@
   /* Color Palette */
   --bg-dark: #0a0a0a;
   --bg-card: #121212;
-  --primary: #00f0ff;
-  /* Cyan Neon */
-  --primary-dim: rgba(0, 240, 255, 0.1);
+  --primary: #3b82f6;
+  /* Electric Blue - Professional and tech-forward */
+  --primary-dim: rgba(59, 130, 246, 0.1);
   --secondary: #9f40ff;
   /* Purple Neon - Brightened for contrast */
   --text-main: #ffffff;
   --text-muted: #b0b0b0;
   --border-color: #404040;
-  --accent-glow: 0 0 20px rgba(0, 240, 255, 0.3);
+  --accent-glow: 0 0 20px rgba(59, 130, 246, 0.3);
 
   /* Typography */
   --font-main: 'Inter', system-ui, -apple-system, sans-serif;

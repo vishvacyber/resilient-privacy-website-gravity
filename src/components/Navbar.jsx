@@ -56,7 +56,7 @@ const Navbar = () => {
             <div className="container flex-between" style={{ height: '100%' }}>
                 <Link to="/" className="flex-center" style={{ gap: '0.5rem', fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-main)' }}>
                     <img src="/company_logo.jpg" alt="Resilient Privacy Logo" style={{ width: '48px', height: '48px', borderRadius: '8px', objectFit: 'cover' }} />
-                    <span>Resilient <span style={{ color: 'var(--primary)' }}>Privacy</span></span>
+                    <span>Resilient <span style={{ color: '#ffffff' }}>Privacy</span></span>
                 </Link>
 
                 {/* Desktop Menu */}

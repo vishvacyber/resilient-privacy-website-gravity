@@ -1,27 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import Button from './Button';
 import { Cookie } from 'lucide-react';
+import SECURITY_CONFIG from '../../security.config';
 
 const CookieConsent = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const CONSENT_VERSION = '1.0'; // Update this when cookie policy changes
 
     useEffect(() => {
-        const consent = localStorage.getItem('cookieConsent');
-        if (!consent) {
+        const consent = localStorage.getItem(SECURITY_CONFIG.cookies.consentCookieName);
+        const consentVersion = localStorage.getItem('cookieConsentVersion');
+
+        // Show banner if no consent or version mismatch
+        if (!consent || consentVersion !== CONSENT_VERSION) {
             // Small delay to not overwhelm user immediately
             const timer = setTimeout(() => setIsVisible(true), 1000);
             return () => clearTimeout(timer);
         }
     }, []);
 
+    const setCookieConsent = (value) => {
+        const expiryDate = new Date();
+        expiryDate.setDate(expiryDate.getDate() + SECURITY_CONFIG.cookies.consentCookieExpiry);
+
+        // Store consent value
+        localStorage.setItem(SECURITY_CONFIG.cookies.consentCookieName, value);
+        localStorage.setItem('cookieConsentVersion', CONSENT_VERSION);
+        localStorage.setItem('cookieConsentExpiry', expiryDate.toISOString());
+
+        // In production with a backend, you would set an actual HTTP cookie with:
+        // - Secure flag (HTTPS only)
+        // - SameSite=Strict
+        // - HttpOnly (if possible for your use case)
+        // Example: document.cookie = `consent=${value}; expires=${expiryDate.toUTCString()}; Secure; SameSite=Strict`;
+    };
+
     const handleAccept = () => {
-        localStorage.setItem('cookieConsent', 'true');
+        setCookieConsent('true');
         setIsVisible(false);
     };
 
     const handleDecline = () => {
-        localStorage.setItem('cookieConsent', 'false');
+        setCookieConsent('false');
         setIsVisible(false);
     };
 
@@ -59,9 +81,20 @@ const CookieConsent = () => {
                             </div>
                             <div>
                                 <h3 style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: 'var(--text-main)' }}>We value your privacy</h3>
-                                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', maxWidth: '600px' }}>
-                                    We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept", you consent to our use of cookies.
+                                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', maxWidth: '600px', marginBottom: '0.5rem' }}>
+                                    We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic.
+                                    By clicking "Accept", you consent to our use of cookies.
                                 </p>
+                                <Link
+                                    to="/privacy-policy"
+                                    style={{
+                                        color: 'var(--primary)',
+                                        fontSize: '0.875rem',
+                                        textDecoration: 'underline'
+                                    }}
+                                >
+                                    Read our Privacy Policy
+                                </Link>
                             </div>
                         </div>
 
@@ -81,3 +114,4 @@ const CookieConsent = () => {
 };
 
 export default CookieConsent;
+
