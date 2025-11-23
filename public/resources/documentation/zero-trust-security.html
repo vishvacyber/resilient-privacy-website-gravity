@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zero Trust Security Architecture - Resilient Privacy</title>
+    <style>
+        @media print { @page { margin: 0.75in; } .no-print { display: none; } }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; max-width: 850px; margin: 0 auto; padding: 40px; color: #1f2937; line-height: 1.6; background: #fff; }
+        .header { border-bottom: 4px solid #7c3aed; padding: 20px 0; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-frame { width: 50px; height: 50px; border: 2px solid #7c3aed; border-radius: 10px; padding: 4px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, transparent 100%); }
+        .logo-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+        .logo-text { font-size: 22px; font-weight: 800; color: #7c3aed; }
+        .doc-type { font-size: 11px; color: #6b7280; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+        h1 { font-size: 32px; color: #7c3aed; margin: 20px 0; font-weight: 800; }
+        h2 { font-size: 22px; color: #1f2937; margin: 25px 0 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; font-weight: 700; }
+        h3 { font-size: 18px; color: #374151; margin: 20px 0 10px; font-weight: 600; }
+        p { margin: 10px 0; color: #4b5563; }
+        .highlight-box { background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(112, 0, 255, 0.05) 100%); border-left: 4px solid #7c3aed; padding: 20px; margin: 20px 0; border-radius: 4px; }
+        ul, ol { margin: 10px 0 10px 20px; }
+        ul li, ol li { margin: 8px 0; color: #4b5563; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 2px solid #e5e7eb; font-size: 11px; color: #6b7280; text-align: center; }
+        .print-button { position: fixed; top: 20px; right: 20px; background: #7c3aed; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .principle { background: #f9fafb; padding: 15px; margin: 15px 0; border-radius: 8px; border-left: 3px solid #7000ff; }
+        .principle h4 { color: #7c3aed; margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <button class="print-button no-print" onclick="window.print()">Download PDF</button>
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-frame"><img src="/company_logo.jpg" alt="Resilient Privacy"></div>
+            <div class="logo-text">RESILIENT PRIVACY</div>
+        </div>
+        <div class="doc-type">Research Documentation</div>
+    </div>
+    <h1>Zero Trust Security Architecture</h1>
+    <p style="font-size: 16px; color: #6b7280; margin-bottom: 25px;">Never Trust, Always Verify - A Modern Approach to Cybersecurity</p>
+    <div class="highlight-box">
+        <h3>The Zero Trust Philosophy</h3>
+        <p>Zero Trust is a security framework based on the principle of "never trust, always verify." Unlike traditional perimeter-based security, Zero Trust assumes that threats can exist both inside and outside the network, requiring verification for every access request regardless of source.</p>
+    </div>
+    <h2>Core Principles of Zero Trust</h2>
+    <div class="principle">
+        <h4>1. Verify Explicitly</h4>
+        <p>Always authenticate and authorize based on all available data points including user identity, location, device health, service or workload, data classification, and anomalies.</p>
+    </div>
+    <div class="principle">
+        <h4>2. Use Least Privilege Access</h4>
+        <p>Limit user access with Just-In-Time and Just-Enough-Access (JIT/JEA), risk-based adaptive policies, and data protection to minimize each user's exposure.</p>
+    </div>
+    <div class="principle">
+        <h4>3. Assume Breach</h4>
+        <p>Minimize blast radius and segment access. Verify end-to-end encryption and use analytics to get visibility, drive threat detection, and improve defenses.</p>
+    </div>
+    <h2>Zero Trust for API Security</h2>
+    <h3>Authentication and Identity Verification</h3>
+    <ul>
+        <li>Strong authentication for every API request (OAuth 2.0, mTLS)</li>
+        <li>Multi-factor authentication for sensitive operations</li>
+        <li>Continuous identity verification throughout session</li>
+        <li>Device health and compliance verification</li>
+    </ul>
+    <h3>Granular Authorization</h3>
+    <ul>
+        <li>Role-Based Access Control (RBAC) for all endpoints</li>
+        <li>Attribute-Based Access Control (ABAC) for fine-grained policies</li>
+        <li>Dynamic policy enforcement based on context</li>
+        <li>Object-level authorization checks (prevent BOLA)</li>
+    </ul>
+    <h3>Micro-Segmentation</h3>
+    <ul>
+        <li>Segment APIs by function, data sensitivity, and risk level</li>
+        <li>Enforce network policies at API level</li>
+        <li>Isolate sensitive workloads and data</li>
+        <li>Implement service mesh for service-to-service security</li>
+    </ul>
+    <h2>Implementation Strategy</h2>
+    <h3>Phase 1: Assessment and Planning</h3>
+    <ol>
+        <li>Identify all assets, data flows, and access patterns</li>
+        <li>Map current security controls and gaps</li>
+        <li>Define Zero Trust architecture strategy</li>
+        <li>Establish success metrics and KPIs</li>
+    </ol>
+    <h3>Phase 2: Identity and Access Management</h3>
+    <ol>
+        <li>Implement strong authentication (MFA, SSO)</li>
+        <li>Deploy identity and access management (IAM) solution</li>
+        <li>Establish least privilege access policies</li>
+        <li>Enable continuous identity verification</li>
+    </ol>
+    <h3>Phase 3: Network Segmentation</h3>
+    <ol>
+        <li>Implement micro-segmentation for workloads</li>
+        <li>Deploy API gateways with security policies</li>
+        <li>Encrypt all communications (TLS 1.3, mTLS)</li>
+        <li>Establish zero trust network access (ZTNA)</li>
+    </ol>
+    <h3>Phase 4: Monitoring and Analytics</h3>
+    <ol>
+        <li>Deploy comprehensive logging and monitoring</li>
+        <li>Implement SIEM for centralized visibility</li>
+        <li>Enable behavioral analytics and anomaly detection</li>
+        <li>Continuous risk assessment and adaptation</li>
+    </ol>
+    <h2>Zero Trust Benefits</h2>
+    <div class="highlight-box">
+        <ul style="margin-left: 20px;">
+            <li><strong>Reduced Attack Surface:</strong> Minimizes exposure through micro-segmentation</li>
+            <li><strong>Improved Compliance:</strong> Granular access controls support regulatory requirements</li>
+            <li><strong>Better Visibility:</strong> Continuous monitoring provides comprehensive insight</li>
+            <li><strong>Faster Incident Response:</strong> Segmentation contains breaches quickly</li>
+            <li><strong>Supports Cloud Adoption:</strong> Designed for modern distributed architectures</li>
+        </ul>
+    </div>
+    <h2>Challenges and Considerations</h2>
+    <ul>
+        <li><strong>Cultural Change:</strong> Requires shift from perimeter security mindset</li>
+        <li><strong>Complexity:</strong> More sophisticated than traditional security models</li>
+        <li><strong>Performance:</strong> Authentication overhead must be optimized</li>
+        <li><strong>Legacy Systems:</strong> May be difficult to integrate older systems</li>
+        <li><strong>User Experience:</strong> Balance security with usability</li>
+    </ul>
+    <h2>Conclusion</h2>
+    <p>Zero Trust represents a fundamental shift in security strategy, moving from implicit trust based on network location to explicit verification of every access request. For API security, this means implementing strong authentication, granular authorization, and continuous monitoring for all endpoints. While the journey to Zero Trust requires investment and cultural change, the security benefits—reduced attack surface, improved compliance, and faster incident response—make it essential for modern organizations.</p>
+    <div class="footer">
+        <div>© 2025 Resilient Privacy. All rights reserved.</div>
+        <div style="margin-top: 5px;">For more information, visit www.resilientprivacy.com | Contact: info@resilientprivacy.com</div>
+    </div>
+</body>
+</html>

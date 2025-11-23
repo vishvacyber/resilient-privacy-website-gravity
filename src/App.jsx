@@ -15,6 +15,10 @@ import Resources from './pages/Resources';
 import Demo from './pages/Demo';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
+import PrivacyAttackSurfaceManagement from './pages/PrivacyAttackSurfaceManagement';
+import CredentialLeakProtection from './pages/CredentialLeakProtection';
+import UnifiedSecurityShield from './pages/UnifiedSecurityShield';
+import CompletePlatform from './pages/CompletePlatform';
 
 // Admin Imports
 import Login from './pages/Admin/Login';
@@ -23,6 +27,8 @@ import Dashboard from './pages/Admin/Dashboard';
 import JobsManager from './pages/Admin/JobsManager';
 import ApplicationsViewer from './pages/Admin/ApplicationsViewer';
 import ContactSubmissions from './pages/Admin/ContactSubmissions';
+import ServicesManager from './pages/Admin/ServicesManager';
+import DocumentationManager from './pages/Admin/DocumentationManager';
 
 function App() {
   return (
@@ -45,6 +51,12 @@ function App() {
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
 
+              {/* Product Pages */}
+              <Route path="/product/privacy-attack-surface-management" element={<PrivacyAttackSurfaceManagement />} />
+              <Route path="/product/credential-leak-protection" element={<CredentialLeakProtection />} />
+              <Route path="/product/unified-security-shield" element={<UnifiedSecurityShield />} />
+              <Route path="/product/complete-platform" element={<CompletePlatform />} />
+
               {/* Admin Routes */}
               <Route path="/admin/login" element={<Login />} />
               <Route path="/admin" element={<AdminLayout />}>
@@ -52,6 +64,8 @@ function App() {
                 <Route path="jobs" element={<JobsManager />} />
                 <Route path="applications" element={<ApplicationsViewer />} />
                 <Route path="messages" element={<ContactSubmissions />} />
+                <Route path="services" element={<ServicesManager />} />
+                <Route path="documentation" element={<DocumentationManager />} />
               </Route>
             </Routes>
           </main>

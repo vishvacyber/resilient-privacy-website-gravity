@@ -1,0 +1,141 @@
+import express from 'express';
+import { getDb } from '../database.js';
+import { authenticateAdmin } from '../middleware/auth.js';
+
+const router = express.Router();
+
+// GET all documentation (optionally filter by category)
+router.get('/', async (req, res) => {
+    try {
+        const db = getDb();
+        const { category } = req.query;
+
+        let query = 'SELECT * FROM documentation WHERE is_active = 1 ORDER BY display_order ASC, id ASC';
+        let params = [];
+
+        if (category) {
+            query = 'SELECT * FROM documentation WHERE category = ? AND is_active = 1 ORDER BY display_order ASC, id ASC';
+            params = [category];
+        }
+
+        const docs = await db.all(query, params);
+        res.json(docs);
+    } catch (error) {
+        console.error('Error fetching documentation:', error);
+        res.status(500).json({ error: 'Failed to fetch documentation' });
+    }
+});
+
+// GET single documentation by slug
+router.get('/:slug', async (req, res) => {
+    try {
+        const db = getDb();
+        const doc = await db.get('SELECT * FROM documentation WHERE slug = ?', [req.params.slug]);
+
+        if (!doc) {
+            return res.status(404).json({ error: 'Documentation not found' });
+        }
+
+        res.json(doc);
+    } catch (error) {
+        console.error('Error fetching documentation:', error);
+        res.status(500).json({ error: 'Failed to fetch documentation' });
+    }
+});
+
+// POST create documentation (admin only)
+router.post('/', authenticateAdmin, async (req, res) => {
+    try {
+        const db = getDb();
+        const { title, slug, file_path, category, description, display_order } = req.body;
+
+        // Validation
+        if (!title || !slug || !file_path) {
+            return res.status(400).json({ error: 'Missing required fields' });
+        }
+
+        // Check if slug already exists
+        const existing = await db.get('SELECT id FROM documentation WHERE slug = ?', [slug]);
+        if (existing) {
+            return res.status(400).json({ error: 'Slug already exists' });
+        }
+
+        const result = await db.run(`
+            INSERT INTO documentation (title, slug, file_path, category, description, display_order)
+            VALUES (?, ?, ?, ?, ?, ?)
+        `, [
+            title,
+            slug,
+            file_path,
+            category || 'learning-center',
+            description || null,
+            display_order || 0
+        ]);
+
+        res.status(201).json({ id: result.lastID, message: 'Documentation created successfully' });
+    } catch (error) {
+        console.error('Error creating documentation:', error);
+        res.status(500).json({ error: 'Failed to create documentation' });
+    }
+});
+
+// PUT update documentation (admin only)
+router.put('/:id', authenticateAdmin, async (req, res) => {
+    try {
+        const db = getDb();
+        const { title, slug, file_path, category, description, display_order, is_active } = req.body;
+
+        const doc = await db.get('SELECT * FROM documentation WHERE id = ?', [req.params.id]);
+        if (!doc) {
+            return res.status(404).json({ error: 'Documentation not found' });
+        }
+
+        // Check if new slug conflicts with existing
+        if (slug && slug !== doc.slug) {
+            const existing = await db.get('SELECT id FROM documentation WHERE slug = ? AND id != ?', [slug, req.params.id]);
+            if (existing) {
+                return res.status(400).json({ error: 'Slug already exists' });
+            }
+        }
+
+        await db.run(`
+            UPDATE documentation
+            SET title = ?, slug = ?, file_path = ?, category = ?, description = ?, 
+                display_order = ?, is_active = ?, updated_at = CURRENT_TIMESTAMP
+            WHERE id = ?
+        `, [
+            title || doc.title,
+            slug || doc.slug,
+            file_path || doc.file_path,
+            category || doc.category,
+            description !== undefined ? description : doc.description,
+            display_order !== undefined ? display_order : doc.display_order,
+            is_active !== undefined ? is_active : doc.is_active,
+            req.params.id
+        ]);
+
+        res.json({ message: 'Documentation updated successfully' });
+    } catch (error) {
+        console.error('Error updating documentation:', error);
+        res.status(500).json({ error: 'Failed to update documentation' });
+    }
+});
+
+// DELETE documentation (admin only)
+router.delete('/:id', authenticateAdmin, async (req, res) => {
+    try {
+        const db = getDb();
+        const result = await db.run('DELETE FROM documentation WHERE id = ?', [req.params.id]);
+
+        if (result.changes === 0) {
+            return res.status(404).json({ error: 'Documentation not found' });
+        }
+
+        res.json({ message: 'Documentation deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting documentation:', error);
+        res.status(500).json({ error: 'Failed to delete documentation' });
+    }
+});
+
+export default router;

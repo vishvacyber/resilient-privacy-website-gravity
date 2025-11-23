@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fintech Case Study - Resilient Privacy</title>
+    <style>
+        @media print { @page { margin: 0.75in; } .no-print { display: none; } }
+        body { font-family: 'Segoe UI', sans-serif; max-width: 850px; margin: 40px auto; padding: 40px; color: #1f2937; line-height: 1.6; }
+        .header { border-bottom: 4px solid #7c3aed; padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; }
+        .logo { font-size: 28px; font-weight: 800; color: #7c3aed; }
+        h1 { font-size: 36px; color: #7c3aed; margin: 20px 0; }
+        h2 { font-size: 22px; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; margin: 25px 0 15px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 25px 0; }
+        .stat-card { background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(112, 0, 255, 0.05) 100%); padding: 20px; border-radius: 8px; text-align: center; }
+        .stat-number { font-size: 32px; font-weight: 800; color: #7c3aed; }
+        .print-button { position: fixed; top: 20px; right: 20px; background: #7c3aed; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <button class="print-button no-print" onclick="window.print()">Download PDF</button>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 12px;"><img src="/company_logo.jpg" alt="Resilient Privacy" style="height: 40px; width: 40px; border-radius: 8px;"><div class="logo">RESILIENT PRIVACY</div></div>
+        <div>Customer Success Story</div>
+    </div>
+    <h1>Fintech Unicorn Startup</h1>
+    <p style="font-size: 18px; color: #6b7280;">Achieving PCI DSS Compliance and 99.9% Fraud Detection Accuracy</p>
+    <div class="stats-grid">
+        <div class="stat-card"><div class="stat-number">99.9%</div><div class="stat-label">Fraud Detection Accuracy</div></div>
+        <div class="stat-card"><div class="stat-number">$600K+</div><div class="stat-label">Fraud Losses Prevented</div></div>
+        <div class="stat-card"><div class="stat-number">Level 1</div><div class="stat-label">PCI DSS Compliance</div></div>
+        <div class="stat-card"><div class="stat-number">94%</div><div class="stat-label">API Incidents Prevented</div></div>
+    </div>
+    <h2>The Challenge</h2>
+    <p>A rapidly growing fintech unicorn processing millions in daily transactions faced critical security and compliance challenges:</p>
+    <ul style="margin-left: 20px;">
+        <li><strong>API Security Crisis:</strong> 94% of financial services experienced API security incidents in 2024, averaging 47 attacks per month</li>
+        <li><strong>Rising Fraud:</strong> 50%+ increase in business fraud and 60%+ reported over $500,000 in direct fraud losses annually</li>
+        <li><strong>PCI DSS Compliance:</strong> Needed Level 1 PCI DSS compliance for processing over 6 million card transactions annually</li>
+        <li><strong>Data Breach Costs:</strong> Financial sector breach costs averaged $5.9 million in 2024</li>
+        <li><strong>Regulatory Pressure:</strong> Increasing scrutiny with 84% of fintechs remaining vulnerable due to inadequate API protections</li>
+    </ul>
+    <h2>The Solution</h2>
+    <p>Core Shield™ implementation delivered comprehensive API security and compliance:</p>
+    <ul style="margin-left: 20px;">
+        <li><strong>Zero Trust Architecture:</strong> Implemented zero-trust framework with OAuth 2.0, mTLS, and multi-factor authentication</li>
+        <li><strong>Real-Time Fraud Detection:</strong> AI-powered behavioral analysis detecting fraudulent transactions in under 1ms</li>
+        <li><strong>PCI DSS Automation:</strong> Automated compliance monitoring for all 12 PCI DSS requirements</li>
+        <li><strong>API Gateway Integration:</strong> Seamless integration with existing payment processing APIs</li>
+        <li><strong>Encryption & Tokenization:</strong> TLS 1.3 encryption and tokenization of sensitive payment data</li>
+    </ul>
+    <h2>Results</h2>
+    <p><strong>99.9% Fraud Detection Accuracy:</strong> AI-powered threat detection achieved 99.9% accuracy in identifying fraudulent transactions, dramatically reducing false positives while catching sophisticated fraud attempts.</p>
+    <p><strong>$600,000+ in Fraud Losses Prevented:</strong> In the first year, the platform prevented over $600,000 in direct fraud losses, surpassing the industry average of $500,000 annual losses.</p>
+    <p><strong>PCI DSS Level 1 Compliance Achieved:</strong> Successfully achieved and maintained PCI DSS Level 1 compliance for processing 6M+ annual transactions, with automated compliance reporting reducing audit time by 75%.</p>
+    <p><strong>94% of API Security Incidents Prevented:</strong> While 94% of financial services experienced API incidents, CoreShield's proactive protection prevented the organization from becoming part of this statistic, blocking an average of 47 attack attempts per month.</p>
+    <p><strong>$5.9M Breach Cost Avoidance:</strong> By preventing API security breaches, avoided the average financial sector breach cost of $5.9 million while maintaining customer trust and regulatory compliance.</p>
+    <p><strong>269M Card Records Protected:</strong> In an environment where 269 million card records were posted on dark web platforms in 2024, CoreShield ensured zero customer data exposure.</p>
+    <div style="background: #f9fafb; padding: 20px; margin: 20px 0; border-left: 4px solid #7c3aed; font-style: italic;">
+        "Resilient Privacy enabled us to scale securely. We achieved PCI DSS compliance faster than anticipated and the fraud protection has been exceptional. The platform pays for itself in prevented losses alone."
+        <div style="margin-top: 10px; font-weight: 600; color: #7c3aed; font-style: normal;">- Chief Technology Officer</div>
+    </div>
+    <h2>Technology Implemented</h2>
+    <ul style="margin-left: 20px;">
+        <li>OAuth 2.0 and OpenID Connect for authentication</li>
+        <li>Mutual TLS (mTLS) for API-to-API communication</li>
+        <li>Real-time behavioral analysis and anomaly detection</li>
+        <li>Tokenization at the edge to keep raw card data out of systems</li>
+        <li>Integration with KMS/HSM for secure key management</li>
+        <li>Automated PCI DSS compliance monitoring and reporting</li>
+    </ul>
+    <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #e5e7eb; font-size: 12px; color: #6b7280;">© 2024 Resilient Privacy. All rights reserved.</div>
+</body>
+</html>

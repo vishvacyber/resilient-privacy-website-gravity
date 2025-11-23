@@ -67,7 +67,7 @@ export async function initializeDatabase() {
             willing_to_relocate BOOLEAN,
             referral_source TEXT,
             portfolio_url TEXT,
-            references TEXT,
+            "references" TEXT,
             status TEXT DEFAULT 'new', -- new, reviewed, interview, rejected, hired
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY(job_id) REFERENCES jobs(id)
@@ -86,6 +86,40 @@ export async function initializeDatabase() {
             phone TEXT,
             status TEXT DEFAULT 'new', -- new, read, replied
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    `);
+
+    // Create Services Table
+    await db.exec(`
+        CREATE TABLE IF NOT EXISTS services (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            category TEXT NOT NULL CHECK(category IN ('need', 'consulting', 'industry', 'platform')),
+            title TEXT NOT NULL,
+            description TEXT NOT NULL,
+            icon_name TEXT,
+            features TEXT NOT NULL,
+            highlights TEXT,
+            badge TEXT,
+            display_order INTEGER DEFAULT 0,
+            is_active BOOLEAN DEFAULT 1,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    `);
+
+    // Create Documentation Table
+    await db.exec(`
+        CREATE TABLE IF NOT EXISTS documentation (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            slug TEXT UNIQUE NOT NULL,
+            file_path TEXT NOT NULL,
+            category TEXT DEFAULT 'learning-center',
+            description TEXT,
+            display_order INTEGER DEFAULT 0,
+            is_active BOOLEAN DEFAULT 1,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     `);
 

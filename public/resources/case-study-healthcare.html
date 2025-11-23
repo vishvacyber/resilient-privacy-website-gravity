@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Case Study - Resilient Privacy</title>
+    <style>
+        @media print {
+            @page {
+                margin: 0.75in;
+                size: letter;
+            }
+
+            body {
+                margin: 0;
+            }
+
+            .page-break {
+                page-break-after: always;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .header {
+            border-bottom: 4px solid #7c3aed;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #7c3aed;
+        }
+
+        .doc-type {
+            font-size: 12px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #7c3aed;
+            margin: 20px 0;
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #1f2937;
+            margin: 25px 0 15px 0;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 8px;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: #374151;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+
+        p {
+            margin: 10px 0;
+            color: #4b5563;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(112, 0, 255, 0.05) 100%);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #7c3aed;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #7c3aed;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .highlight-box {
+            background: #f9fafb;
+            border-left: 4px solid #7000ff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        ul {
+            margin: 10px 0 10px 20px;
+        }
+
+        ul li {
+            margin: 8px 0;
+            color: #4b5563;
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, transparent 100%);
+            padding: 25px;
+            border-radius: 8px;
+            font-style: italic;
+            font-size: 16px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .quote-author {
+            font-weight: 600;
+            font-style: normal;
+            color: #7c3aed;
+            margin-top: 10px;
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #7c3aed;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .print-button:hover {
+            background: #6d28d9;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            font-size: 12px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="print-button no-print" onclick="window.print()">Download PDF</button>
+
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 12px;"><img src="/company_logo.jpg" alt="Resilient Privacy" style="height: 40px; width: 40px; border-radius: 8px;"><div class="logo">RESILIENT PRIVACY</div></div>
+        <div class="doc-type">Customer Success Story</div>
+    </div>
+
+    <h1>Fortune 500 Healthcare Provider</h1>
+    <p style="font-size: 18px; color: #6b7280; margin-bottom: 30px;">Achieving HIPAA Compliance While Reducing Security
+        Costs by 40%</p>
+
+    <h2>Executive Summary</h2>
+    <p>A leading Fortune 500 healthcare provider serving over 12 million patients annually faced escalating
+        cybersecurity costs and struggled to maintain HIPAA compliance across their expanding digital infrastructure.
+        After implementing Resilient Privacy's CoreShield™ platform, they achieved full HIPAA compliance, reduced
+        security costs by 40%, and prevented an estimated $9.77 million in potential data breach costs.</p>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">40%</div>
+            <div class="stat-label">Security Cost Reduction</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">$9.77M</div>
+            <div class="stat-label">Breach Costs Avoided</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">HIPAA Compliance</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">15 min</div>
+            <div class="stat-label">Deployment Time</div>
+        </div>
+    </div>
+
+    <h2>The Challenge</h2>
+
+    <h3>Rising Security Costs</h3>
+    <p>The organization was spending $80,000-$120,000 annually on HIPAA compliance efforts alone, with additional
+        security infrastructure costs exceeding $300,000 per year. Healthcare data breaches had reached an average cost
+        of $9.77 million in 2024, making their existing security posture financially unsustainable.</p>
+
+    <h3>Complex API Infrastructure</h3>
+    <p>With over 200 APIs connecting electronic health records (EHR), patient portals, billing systems, and third-party
+        services, the organization lacked comprehensive visibility and protection across their API ecosystem.
+        Traditional security solutions created bottlenecks and couldn't keep pace with their digital transformation
+        initiatives.</p>
+
+    <h3> HIPAA Compliance Pressure</h3>
+    <p>Regulatory penalties for HIPAA violations had increased dramatically, with maximum fines reaching $2.13 million
+        per violation. The organization needed automated compliance monitoring and real-time threat protection to meet
+        stringent regulatory requirements.</p>
+
+    <div class="page-break"></div>
+
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 12px;"><img src="/company_logo.jpg" alt="Resilient Privacy" style="height: 40px; width: 40px; border-radius: 8px;"><div class="logo">RESILIENT PRIVACY</div></div>
+        <div class="doc-type">Healthcare Case Study - Page 2</div>
+    </div>
+
+    <h2>The Solution</h2>
+
+    <p>The healthcare provider implemented Resilient Privacy's CoreShield™ platform across their entire API
+        infrastructure, providing:</p>
+
+    <ul>
+        <li><strong>Automated API Discovery:</strong> Identified all 200+ APIs including 47 previously unknown shadow
+            APIs that posed compliance risks</li>
+        <li><strong>Real-Time Threat Protection:</strong> AI-powered detection with sub-millisecond response times and
+            99.99% accuracy</li>
+        <li><strong>HIPAA Compliance Automation:</strong> Automated monitoring, reporting, and enforcement of HIPAA
+            security rules</li>
+        <li><strong>Virtual Patching:</strong> Instant protection for newly discovered vulnerabilities without
+            disrupting patient care systems</li>
+        <li><strong>Data Exposure Prevention:</strong> Automatic detection and masking of Protected Health Information
+            (PHI)</li>
+    </ul>
+
+    <h3>Implementation</h3>
+    <p>Deployment was completed in under 15 minutes using CoreShield's Kubernetes sidecar model, requiring zero code
+        changes to existing applications. The platform integrated seamlessly with their existing security infrastructure
+        including:</p>
+
+    <ul>
+        <li>Epic EHR system APIs</li>
+        <li>Patient portal and mobile app APIs</li>
+        <li>Third-party pharmacy and insurance integrations</li>
+        <li>Billing and claims processing systems</li>
+        <li>Telehealth platforms</li>
+    </ul>
+
+    <h2>Results</h2>
+
+    <div class="highlight-box">
+        <h3>40% Reduction in Security Costs</h3>
+        <p>By automating threat detection and compliance monitoring, the organization reduced their annual security
+            overhead from $400,000 to $240,000, eliminating the need for manual security reviews and reducing staffing
+            requirements.</p>
+    </div>
+
+    <div class="highlight-box">
+        <h3>$9.77 Million in Breach Costs Avoided</h3>
+        <p>CoreShield™ blocked over 2.3 million malicious API requests in the first year, including SQL injection
+            attempts, unauthorized data access, and credential stuffing attacks. Using industry averages, preventing
+            just one major breach saved the organization the average healthcare breach cost of $9.77 million.</p>
+    </div>
+
+    <div class="highlight-box">
+        <h3>AI-Powered Security Impact</h3>
+        <p>The implementation of AI-powered security contributed to an estimated $2.22 million reduction in potential
+            breach costs, based on industry data showing AI security reduces breach costs by this amount on average.</p>
+    </div>
+
+    <div class="highlight-box">
+        <h3>Complete HIPAA Compliance</h3>
+        <p>Achieved and maintained 100% HIPAA compliance across all APIs with automated monitoring and real-time alerts.
+            Compliance reporting time reduced from 40 hours per quarter to under 2 hours.</p>
+    </div>
+
+    <div class="quote-box">
+        "Resilient Privacy's CoreShield platform transformed our API security posture. We achieved HIPAA compliance
+        faster than expected while dramatically reducing costs. The AI-powered protection gives us confidence that
+        patient data is secure 24/7."
+        <div class="quote-author">- Chief Information Security Officer</div>
+    </div>
+
+    <h2>Key Takeaways</h2>
+
+    <ul>
+        <li>Healthcare organizations can reduce security costs while improving protection quality</li>
+        <li>AI-powered automated security delivers better results than manual processes</li>
+        <li>Real-time API protection is essential for preventing costly data breaches</li>
+        <li>Compliance automation significantly reduces regulatory risk and overhead</li>
+        <li>Shadow API discovery is critical for comprehensive security coverage</li>
+    </ul>
+
+    <div class="footer">
+        <div>© 2024 Resilient Privacy. All rights reserved.</div>
+    </div>
+</body>
+
+</html>

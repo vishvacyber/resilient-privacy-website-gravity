@@ -234,12 +234,110 @@ button {
   max-width: 300px;
 }
 
-.hidden-mobile {
-  display: none;
-}
-
 @media (min-width: 768px) {
   .hidden-mobile {
     display: block;
+  }
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 767px) {
+  /* Touch targets - minimum 44px for accessibility */
+  button, a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Mobile modal fullscreen */
+  [style*="position: fixed"] {
+    padding: 1rem !important;
+  }
+
+  [style*="maxWidth: 600px"] {
+    max-width: 100% !important;
+    max-height: 90vh !important;
+  }
+
+  /* Form inputs full width */
+  input, textarea, select {
+    width: 100% !important;
+    font-size: 16px; /* Prevent iOS zoom */
+  }
+
+  /* Responsive tables */
+  table {
+    font-size: 0.875rem;
+  }
+
+  /* Stack buttons vertically */
+  .flex-center > *, .flex-between > * {
+    flex-wrap: wrap;
+  }
+
+  /* Smaller container padding */
+  .container {
+    padding: 0 1rem;
+  }
+
+  /* Hero section adjustments */
+  .text-hero {
+    font-size: 2rem !important;
+    line-height: 1.2;
+  }
+
+  /* Grid becomes single column */
+  .grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Reduce spacing on mobile */
+  .section-padding {
+    padding: 3rem 0;
+  }
+
+  /* Admin panel responsive */
+  .admin-sidebar {
+    width: 100%;
+    position: fixed;
+    left: -100%;
+    transition: left 0.3s ease;
+    z-index: 100;
+  }
+
+  .admin-sidebar.open {
+    left: 0;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    max-width: 100%;
+    padding: 0 2rem;
+  }
+
+  .text-hero {
+    font-size: 3rem;
+  }
+
+  /* Admin tables scrollable */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white;
+    color: black;
   }
 }

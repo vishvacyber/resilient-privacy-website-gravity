@@ -20,16 +20,13 @@ router.post('/login', async (req, res) => {
     const db = getDb();
 
     try {
-        console.log('Login attempt for:', username);
         const admin = await db.get('SELECT * FROM admins WHERE username = ?', [username]);
 
         if (!admin) {
-            console.log('User not found');
             return res.status(401).json({ error: 'Invalid credentials' });
         }
 
         const isMatch = await bcrypt.compare(password, admin.password_hash);
-        console.log('Password match:', isMatch);
 
         if (!isMatch) {
             return res.status(401).json({ error: 'Invalid credentials' });

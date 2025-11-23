@@ -7,7 +7,7 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     const companyLinks = [
-        { to: '/about', label: 'About Us' },
+        { to: '/company/about', label: 'About Us' },
         { to: '/services', label: 'Services' },
         { to: '/contact', label: 'Contact' }
     ];

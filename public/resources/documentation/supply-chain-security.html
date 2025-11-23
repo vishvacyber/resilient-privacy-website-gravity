@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supply Chain Security - Resilient Privacy</title>
+    <style>
+        @media print { @page { margin: 0.75in; } .no-print { display: none; } }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; max-width: 850px; margin: 0 auto; padding: 40px; color: #1f2937; line-height: 1.6; }
+        .header { border-bottom: 4px solid #7c3aed; padding: 20px 0; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-frame { width: 50px; height: 50px; border: 2px solid #7c3aed; border-radius: 10px; padding: 4px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, transparent 100%); }
+        .logo-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+        .logo-text { font-size: 22px; font-weight: 800; color: #7c3aed; }
+        h1 { font-size: 32px; color: #7c3aed; margin: 20px 0; font-weight: 800; }
+        h2 { font-size: 22px; color: #1f2937; margin: 25px 0 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; }
+        p { margin: 10px 0; color: #4b5563; }
+        .highlight-box { background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(112, 0, 255, 0.05) 100%); border-left: 4px solid #7c3aed; padding: 20px; margin: 20px 0; border-radius: 4px; }
+        ul, ol { margin: 10px 0 10px 20px; }
+        ul li, ol li { margin: 8px 0; color: #4b5563; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 2px solid #e5e7eb; font-size: 11px; color: #6b7280; text-align: center; }
+        .print-button { position: fixed; top: 20px; right: 20px; background: #7c3aed; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <button class="print-button no-print" onclick="window.print()">Download PDF</button>
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-frame"><img src="/company_logo.jpg" alt="Resilient Privacy"></div>
+            <div class="logo-text">RESILIENT PRIVACY</div>
+        </div>
+        <div style="font-size: 11px; color: #6b7280; text-transform: uppercase; letter-spacing: 1.5px;">Research Documentation</div>
+    </div>
+    <h1>Supply Chain Security</h1>
+    <p style="font-size: 16px; color: #6b7280; margin-bottom: 25px;">Protecting Your Software Supply Chain from Modern Threats</p>
+    <div class="highlight-box">
+        <p>Software supply chain attacks have increased dramatically, targeting the trust relationship between organizations and their software vendors, open-source dependencies, and build systems. A single compromise can affect thousands of downstream users.</p>
+    </div>
+    <h2>Understanding Supply Chain Attacks</h2>
+    <p>Supply chain attacks exploit trust in third-party software, compromising legitimate software update mechanisms, injecting malicious code into dependencies, or targeting build and deployment pipelines.</p>
+    <h2>Common Attack Vectors</h2>
+    <ul>
+        <li><strong>Compromised Dependencies:</strong> Malicious packages in npm, PyPI, Maven repositories</li>
+        <li><strong>Typosquatting:</strong> Packages with names similar to popular libraries</li>
+        <li><strong>Dependency Confusion:</strong> Internal package names matching public repositories</li>
+        <li><strong>Build System Compromise:</strong> Injecting malware during CI/CD process</li>
+        <li><strong>Update Mechanisms:</strong> Hijacking software update channels</li>
+        <li><strong>Hardware Supply Chain:</strong> Compromised components or firmware</li>
+    </ul>
+    <h2>Protection Strategies</h2>
+    <h3>1. Software Bill of Materials (SBOM)</h3>
+    <ul>
+        <li>Generate and maintain comprehensive SBOMs</li>
+        <li>Track all software components and dependencies</li>
+        <li>Monitor for known vulnerabilities (CVEs)</li>
+        <li>Use SBOM formats: SPDX, CycloneDX</li>
+    </ul>
+    <h3>2. Dependency Management</h3>
+    <ul>
+        <li>Pin dependency versions in lockfiles</li>
+        <li>Use private package repositories</li>
+        <li>Implement dependency scanning (SCA tools)</li>
+        <li>Review dependency updates before adoption</li>
+        <li>Monitor for deprecation and abandonment</li>
+    </ul>
+    <h3>3. Build Pipeline Security</h3>
+    <ul>
+        <li>Implement signed commits and tags</li>
+        <li>Use reproducible builds</li>
+        <li>Isolate build environments</li>
+        <li>Implement least privilege for CI/CD</li>
+        <li>Audit build logs and artifacts</li>
+    </ul>
+    <h3>4. Code Signing & Verification</h3>
+    <ul>
+        <li>Sign all artifacts and containers</li>
+        <li>Verify signatures before deployment</li>
+        <li>Use hardware security modules (HSMs)</li>
+        <li>Implement Sigstore for transparency</li>
+    </ul>
+    <h2>SLSA Framework</h2>
+    <p>Supply chain Levels for Software Artifacts (SLSA) provides a checklist of standards and controls to prevent tampering, improve integrity, and secure packages:</p>
+    <ul>
+        <li><strong>SLSA 1:</strong> Build process documented</li>
+        <li><strong>SLSA 2:</strong> Tamper-resistant build service</li>
+        <li><strong>SLSA 3:</strong> Extra resistance to specific threats</li>
+        <li><strong>SLSA 4:</strong> Highest level - two-person review</li>
+    </ul>
+    <h2>Best Practices</h2>
+    <ol>
+        <li>Maintain complete inventory of software components</li>
+        <li>Verify integrity of all dependencies</li>
+        <li>Implement multi-factor authentication for code repositories</li>
+        <li>Use vulnerability scanning throughout SDLC</li>
+        <li>Establish vendor risk management program</li>
+        <li>Monitor for malicious package indicators</li>
+        <li>Implement zero trust principles</li>
+        <li>Regular security audits of supply chain</li>
+    </ol>
+    <div class="footer">
+        <div>© 2025 Resilient Privacy. All rights reserved.</div>
+        <div style="margin-top: 5px;">www.resilientprivacy.com</div>
+    </div>
+</body>
+</html>

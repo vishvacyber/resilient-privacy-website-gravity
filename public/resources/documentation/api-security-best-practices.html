@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>API Security Best Practices - Resilient Privacy</title>
+    <style>
+        @media print {
+            @page {
+                margin: 0.75in;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px;
+            color: #1f2937;
+            line-height: 1.6;
+            background: #fff;
+        }
+
+        .header {
+            border-bottom: 4px solid #7c3aed;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-frame {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #7c3aed;
+            border-radius: 10px;
+            padding: 4px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, transparent 100%);
+        }
+
+        .logo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            color: #7c3aed;
+        }
+
+        .doc-type {
+            font-size: 11px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #7c3aed;
+            margin: 20px 0;
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #1f2937;
+            margin: 25px 0 15px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 8px;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: #374151;
+            margin: 20px 0 10px;
+            font-weight: 600;
+        }
+
+        p {
+            margin: 10px 0;
+            color: #4b5563;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(112, 0, 255, 0.05) 100%);
+            border-left: 4px solid #7c3aed;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        ul {
+            margin: 10px 0 10px 20px;
+        }
+
+        ul li {
+            margin: 8px 0;
+            color: #4b5563;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            font-size: 11px;
+            color: #6b7280;
+            text-align: center;
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #7c3aed;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .print-button:hover {
+            background: #6d28d9;
+        }
+
+        .best-practice {
+            background: #f9fafb;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 3px solid #7000ff;
+        }
+
+        .best-practice h4 {
+            color: #7c3aed;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="print-button no-print" onclick="window.print()">Download PDF</button>
+
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-frame">
+                <img src="/company_logo.jpg" alt="Resilient Privacy">
+            </div>
+            <div class="logo-text">RESILIENT PRIVACY</div>
+        </div>
+        <div class="doc-type">Research Documentation</div>
+    </div>
+
+    <h1>API Security Best Practices</h1>
+    <p style="font-size: 16px; color: #6b7280; margin-bottom: 25px;">A Comprehensive Guide to Securing Modern APIs</p>
+
+    <div class="highlight-box">
+        <h3>Overview</h3>
+        <p>APIs are the backbone of modern applications, enabling seamless communication between services, mobile apps,
+            and third-party integrations. However, this connectivity also makes APIs a prime target for cyberattacks.
+            This document outlines essential best practices for securing your API infrastructure.</p>
+    </div>
+
+    <h2>1. Authentication and Authorization</h2>
+
+    <div class="best-practice">
+        <h4>Implement Strong Authentication</h4>
+        <p>Use industry-standard authentication protocols like OAuth 2.0 and OpenID Connect. Never rely on basic
+            authentication or API keys alone for production systems.</p>
+        <ul>
+            <li>OAuth 2.0 for delegated access</li>
+            <li>JWT (JSON Web Tokens) for stateless authentication</li>
+            <li>Multi-factor authentication (MFA) for sensitive operations</li>
+            <li>Mutual TLS (mTLS) for service-to-service communication</li>
+        </ul>
+    </div>
+
+    <div class="best-practice">
+        <h4>Enforce Granular Authorization</h4>
+        <p>Implement role-based access control (RBAC) or attribute-based access control (ABAC) to ensure users only
+            access resources they're authorized to use.</p>
+        <ul>
+            <li>Validate permissions on every API request</li>
+            <li>Implement least privilege principle</li>
+            <li>Check object-level authorization (prevent BOLA attacks)</li>
+            <li>Verify function-level authorization</li>
+        </ul>
+    </div>
+
+    <h2>2. Data Protection</h2>
+
+    <div class="best-practice">
+        <h4>Encrypt Data in Transit</h4>
+        <p>Always use TLS 1.2 or higher for all API communications. Never transmit sensitive data over unencrypted
+            channels.</p>
+        <ul>
+            <li>Enforce HTTPS for all endpoints</li>
+            <li>Use strong cipher suites</li>
+            <li>Implement certificate pinning for mobile apps</li>
+            <li>Disable older protocols (TLS 1.0, TLS 1.1)</li>
+        </ul>
+    </div>
+
+    <div class="best-practice">
+        <h4>Protect Sensitive Data at Rest</h4>
+        <p>Encrypt sensitive data stored in databases, logs, and backups. Use tokenization for highly sensitive
+            information like payment card data.</p>
+        <ul>
+            <li>Encrypt databases with field-level encryption</li>
+            <li>Never log sensitive data (passwords, tokens, PII)</li>
+            <li>Use secure key management systems (KMS/HSM)</li>
+            <li>Implement data masking for non-production environments</li>
+        </ul>
+    </div>
+
+    <h2>3. Input Validation and Output Encoding</h2>
+
+    <div class="best-practice">
+        <h4>Validate All Inputs</h4>
+        <p>Never trust user input. Validate all data received by your API to prevent injection attacks.</p>
+        <ul>
+            <li>Validate data type, length, format, and range</li>
+            <li>Use allowlists instead of denylists</li>
+            <li>Sanitize inputs to prevent SQL, NoSQL, and command injection</li>
+            <li>Implement schema validation (OpenAPI/Swagger)</li>
+        </ul>
+    </div>
+
+    <div class="best-practice">
+        <h4>Limit Data Exposure</h4>
+        <p>Only return the minimum data required by the client. Avoid exposing internal IDs, implementation details, or
+            excessive object properties.</p>
+        <ul>
+            <li>Implement response filtering</li>
+            <li>Use DTOs (Data Transfer Objects) to control output</li>
+            <li>Avoid returning full database objects</li>
+            <li>Implement proper error handling (don't leak stack traces)</li>
+        </ul>
+    </div>
+
+    <h2>4. Rate Limiting and Throttling</h2>
+
+    <div class="best-practice">
+        <h4>Implement Rate Limiting</h4>
+        <p>Protect your APIs from abuse, DDoS attacks, and brute force attempts by implementing rate limiting.</p>
+        <ul>
+            <li>Set limits per user, IP address, and API key</li>
+            <li>Implement both coarse and fine-grained limits</li>
+            <li>Return appropriate HTTP 429 status codes</li>
+            <li>Use distributed rate limiting for scalability</li>
+        </ul>
+    </div>
+
+    <h2>5. API Monitoring and Logging</h2>
+
+    <div class="best-practice">
+        <h4>Comprehensive Logging</h4>
+        <p>Log all API requests, responses, and security events for monitoring, auditing, and incident response.</p>
+        <ul>
+            <li>Log authentication attempts (success and failure)</li>
+            <li>Track unusual access patterns</li>
+            <li>Monitor for OWASP API Top 10 vulnerabilities</li>
+            <li>Integrate with SIEM systems for real-time alerting</li>
+        </ul>
+    </div>
+
+    <h2>6. API Discovery and Inventory</h2>
+
+    <div class="best-practice">
+        <h4>Maintain Complete API Inventory</h4>
+        <p>Keep track of all APIs, versions, and endpoints to prevent shadow APIs from becoming security
+            vulnerabilities.</p>
+        <ul>
+            <li>Automated API discovery tools</li>
+            <li>Document all endpoints with OpenAPI/Swagger</li>
+            <li>Deprecate and remove old API versions</li>
+            <li>Regular security audits of API inventory</li>
+        </ul>
+    </div>
+
+    <h2>7. Security Testing</h2>
+
+    <div class="best-practice">
+        <h4>Regular Security Assessments</h4>
+        <p>Continuously test your APIs for vulnerabilities throughout the development lifecycle.</p>
+        <ul>
+            <li>Automated security testing in CI/CD pipelines</li>
+            <li>Penetration testing for critical APIs</li>
+            <li>OWASP API Security Top 10 testing</li>
+            <li>Fuzzing to discover unexpected behaviors</li>
+        </ul>
+    </div>
+
+    <h2>OWASP API Security Top 10 (2023)</h2>
+
+    <p>Ensure your APIs are protected against these critical vulnerabilities:</p>
+
+    <ol style="margin-left: 20px;">
+        <li><strong>Broken Object Level Authorization</strong> - Attackers access unauthorized resources</li>
+        <li><strong>Broken Authentication</strong> - Weak authentication allows unauthorized access</li>
+        <li><strong>Broken Object Property Level Authorization</strong> - Excessive data exposure</li>
+        <li><strong>Unrestricted Resource Consumption</strong> - Lack of rate limiting</li>
+        <li><strong>Broken Function Level Authorization</strong> - Missing access controls</li>
+        <li><strong>Unrestricted Access to Sensitive Business Flows</strong> - Automated abuse</li>
+        <li><strong>Server Side Request Forgery</strong> - Manipulated API requests</li>
+        <li><strong>Security Misconfiguration</strong> - Improper settings</li>
+        <li><strong>Improper Inventory Management</strong> - Shadow APIs</li>
+        <li><strong>Unsafe Consumption of APIs</strong> - Trusting third-party APIs</li>
+    </ol>
+
+    <h2>Conclusion</h2>
+
+    <p>API security is not a one-time effort but an ongoing process. By implementing these best practices, organizations
+        can significantly reduce their API attack surface and protect sensitive data from unauthorized access and
+        breaches.</p>
+
+    <div class="footer">
+        <div>© 2025 Resilient Privacy. All rights reserved.</div>
+        <div style="margin-top: 5px;">For more information, visit www.resilientprivacy.com</div>
+    </div>
+</body>
+
+</html>

@@ -54,10 +54,25 @@ router.post('/', upload.single('resume'), async (req, res) => {
         willing_to_relocate, referral_source, portfolio_url,
         references
     } = req.body;
+
+    // Validate required fields
+    if (!job_id || !name || !email) {
+        return res.status(400).json({ error: 'Missing required fields: job_id, name, and email are required' });
+    }
+
     const resume_path = req.file ? req.file.path : null;
     const db = getDb();
 
     try {
+        // Check if job exists
+        const job = await db.get('SELECT id FROM jobs WHERE id = ? AND is_active = 1', [job_id]);
+        if (!job) {
+            return res.status(400).json({ error: 'Invalid job_id: Job not found or inactive' });
+        }
+
+        // Convert string booleans to integers for SQLite
+        const boolToInt = (val) => val === 'true' || val === true ? 1 : 0;
+
         await db.run(
             `INSERT INTO applications (
                 job_id, name, email, phone, resume_path, cover_letter,
@@ -72,23 +87,23 @@ router.post('/', upload.single('resume'), async (req, res) => {
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
                 job_id, name, email, phone, resume_path, cover_letter,
-                work_authorized === 'true' ? 1 : 0,
-                requires_sponsorship === 'true' ? 1 : 0,
+                boolToInt(work_authorized),
+                boolToInt(requires_sponsorship),
                 veteran_status, disability_status,
                 gender, race_ethnicity,
-                criminal_history === 'true' ? 1 : 0,
+                boolToInt(criminal_history),
                 criminal_history_explanation,
                 linkedin_url, current_employer, years_experience,
                 education_level, start_date, salary_expectations,
-                willing_to_relocate === 'true' ? 1 : 0,
+                boolToInt(willing_to_relocate),
                 referral_source, portfolio_url,
                 references
             ]
         );
         res.status(201).json({ message: 'Application submitted successfully' });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Server error' });
+        console.error('Error submitting application:', error);
+        res.status(500).json({ error: 'Failed to submit application' });
     }
 });
 
@@ -104,24 +119,40 @@ router.get('/', authenticate, async (req, res) => {
         `);
         res.json(applications);
     } catch (error) {
-        res.status(500).json({ error: 'Server error' });
+        console.error('Error fetching applications:', error);
+        res.status(500).json({ error: 'Failed to fetch applications' });
     }
 });
 
 // PATCH update application status (Admin)
 router.patch('/:id', authenticate, async (req, res) => {
     const { status } = req.body;
+
+    // Validate status value
+    const validStatuses = ['new', 'reviewed', 'interview', 'rejected', 'hired'];
+    if (!status || !validStatuses.includes(status)) {
+        return res.status(400).json({
+            error: `Invalid status. Must be one of: ${validStatuses.join(', ')}`
+        });
+    }
+
     const db = getDb();
 
     try {
+        // Check if application exists
+        const existing = await db.get('SELECT id FROM applications WHERE id = ?', [req.params.id]);
+        if (!existing) {
+            return res.status(404).json({ error: 'Application not found' });
+        }
+
         await db.run(
             'UPDATE applications SET status = ? WHERE id = ?',
             [status, req.params.id]
         );
-        res.json({ message: 'Application status updated' });
+        res.json({ message: 'Application status updated successfully' });
     } catch (error) {
         console.error('Error updating application status:', error);
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({ error: 'Failed to update application status' });
     }
 });
 

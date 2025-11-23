@@ -1,257 +1,379 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Cloud, Zap, Lock, Activity, Search, Eye, AlertTriangle, Cpu, Server, ChevronDown, ChevronUp } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Shield, Lock, Search, Eye, Zap, Globe, CheckCircle, ArrowRight, Star, Users, Award, Layers } from 'lucide-react';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
 
 const Products = () => {
-    const [expandedFeature, setExpandedFeature] = useState(null);
-
-    const toggleFeature = (index) => {
-        setExpandedFeature(expandedFeature === index ? null : index);
-    };
-
-    const coreShieldFeatures = [
+    const products = [
         {
-            title: 'API Mapping & Visibility',
-            desc: 'Automatically discover every endpoint, shadow API, and undocumented interface.',
-            icon: <Eye size={32} color="var(--primary)" />,
-            points: [
-                'Complete API inventory discovery',
-                'Shadow API detection',
-                'Undocumented endpoint mapping',
-                'Real-time API topology visualization',
-                'API dependency mapping',
-                'Legacy API identification'
-            ],
-            details: [
-                { title: 'Complete API Inventory Discovery', desc: 'Automatically discover and catalog every API endpoint in your environment, including internal, external, and third-party APIs.' },
-                { title: 'Shadow API Detection', desc: 'Identify undocumented and forgotten APIs that pose security risks and compliance challenges.' },
-                { title: 'Real-time API Topology Visualization', desc: 'Visualize API relationships, dependencies, and data flows with interactive topology maps.' },
-                { title: 'API Dependency Mapping', desc: 'Map complex API dependencies and understand how changes impact your entire API ecosystem.' },
-                { title: 'Legacy API Identification', desc: 'Identify outdated and deprecated APIs that need modernization or retirement.' },
-                { title: 'API Documentation Generation', desc: 'Automatically generate comprehensive API documentation from discovered endpoints.' }
-            ]
+            title: 'Privacy Attack Surface Management',
+            subtitle: 'Discover & Monitor Your Attack Surface',
+            description: 'Agentless detection solution to discover external hosts, identify missing security, detect vulnerabilities, and mitigate credential leaks.',
+            icon: <Search size={48} color="var(--primary)" />,
+            link: '/product/privacy-attack-surface-management',
+            features: ['External Endpoint Discovery', 'Credential Leak Detection', 'Vulnerability Scanning', 'Security Coverage Analysis'],
+            gradient: 'linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%)'
         },
         {
-            title: 'Continuous API Risk Testing',
-            desc: 'Assess APIs for misconfigurations, flaws, and weak authentication flows.',
-            icon: <AlertTriangle size={32} color="var(--secondary)" />,
-            points: [
-                'Automated vulnerability scanning',
-                'Authentication flow testing',
-                'Configuration drift detection',
-                'OWASP API Top 10 compliance',
-                'Business logic testing',
-                'Zero-day vulnerability detection'
-            ],
-            details: [
-                { title: 'Automated Vulnerability Scanning', desc: 'Continuously scan APIs for known vulnerabilities, misconfigurations, and security flaws.' },
-                { title: 'Authentication Flow Testing', desc: 'Test authentication mechanisms, authorization controls, and session management.' },
-                { title: 'Configuration Drift Detection', desc: 'Monitor for changes in API configurations that could introduce security risks.' },
-                { title: 'OWASP API Top 10 Compliance', desc: 'Ensure compliance with OWASP API Top 10 security standards and best practices.' },
-                { title: 'Business Logic Testing', desc: 'Test for business logic flaws and application-specific vulnerabilities.' },
-                { title: 'Zero-day Vulnerability Detection', desc: 'Identify previously unknown vulnerabilities using advanced detection techniques.' }
-            ]
+            title: 'Credential Leak Protection',
+            subtitle: 'Proactive Credential Security',
+            description: 'Comprehensive protection against hacks involving API keys, credentials, and other sensitive secrets with automated detection and blocking.',
+            icon: <Lock size={48} color="var(--secondary)" />,
+            link: '/product/credential-leak-protection',
+            features: ['Real-time Leak Detection', 'Automated Remediation', 'Continuous Monitoring', 'Free Assessment Available'],
+            gradient: 'linear-gradient(135deg, rgba(112, 0, 255, 0.1) 0%, rgba(112, 0, 255, 0.05) 100%)'
         },
         {
-            title: 'Fraud & Abuse Prevention',
-            desc: 'Stop credential stuffing, account takeover attempts, and automated exploitation.',
-            icon: <Shield size={32} color="var(--primary)" />,
-            points: [
-                'Credential stuffing protection',
-                'Account takeover prevention',
-                'Bot detection and mitigation',
-                'Rate limiting and throttling',
-                'Behavioral analysis',
-                'Real-time fraud scoring'
-            ],
-            details: [
-                { title: 'Credential Stuffing Protection', desc: 'Detect and block automated credential stuffing attacks using advanced pattern recognition.' },
-                { title: 'Account Takeover Prevention', desc: 'Identify and prevent account takeover attempts through behavioral analysis and risk scoring.' },
-                { title: 'Bot Detection & Mitigation', desc: 'Distinguish between legitimate users and malicious bots using machine learning algorithms.' },
-                { title: 'Rate Limiting & Throttling', desc: 'Implement intelligent rate limiting to prevent API abuse while maintaining user experience.' },
-                { title: 'Behavioral Analysis', desc: 'Analyze user behavior patterns to identify suspicious activities and potential threats.' },
-                { title: 'Real-time Fraud Scoring', desc: 'Generate real-time fraud scores for every API request to enable instant decision making.' }
-            ]
+            title: 'Unified Security Shield',
+            subtitle: 'Complete Application Protection',
+            description: 'Web application and API protection with full coverage against OWASP Top 10, emerging threats, and 0-day vulnerabilities.',
+            icon: <Shield size={48} color="var(--primary)" />,
+            link: '/product/unified-security-shield',
+            features: ['OWASP Top-10 Protection', 'Bot Mitigation', 'Virtual Patching', 'Multi-Cloud Deployment'],
+            gradient: 'linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%)'
         },
         {
-            title: 'AI-Aware Protection',
-            desc: 'Security tailored for Agentic AI-driven workloads and data pipelines.',
-            icon: <Cpu size={32} color="var(--secondary)" />,
-            points: [
-                'AI workload protection',
-                'Data pipeline security',
-                'Model inference protection',
-                'AI agent monitoring',
-                'LLM security controls',
-                'AI-specific threat detection'
-            ],
-            details: [
-                { title: 'AI Workload Protection', desc: 'Secure AI training, inference, and deployment pipelines with specialized security controls.' },
-                { title: 'Data Pipeline Security', desc: 'Protect data flows between AI systems and ensure data integrity throughout the pipeline.' },
-                { title: 'Model Inference Protection', desc: 'Secure AI model endpoints and prevent model extraction, poisoning, and adversarial attacks.' },
-                { title: 'AI Agent Monitoring', desc: 'Monitor and secure autonomous AI agents and their interactions with external systems.' },
-                { title: 'LLM Security Controls', desc: 'Protect Large Language Models from prompt injection, data extraction, and misuse.' },
-                { title: 'AI-Specific Threat Detection', desc: 'Detect AI-specific attacks like model inversion, membership inference, and adversarial examples.' }
-            ]
+            title: 'Complete Platform',
+            subtitle: 'End-to-End Security Solution',
+            description: 'Unified platform to discover, protect, respond, and test your entire privacy and security infrastructure in one integrated solution.',
+            icon: <Layers size={48} color="var(--secondary)" />,
+            link: '/product/complete-platform',
+            features: ['API Discovery', 'Threat Protection', 'Incident Response', 'Security Testing'],
+            gradient: 'linear-gradient(135deg, rgba(112, 0, 255, 0.1) 0%, rgba(112, 0, 255, 0.05) 100%)'
         }
     ];
 
+    const benefits = [
+        { icon: <Star size={32} />, title: '99.99% Uptime', desc: 'Enterprise-grade reliability' },
+        { icon: <Users size={32} />, title: '500+ Customers', desc: 'Trusted globally' },
+        { icon: <Zap size={32} />, title: '15 Min Setup', desc: 'Quick deployment' }
+    ];
+
     return (
-        <div className="container section-padding">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                style={{ textAlign: 'center' }}
-                className="mb-lg"
-            >
-                <h1 className="text-h1" style={{ marginBottom: '1.5rem' }}>Advanced Security <span className="text-gradient">Platforms</span></h1>
-                <p className="text-lg" style={{ color: 'var(--text-muted)', maxWidth: '700px', margin: '0 auto' }}>
-                    Our comprehensive suite of tools designed to secure your digital infrastructure from modern threats.
-                </p>
-            </motion.div>
-
-            {/* CoreShield Main */}
-            <div style={{ marginBottom: '8rem' }}>
-                <div className="grid-cols-2 mb-lg" style={{ alignItems: 'center' }}>
+        <div style={{ background: 'var(--bg-dark)' }}>
+            {/* Hero Section */}
+            <section style={{
+                background: 'radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.15) 0%, transparent 70%)',
+                paddingTop: '6rem',
+                paddingBottom: '6rem'
+            }}>
+                <div className="container">
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        style={{ textAlign: 'center', maxWidth: '900px', margin: '0 auto' }}
                     >
-                        <div style={{ display: 'inline-block', padding: '0.5rem 1rem', background: 'var(--primary-dim)', color: 'var(--primary)', borderRadius: '20px', marginBottom: '1rem', fontWeight: 'bold' }}>
-                            Flagship Platform
+                        <div style={{
+                            display: 'inline-block',
+                            padding: '0.5rem 1.5rem',
+                            background: 'var(--primary-dim)',
+                            color: 'var(--primary)',
+                            borderRadius: '30px',
+                            marginBottom: '2rem',
+                            fontWeight: '600',
+                            fontSize: '0.9rem',
+                            letterSpacing: '0.5px'
+                        }}>
+                            ✨ COMPREHENSIVE SECURITY SOLUTIONS
                         </div>
-                        <h2 className="text-h2" style={{ marginBottom: '1.5rem' }}>CoreShield™ API Protection Suite</h2>
-                        <p className="text-lg" style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                            Our flagship platform to uncover and mitigate API risks. CoreShield™ provides complete visibility and control over your API ecosystem, ensuring that no threat goes unnoticed.
+                        <h1 style={{
+                            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                            fontWeight: '800',
+                            marginBottom: '1.5rem',
+                            lineHeight: '1.1',
+                            letterSpacing: '-0.02em'
+                        }}>
+                            Protect Your Digital Infrastructure with <span className="text-gradient">Resilient Privacy</span>
+                        </h1>
+                        <p style={{
+                            fontSize: '1.25rem',
+                            color: 'var(--text-muted)',
+                            marginBottom: '3rem',
+                            lineHeight: '1.7',
+                            maxWidth: '700px',
+                            margin: '0 auto 3rem'
+                        }}>
+                            Industry-leading privacy and security platform trusted by enterprises worldwide to protect APIs, applications, and AI workloads.
                         </p>
-                        <Link to="/demo"><Button variant="primary">Request Demo</Button></Link>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="p-lg"
-                        style={{ background: 'var(--bg-card)', borderRadius: '20px', border: '1px solid var(--border-color)', position: 'relative', overflow: 'hidden' }}
-                    >
-                        <div style={{ position: 'absolute', top: '-50%', right: '-50%', width: '100%', height: '100%', background: 'radial-gradient(circle, var(--primary-dim) 0%, transparent 70%)', filter: 'blur(40px)' }} />
-                        <Shield size={80} color="var(--primary)" style={{ marginBottom: '2rem', position: 'relative' }} />
-                        <h3 className="text-h3" style={{ marginBottom: '1rem', position: 'relative' }}>Total Protection</h3>
-                        <p style={{ color: 'var(--text-muted)', position: 'relative' }}>Securing over 10 Billion API calls daily across the globe.</p>
+                        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                            <Link to="/demo">
+                                <Button variant="primary" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>
+                                    Get Started <ArrowRight size={20} />
+                                </Button>
+                            </Link>
+                            <Link to="/contact">
+                                <Button variant="outline" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>
+                                    Talk to Sales
+                                </Button>
+                            </Link>
+                        </div>
                     </motion.div>
                 </div>
+            </section>
 
-                {/* CoreShield Modules */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }}>
-                    {coreShieldFeatures.map((feature, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            style={{ background: 'var(--bg-card)', borderRadius: '12px', border: '1px solid var(--border-color)', overflow: 'hidden' }}
-                        >
-                            <div
-                                onClick={() => toggleFeature(index)}
-                                className="p-lg"
-                                style={{ cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+            {/* Stats Bar */}
+            <section style={{
+                background: 'var(--bg-card)',
+                borderTop: '1px solid var(--border-color)',
+                borderBottom: '1px solid var(--border-color)',
+                padding: '2rem 0'
+            }}>
+                <div className="container">
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                        gap: '2rem',
+                        textAlign: 'center'
+                    }}>
+                        {benefits.map((benefit, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.1 }}
                             >
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                                    <div>{feature.icon}</div>
-                                    <div>
-                                        <h3 className="text-h3" style={{ marginBottom: '0.5rem' }}>{feature.title}</h3>
-                                        <p className="text-body" style={{ color: 'var(--text-muted)' }}>{feature.desc}</p>
-                                    </div>
-                                </div>
-                                <div style={{ color: 'var(--primary)' }}>
-                                    {expandedFeature === index ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
-                                </div>
-                            </div>
-
-                            <AnimatePresence>
-                                {expandedFeature === index && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: 'auto', opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.3 }}
-                                        style={{ borderTop: '1px solid var(--border-color)', background: 'rgba(0,0,0,0.2)' }}
-                                    >
-                                        <div className="p-lg">
-                                            <h4 className="text-lg" style={{ marginBottom: '1.5rem', color: 'var(--text-main)' }}>Detailed Capabilities</h4>
-                                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-                                                {feature.details.map((detail, i) => (
-                                                    <div key={i}>
-                                                        <h5 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontWeight: '600' }}>{detail.title}</h5>
-                                                        <p className="text-body" style={{ color: 'var(--text-muted)' }}>{detail.desc}</p>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-
-            {/* Unified WAAP+ */}
-            <div className="grid-cols-2 p-lg" style={{ alignItems: 'center', background: 'linear-gradient(180deg, var(--bg-card), transparent)', borderRadius: '20px', border: '1px solid var(--border-color)' }}>
-                <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                >
-                    <div style={{ display: 'inline-block', padding: '0.5rem 1rem', background: 'rgba(112, 0, 255, 0.1)', color: 'var(--secondary)', borderRadius: '20px', marginBottom: '1rem', fontWeight: 'bold' }}>
-                        All-in-One Defense
-                    </div>
-                    <h2 className="text-h2" style={{ marginBottom: '1.5rem' }}>Unified WAAP+™</h2>
-                    <p className="text-lg" style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                        Cloud-native, all-in-one defense framework for web apps and APIs. Simplify your security stack without compromising on protection.
-                    </p>
-                    <ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
-                        {[
-                            'Multi-cloud protection - Secure apps anywhere.',
-                            'Hybrid environment support - On-prem and cloud.',
-                            'On-premises deployment - For strict data sovereignty.',
-                            'Zero-complexity security - Easy setup and management.'
-                        ].map((item, i) => (
-                            <li key={i} className="flex-center" style={{ justifyContent: 'flex-start', gap: '1rem' }}>
-                                <Cloud size={20} color="var(--secondary)" />
-                                <span className="text-body">{item}</span>
-                            </li>
+                                <div style={{ color: 'var(--primary)', marginBottom: '0.5rem' }}>{benefit.icon}</div>
+                                <div style={{ fontSize: '1.5rem', fontWeight: '700', marginBottom: '0.25rem' }}>{benefit.title}</div>
+                                <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{benefit.desc}</div>
+                            </motion.div>
                         ))}
-                    </ul>
-                    <Link to="/demo"><Button variant="outline">Learn More</Button></Link>
-                </motion.div>
-                <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}
-                >
-                    <div style={{ background: 'var(--bg-dark)', padding: '2rem', borderRadius: '12px', textAlign: 'center', border: '1px solid var(--border-color)' }}>
-                        <Server size={32} color="var(--secondary)" style={{ marginBottom: '1rem' }} />
-                        <div style={{ fontWeight: 'bold' }}>On-Prem</div>
                     </div>
-                    <div style={{ background: 'var(--bg-dark)', padding: '2rem', borderRadius: '12px', textAlign: 'center', border: '1px solid var(--border-color)' }}>
-                        <Cloud size={32} color="var(--secondary)" style={{ marginBottom: '1rem' }} />
-                        <div style={{ fontWeight: 'bold' }}>Cloud</div>
+                </div>
+            </section>
+
+            {/* Products Showcase */}
+            <section className="section-padding">
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        style={{ textAlign: 'center', marginBottom: '4rem' }}
+                    >
+                        <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: '700', marginBottom: '1rem' }}>
+                            Our <span className="text-gradient">Product Suite</span>
+                        </h2>
+                        <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', maxWidth: '700px', margin: '0 auto' }}>
+                            Choose the perfect solution for your security needs, or combine them for complete protection.
+                        </p>
+                    </motion.div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+                        {products.map((product, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.1 }}
+                                whileHover={{ y: -8 }}
+                                style={{
+                                    background: product.gradient,
+                                    border: '1px solid var(--border-color)',
+                                    borderRadius: '20px',
+                                    padding: '3rem 2rem',
+                                    position: 'relative',
+                                    overflow: 'hidden',
+                                    transition: 'all 0.3s ease',
+                                    cursor: 'pointer'
+                                }}
+                                onClick={() => window.location.href = product.link}
+                            >
+                                {/* Background decoration */}
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '-50%',
+                                    right: '-20%',
+                                    width: '200px',
+                                    height: '200px',
+                                    background: i % 2 === 0 ? 'var(--primary)' : 'var(--secondary)',
+                                    opacity: 0.05,
+                                    borderRadius: '50%',
+                                    filter: 'blur(40px)'
+                                }} />
+
+                                <div style={{ position: 'relative', zIndex: 1 }}>
+                                    <div style={{ marginBottom: '1.5rem' }}>{product.icon}</div>
+
+                                    <h3 style={{
+                                        fontSize: '1.5rem',
+                                        fontWeight: '700',
+                                        marginBottom: '0.5rem',
+                                        color: 'var(--text-main)'
+                                    }}>
+                                        {product.title}
+                                    </h3>
+
+                                    <p style={{
+                                        color: i % 2 === 0 ? 'var(--primary)' : 'var(--secondary)',
+                                        fontSize: '0.95rem',
+                                        fontWeight: '600',
+                                        marginBottom: '1rem'
+                                    }}>
+                                        {product.subtitle}
+                                    </p>
+
+                                    <p style={{
+                                        color: 'var(--text-muted)',
+                                        lineHeight: '1.7',
+                                        marginBottom: '2rem',
+                                        fontSize: '0.95rem'
+                                    }}>
+                                        {product.description}
+                                    </p>
+
+                                    <div style={{ marginBottom: '2rem' }}>
+                                        {product.features.map((feature, idx) => (
+                                            <div key={idx} style={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '0.75rem',
+                                                marginBottom: '0.75rem'
+                                            }}>
+                                                <CheckCircle size={16} color={i % 2 === 0 ? 'var(--primary)' : 'var(--secondary)'} />
+                                                <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>{feature}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <Link to={product.link} style={{ textDecoration: 'none' }}>
+                                        <div style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '0.5rem',
+                                            color: i % 2 === 0 ? 'var(--primary)' : 'var(--secondary)',
+                                            fontWeight: '600',
+                                            fontSize: '0.95rem',
+                                            transition: 'gap 0.3s ease'
+                                        }}
+                                            onMouseEnter={(e) => e.currentTarget.style.gap = '1rem'}
+                                            onMouseLeave={(e) => e.currentTarget.style.gap = '0.5rem'}
+                                        >
+                                            Explore Product <ArrowRight size={18} />
+                                        </div>
+                                    </Link>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
-                    <div style={{ background: 'var(--bg-dark)', padding: '2rem', borderRadius: '12px', textAlign: 'center', border: '1px solid var(--border-color)' }}>
-                        <Activity size={32} color="var(--secondary)" style={{ marginBottom: '1rem' }} />
-                        <div style={{ fontWeight: 'bold' }}>Hybrid</div>
-                    </div>
-                    <div style={{ background: 'var(--bg-dark)', padding: '2rem', borderRadius: '12px', textAlign: 'center', border: '1px solid var(--border-color)' }}>
-                        <Lock size={32} color="var(--secondary)" style={{ marginBottom: '1rem' }} />
-                        <div style={{ fontWeight: 'bold' }}>Secure</div>
-                    </div>
-                </motion.div>
-            </div>
+                </div>
+            </section>
+
+            {/* Why Choose Us */}
+            <section style={{ background: 'var(--bg-card)', padding: '6rem 0' }}>
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        style={{ maxWidth: '1000px', margin: '0 auto' }}
+                    >
+                        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: '700', marginBottom: '1rem' }}>
+                                Why Choose <span className="text-gradient">Resilient Privacy</span>
+                            </h2>
+                            <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)' }}>
+                                The platform that enterprises trust for complete privacy and security protection.
+                            </p>
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2.5rem' }}>
+                            {[
+                                { icon: <Zap />, title: 'Deploy in Minutes', desc: 'Get up and running in under 15 minutes with zero infrastructure changes required.' },
+                                { icon: <Shield />, title: 'AI-Powered Protection', desc: '99.99% accuracy with near-zero false positives using neural detection algorithms.' },
+                                { icon: <Globe />, title: 'Global Coverage', desc: 'Protect workloads across 250+ edge locations worldwide with low-latency response.' },
+                                { icon: <Eye />, title: 'Complete Visibility', desc: 'Real-time dashboards and analytics for comprehensive security insights.' }
+                            ].map((item, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.1 }}
+                                    style={{ textAlign: 'center' }}
+                                >
+                                    <div style={{
+                                        width: '70px',
+                                        height: '70px',
+                                        background: 'var(--primary-dim)',
+                                        borderRadius: '16px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        margin: '0 auto 1.5rem',
+                                        color: 'var(--primary)'
+                                    }}>
+                                        {React.cloneElement(item.icon, { size: 32 })}
+                                    </div>
+                                    <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '0.75rem' }}>
+                                        {item.title}
+                                    </h3>
+                                    <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', fontSize: '0.95rem' }}>
+                                        {item.desc}
+                                    </p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Final CTA */}
+            <section className="section-padding">
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        style={{
+                            background: 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)',
+                            borderRadius: '24px',
+                            padding: '4rem 2rem',
+                            textAlign: 'center',
+                            position: 'relative',
+                            overflow: 'hidden'
+                        }}
+                    >
+                        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)' }} />
+                        <div style={{ position: 'relative', zIndex: 1, maxWidth: '700px', margin: '0 auto' }}>
+                            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)', fontWeight: '700', marginBottom: '1.5rem', color: 'white' }}>
+                                Ready to Secure Your Infrastructure?
+                            </h2>
+                            <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.9)', marginBottom: '2.5rem', lineHeight: '1.7' }}>
+                                Join hundreds of enterprises protecting their critical assets with Resilient Privacy. Start with a free demo today.
+                            </p>
+                            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                                <Link to="/demo">
+                                    <Button style={{
+                                        background: 'white',
+                                        color: 'var(--primary)',
+                                        border: 'none',
+                                        padding: '1rem 2.5rem',
+                                        fontSize: '1.1rem',
+                                        fontWeight: '600'
+                                    }}>
+                                        Schedule Demo
+                                    </Button>
+                                </Link>
+                                <Link to="/contact">
+                                    <Button style={{
+                                        background: 'transparent',
+                                        color: 'white',
+                                        border: '2px solid white',
+                                        padding: '1rem 2.5rem',
+                                        fontSize: '1.1rem',
+                                        fontWeight: '600'
+                                    }}>
+                                        Contact Sales
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
         </div>
     );
 };

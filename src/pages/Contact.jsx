@@ -82,8 +82,6 @@ const Contact = () => {
                 body: JSON.stringify(sanitizedData)
             });
 
-            console.log('Form submitted (sanitized):', sanitizedData);
-
             lastSubmitTime.current = Date.now();
             setSubmitStatus('success');
             setFormState({ name: '', email: '', company: '', phone: '', subject: '', message: '' });
@@ -113,9 +111,8 @@ const Contact = () => {
 
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                         {[
-                            { icon: <Mail size={24} color="var(--primary)" />, title: 'Email Us', value: 'security@resilientprivacy.com' },
-                            { icon: <Phone size={24} color="var(--secondary)" />, title: 'Call Us', value: '+1 (555) 123-4567' },
-                            { icon: <MapPin size={24} color="var(--primary)" />, title: 'Visit Us', value: '123 Cyber Blvd, Tech City, TC 90210' },
+                            { icon: <Mail size={24} color="var(--primary)" />, title: 'Email Us', value: 'info@resilientprivacy.com' },
+                            { icon: <Phone size={24} color="var(--secondary)" />, title: 'Call Us', value: '+1 (469) 504-4135' },
                         ].map((item, index) => (
                             <div key={index} className="flex-center" style={{ justifyContent: 'flex-start', gap: '1rem' }}>
                                 <div style={{ background: 'var(--bg-card)', padding: '1rem', borderRadius: '50%', border: '1px solid var(--border-color)' }}>

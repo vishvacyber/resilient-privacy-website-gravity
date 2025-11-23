@@ -23,7 +23,7 @@ router.post('/', validateContactForm, checkValidation, async (req, res) => {
         });
     } catch (error) {
         console.error('Error submitting contact form:', error);
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({ error: 'Failed to submit contact form' });
     }
 });
 
@@ -34,24 +34,40 @@ router.get('/', authenticate, logActivity('view', 'contact'), async (req, res) =
         const messages = await db.all('SELECT * FROM contacts ORDER BY created_at DESC');
         res.json(messages);
     } catch (error) {
-        res.status(500).json({ error: 'Server error' });
+        console.error('Error fetching contacts:', error);
+        res.status(500).json({ error: 'Failed to fetch contacts' });
     }
 });
 
 // PATCH update contact status (Admin)
 router.patch('/:id', authenticate, async (req, res) => {
     const { status } = req.body;
+
+    // Validate status value
+    const validStatuses = ['new', 'read', 'replied'];
+    if (!status || !validStatuses.includes(status)) {
+        return res.status(400).json({
+            error: `Invalid status. Must be one of: ${validStatuses.join(', ')}`
+        });
+    }
+
     const db = getDb();
 
     try {
+        // Check if contact exists
+        const existing = await db.get('SELECT id FROM contacts WHERE id = ?', [req.params.id]);
+        if (!existing) {
+            return res.status(404).json({ error: 'Contact not found' });
+        }
+
         await db.run(
             'UPDATE contacts SET status = ? WHERE id = ?',
             [status, req.params.id]
         );
-        res.json({ message: 'Contact status updated' });
+        res.json({ message: 'Contact status updated successfully' });
     } catch (error) {
         console.error('Error updating contact status:', error);
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({ error: 'Failed to update contact status' });
     }
 });
 

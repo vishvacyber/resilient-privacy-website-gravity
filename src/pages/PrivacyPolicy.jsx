@@ -320,10 +320,7 @@ const PrivacyPolicy = () => {
                             <strong>Email:</strong> <a href="mailto:privacy@resilientprivacy.com" style={{ color: 'var(--primary)' }}>privacy@resilientprivacy.com</a>
                         </p>
                         <p style={{ color: 'var(--text-main)' }}>
-                            <strong>Address:</strong> 123 Cyber Blvd, Tech City, TC 90210
-                        </p>
-                        <p style={{ color: 'var(--text-main)' }}>
-                            <strong>Phone:</strong> +1 (555) 123-4567
+                            <strong>Phone:</strong> +1 (469) 504-4135
                         </p>
                     </div>
                     <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '1.5rem' }}>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DevSecOps Best Practices - Resilient Privacy</title>
+    <style>
+        @media print {
+            @page {
+                margin: 0.75in;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px;
+            color: #1f2937;
+            line-height: 1.6;
+            background: #fff;
+        }
+
+        .header {
+            border-bottom: 4px solid #7c3aed;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-frame {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #7c3aed;
+            border-radius: 10px;
+            padding: 4px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, transparent 100%);
+        }
+
+        .logo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            color: #7c3aed;
+        }
+
+        .doc-type {
+            font-size: 11px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #7c3aed;
+            margin: 20px 0;
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #1f2937;
+            margin: 25px 0 15px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 8px;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: #374151;
+            margin: 20px 0 10px;
+            font-weight: 600;
+        }
+
+        p {
+            margin: 10px 0;
+            color: #4b5563;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(112, 0, 255, 0.05) 100%);
+            border-left: 4px solid #7c3aed;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        ul,
+        ol {
+            margin: 10px 0 10px 20px;
+        }
+
+        ul li,
+        ol li {
+            margin: 8px 0;
+            color: #4b5563;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            font-size: 11px;
+            color: #6b7280;
+            text-align: center;
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #7c3aed;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .best-practice {
+            background: #f9fafb;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 3px solid #7000ff;
+        }
+
+        .best-practice h4 {
+            color: #7c3aed;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="print-button no-print" onclick="window.print()">Download PDF</button>
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-frame"><img src="/company_logo.jpg" alt="Resilient Privacy"></div>
+            <div class="logo-text">RESILIENT PRIVACY</div>
+        </div>
+        <div class="doc-type">Research Documentation</div>
+    </div>
+    <h1>DevSecOps Best Practices</h1>
+    <p style="font-size: 16px; color: #6b7280; margin-bottom: 25px;">Integrating Security into Every Stage of
+        Development</p>
+    <div class="highlight-box">
+        <h3>What is DevSecOps?</h3>
+        <p>DevSecOps integrates security practices into the DevOps pipeline, ensuring security is "shifted left" and
+            embedded throughout the software development lifecycle rather than bolted on at the end.</p>
+    </div>
+    <h2>Core Principles</h2>
+    <div class="best-practice">
+        <h4>1. Shift Left Security</h4>
+        <p>Integrate security testing early in the development process, catching vulnerabilities when they're cheaper
+            and easier to fix.</p>
+        <ul>
+            <li>Security requirements in planning phase</li>
+            <li>Threat modeling during design</li>
+            <li>Code security analysis during development</li>
+            <li>Automated security testing in CI/CD</li>
+        </ul>
+    </div>
+    <div class="best-practice">
+        <h4>2. Automation First</h4>
+        <p>Automate security testing and compliance checks to maintain velocity without sacrificing security.</p>
+        <ul>
+            <li>Static Application Security Testing (SAST)</li>
+            <li>Dynamic Application Security Testing (DAST)</li>
+            <li>Software Composition Analysis (SCA)</li>
+            <li>Container and infrastructure scanning</li>
+        </ul>
+    </div>
+    <div class="best-practice">
+        <h4>3. Continuous Monitoring</h4>
+        <p>Monitor applications and infrastructure continuously for security issues in production.</p>
+        <ul>
+            <li>Real-time threat detection</li>
+            <li>Runtime application self-protection (RASP)</li>
+            <li>Security information and event management (SIEM)</li>
+            <li>Incident response automation</li>
+        </ul>
+    </div>
+    <h2>DevSecOps Pipeline Integration</h2>
+    <h3>Planning & Design</h3>
+    <ul>
+        <li><strong>Threat Modeling:</strong> Identify potential threats and attack vectors early</li>
+        <li><strong>Security Requirements:</strong> Define security acceptance criteria</li>
+        <li><strong>Secure Architecture:</strong> Design with security principles (least privilege, defense in depth)
+        </li>
+    </ul>
+    <h3>Development</h3>
+    <ul>
+        <li><strong>Secure Coding Standards:</strong> Follow OWASP guidelines and secure coding practices</li>
+        <li><strong>IDE Security Plugins:</strong> Real-time security feedback during coding</li>
+        <li><strong>Pre-commit Hooks:</strong> Prevent secrets and credentials from being committed</li>
+        <li><strong>Peer Code Reviews:</strong> Security-focused code review process</li>
+    </ul>
+    <h3>Build & Test</h3>
+    <ul>
+        <li><strong>SAST:</strong> Analyze source code for vulnerabilities</li>
+        <li><strong>SCA:</strong> Identify vulnerable dependencies and libraries</li>
+        <li><strong>Container Scanning:</strong> Scan Docker images for vulnerabilities</li>
+        <li><strong>Infrastructure as Code (IaC) Scanning:</strong> Validate Terraform, CloudFormation templates</li>
+    </ul>
+    <h3>Deploy</h3>
+    <ul>
+        <li><strong>DAST:</strong> Test running applications for vulnerabilities</li>
+        <li><strong>Penetration Testing:</strong> Automated and manual security testing</li>
+        <li><strong>Configuration Validation:</strong> Ensure secure deployment configurations</li>
+        <li><strong>Secrets Management:</strong> Secure handling of API keys, credentials</li>
+    </ul>
+    <h3>Operate & Monitor</h3>
+    <ul>
+        <li><strong>Runtime Protection:</strong> RASP and WAF for active protection</li>
+        <li><strong>Log Aggregation:</strong> Centralized security logging</li>
+        <li><strong>Anomaly Detection:</strong> AI-powered threat detection</li>
+        <li><strong>Incident Response:</strong> Automated playbooks for common threats</li>
+    </ul>
+    <h2>Essential DevSecOps Tools</h2>
+    <div class="best-practice">
+        <h4>Security Testing</h4>
+        <p>SonarQube, Checkmarx, Veracode, Snyk, OWASP Dependency-Check</p>
+    </div>
+    <div class="best-practice">
+        <h4>Container Security</h4>
+        <p>Aqua Security, Sysdig, Anchore, Clair, Trivy</p>
+    </div>
+    <div class="best-practice">
+        <h4>Secrets Management</h4>
+        <p>HashiCorp Vault, AWS Secrets Manager, Azure Key Vault, CyberArk</p>
+    </div>
+    <div class="best-practice">
+        <h4>Infrastructure Security</h4>
+        <p>Terraform Sentinel, Checkov, tfsec, CloudFormation Guard</p>
+    </div>
+    <h2>Key Metrics to Track</h2>
+    <ol>
+        <li><strong>Mean Time to Detect (MTTD):</strong> How quickly vulnerabilities are identified</li>
+        <li><strong>Mean Time to Remediate (MTTR):</strong> Time from detection to fix deployment</li>
+        <li><strong>Vulnerability Density:</strong> Number of vulnerabilities per 1000 lines of code</li>
+        <li><strong>Security Test Coverage:</strong> Percentage of code covered by security tests</li>
+        <li><strong>Failed Security Gates:</strong> Pipeline failures due to security issues</li>
+        <li><strong>False Positive Rate:</strong> Accuracy of automated security tools</li>
+    </ol>
+    <h2>Common Challenges & Solutions</h2>
+    <div class="highlight-box">
+        <h3>Challenge: Developer Resistance</h3>
+        <p><strong>Solution:</strong> Make security tools developer-friendly, integrate into existing workflows, provide
+            actionable feedback, and offer security training.</p>
+    </div>
+    <div class="highlight-box">
+        <h3>Challenge: Tool Fatigue</h3>
+        <p><strong>Solution:</strong> Consolidate tools where possible, integrate security testing into single
+            dashboards, prioritize high-severity issues.</p>
+    </div>
+    <div class="highlight-box">
+        <h3>Challenge: Pipeline Slowdown</h3>
+        <p><strong>Solution:</strong> Run security scans in parallel, use incremental scanning, cache results, optimize
+            tool configurations.</p>
+    </div>
+    <h2>Best Practices Summary</h2>
+    <ul>
+        <li>✓ Automate everything possible - security testing, compliance checks, deployment</li>
+        <li>✓ Shift security left - catch issues early when they're cheaper to fix</li>
+        <li>✓ Make security everyone's responsibility - not just the security team</li>
+        <li>✓ Use policy as code - define and enforce security policies programmatically</li>
+        <li>✓ Implement fail-safe defaults - secure by default configurations</li>
+        <li>✓ Monitor continuously - security doesn't end at deployment</li>
+        <li>✓ Foster security culture - training, awareness, and knowledge sharing</li>
+    </ul>
+    <div class="footer">
+        <div>© 2025 Resilient Privacy. All rights reserved.</div>
+        <div style="margin-top: 5px;">For more information, visit www.resilientprivacy.com</div>
+    </div>
+</body>
+
+</html>

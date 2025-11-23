@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ransomware Defense Strategies - Resilient Privacy</title>
+    <style>
+        @media print { @page { margin: 0.75in; } .no-print { display: none; } }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; max-width: 850px; margin: 0 auto; padding: 40px; color: #1f2937; line-height: 1.6; }
+        .header { border-bottom: 4px solid #7c3aed; padding: 20px 0; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-frame { width: 50px; height: 50px; border: 2px solid #7c3aed; border-radius: 10px; padding: 4px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, transparent 100%); }
+        .logo-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+        .logo-text { font-size: 22px; font-weight: 800; color: #7c3aed; }
+        .doc-type { font-size: 11px; color: #6b7280; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+        h1 { font-size: 32px; color: #7c3aed; margin: 20px 0; font-weight: 800; }
+        h2 { font-size: 22px; color: #1f2937; margin: 25px 0 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; font-weight: 700; }
+        h3 { font-size: 18px; color: #374151; margin: 20px 0 10px; font-weight: 600; }
+        p { margin: 10px 0; color: #4b5563; }
+        .highlight-box { background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(112, 0, 255, 0.05) 100%); border-left: 4px solid #7c3aed; padding: 20px; margin: 20px 0; border-radius: 4px; }
+        ul, ol { margin: 10px 0 10px 20px; }
+        ul li, ol li { margin: 8px 0; color: #4b5563; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 2px solid #e5e7eb; font-size: 11px; color: #6b7280; text-align: center; }
+        .print-button { position: fixed; top: 20px; right: 20px; background: #7c3aed; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .defense-layer { background: #f9fafb; padding: 15px; margin: 15px 0; border-radius: 8px; border-left: 3px solid #7000ff; }
+        .defense-layer h4 { color: #7c3aed; margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <button class="print-button no-print" onclick="window.print()">Download PDF</button>
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-frame"><img src="/company_logo.jpg" alt="Resilient Privacy"></div>
+            <div class="logo-text">RESILIENT PRIVACY</div>
+        </div>
+        <div class="doc-type">Research Documentation</div>
+    </div>
+    <h1>Ransomware Defense Strategies</h1>
+    <p style="font-size: 16px; color: #6b7280; margin-bottom: 25px;">Comprehensive Protection Against Modern Ransomware Threats</p>
+    <div class="highlight-box">
+        <h3>The Ransomware Threat Landscape</h3>
+        <p>Ransomware attacks have evolved from basic encryption malware to sophisticated, multi-stage attacks involving data exfiltration, double extortion, and targeting of critical infrastructure. Organizations must implement layered defenses to protect against these evolving threats.</p>
+    </div>
+    <h2>Defense in Depth Strategy</h2>
+    <div class="defense-layer">
+        <h4>Layer 1: Prevention</h4>
+        <p>Stop ransomware before it enters your environment</p>
+        <ul>
+            <li>Email security with advanced threat protection</li>
+            <li>Web filtering and DNS protection</li>
+            <li>Endpoint protection with behavioral analysis</li>
+            <li>Application whitelisting</li>
+            <li>Patch management and vulnerability remediation</li>
+        </ul>
+    </div>
+    <div class="defense-layer">
+        <h4>Layer 2: Detection</h4>
+        <p>Identify ransomware activity as early as possible</p>
+        <ul>
+            <li>Network traffic analysis for C2 communication</li>
+            <li>File integrity monitoring</li>
+            <li>Anomalous behavior detection</li>
+            <li>EDR (Endpoint Detection and Response)</li>
+            <li>SIEM correlation and alerting</li>
+        </ul>
+    </div>
+    <div class="defense-layer">
+        <h4>Layer 3: Containment</h4>
+        <p>Limit the spread and impact of ransomware</p>
+        <ul>
+            <li>Network segmentation and micro-segmentation</li>
+            <li>Automated isolation of infected systems</li>
+            <li>Credential tiering and privileged access management</li>
+            <li>Disable lateral movement pathways</li>
+        </ul>
+    </div>
+    <div class="defense-layer">
+        <h4>Layer 4: Recovery</h4>
+        <p>Restore operations quickly without paying ransom</p>
+        <ul>
+            <li>Immutable backups (air-gapped and offline)</li>
+            <li>Tested disaster recovery procedures</li>
+            <li>Incident response playbooks</li>
+            <li>Business continuity planning</li>
+        </ul>
+    </div>
+    <h2>Critical Protections</h2>
+    <h3>Backup Strategy (3-2-1-1-0 Rule)</h3>
+    <ul>
+        <li><strong>3</strong> copies of data</li>
+        <li><strong>2</strong> different media types</li>
+        <li><strong>1</strong> copy offsite</li>
+        <li><strong>1</strong> copy offline/air-gapped</li>
+        <li><strong>0</strong> errors after backup verification</li>
+    </ul>
+    <h3>Access Controls</h3>
+    <ul>
+        <li>Multi-factor authentication (MFA) for all remote access</li>
+        <li>Least privilege access principles</li>
+        <li>Privileged Access Management (PAM) for admin accounts</li>
+        <li>Regular access reviews and deprovisioning</li>
+    </ul>
+    <h3>Email Security</h3>
+    <ul>
+        <li>Advanced phishing protection with AI analysis</li>
+        <li>Sandbox analysis of attachments</li>
+        <li>Link protection and URL rewriting</li>
+        <li>DMARC, SPF, and DKIM implementation</li>
+    </ul>
+    <h2>Incident Response Planning</h2>
+    <h3>Before an Attack</h3>
+    <ol>
+        <li>Develop and document incident response plan</li>
+        <li>Establish communication protocols</li>
+        <li>Identify critical systems and data</li>
+        <li>Create network diagrams and asset inventory</li>
+        <li>Conduct tabletop exercises</li>
+        <li>Establish relationships with law enforcement and forensics teams</li>
+    </ol>
+    <h3>During an Attack</h3>
+    <ol>
+        <li>Activate incident response team</li>
+        <li>Isolate infected systems (do not power off)</li>
+        <li>Collect forensic evidence</li>
+        <li>Identify ransomware variant</li>
+        <li>Assess scope of compromise</li>
+        <li>Notify stakeholders and authorities as required</li>
+    </ol>
+    <h3>After an Attack</h3>
+    <ol>
+        <li>Conduct post-incident review</li>
+        <li>Identify root cause and gaps</li>
+        <li>Update security controls</li>
+        <li>Enhance detection capabilities</li>
+        <li>Provide additional training</li>
+        <li>Document lessons learned</li>
+    </ol>
+    <h2>Ransomware Kill Chain</h2>
+    <p>Understanding how ransomware attacks unfold helps identify intervention points:</p>
+    <ol>
+        <li><strong>Initial Access:</strong> Phishing, RDP brute force, vulnerability exploitation</li>
+        <li><strong>Execution:</strong> Malicious payload runs on victim system</li>
+        <li><strong>Persistence:</strong> Ransomware establishes foothold</li>
+        <li><strong>Privilege Escalation:</strong> Gains admin/system privileges</li>
+        <li><strong>Defense Evasion:</strong> Disables security tools, deletes logs</li>
+        <li><strong>Credential Access:</strong> Steals credentials for lateral movement</li>
+        <li><strong>Discovery:</strong> Maps network, identifies valuable targets</li>
+        <li><strong>Lateral Movement:</strong> Spreads to other systems</li>
+        <li><strong>Collection:</strong> Gathers data for exfiltration</li>
+        <li><strong>Exfiltration:</strong> Steals data for double extortion</li>
+        <li><strong>Impact:</strong> Encrypts files, deletes backups, displays ransom note</li>
+    </ol>
+    <h2>Should You Pay the Ransom?</h2>
+    <div class="highlight-box">
+        <p><strong>Security experts and law enforcement recommend NOT paying ransom:</strong></p>
+        <ul>
+            <li>No guarantee of data recovery</li>
+            <li>Funds criminal operations</li>
+            <li>Makes you a target for future attacks</li>
+            <li>May violate sanctions laws</li>
+            <li>Average recovery rate after payment: only 65% of data</li>
+        </ul>
+        <p style="margin-top: 15px;"><strong>Better approach:</strong> Invest in prevention, detection, and recovery capabilities so paying ransom is never necessary.</p>
+    </div>
+    <h2>Key Recommendations</h2>
+    <ul>
+        <li>✓ Implement robust, tested backup and recovery procedures</li>
+        <li>✓ Deploy multi-layered security controls</li>
+        <li>✓ Conduct regular security awareness training</li>
+        <li>✓ Maintain offline/air-gapped backups</li>
+        <li>✓ Enable MFA on all remote access</li>
+        <li>✓ Segment networks and restrict lateral movement</li>
+        <li>✓ Keep systems patched and updated</li>
+        <li>✓ Develop and test incident response plans</li>
+    </ul>
+    <div class="footer">
+        <div>© 2025 Resilient Privacy. All rights reserved.</div>
+        <div style="margin-top: 5px;">For more information, visit www.resilientprivacy.com</div>
+    </div>
+</body>
+</html>
