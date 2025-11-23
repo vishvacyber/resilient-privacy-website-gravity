@@ -17,7 +17,6 @@ const About = () => {
 
     const advisors = [
         { name: 'Tejas Shroff', role: 'Sr Director Managed Security Services, NTT Data', bio: 'A veteran in managed security services, Tejas provides strategic guidance on our service delivery and market expansion.', img: '/tejas_shroff.jpg' },
-        { name: 'Bhagirath Patel', role: 'Civil Criminal and Corporate Lawyer', bio: 'Legal expert specializing in corporate law and compliance. Bhagirath advises on regulatory landscapes and corporate governance.', img: '/bhagirath_patel.jpg' },
     ];
 
     return (
