@@ -45,7 +45,8 @@ export const SECURITY_CONFIG = {
         consentCookieName: 'cookieConsent',
         consentCookieExpiry: 365, // days
         sameSite: 'Strict',
-        secure: true // Should be true in production (HTTPS)
+        secure: true, // Always true for modern security
+        httpOnly: true // Prevent JS access to cookies
     },
 
     // Security patterns to detect

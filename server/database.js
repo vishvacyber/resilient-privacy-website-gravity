@@ -143,11 +143,18 @@ export async function initializeDatabase() {
     // Create Default Admin if not exists
     const admin = await db.get('SELECT * FROM admins WHERE username = ?', ['admin']);
     if (!admin) {
-        const hashedPassword = await bcrypt.hash('admin123', 10);
+        // In production, we should ideally not create a default admin, or create it with a random password
+        // For this setup, we'll stick to a known default but log a CRITICAL warning
+        const defaultPassword = process.env.INITIAL_ADMIN_PASSWORD || 'admin123';
+        const hashedPassword = await bcrypt.hash(defaultPassword, 10);
         await db.run('INSERT INTO admins (username, password_hash) VALUES (?, ?)', ['admin', hashedPassword]);
-        console.log('⚠️  Default admin account created with username: admin');
-        console.log('⚠️  SECURITY WARNING: Change the default password immediately!');
-        console.log('⚠️  Use server/reset-admin.js to set a new password.');
+
+        console.log('⚠️  ----------------------------------------------------------------');
+        console.log('⚠️  SECURITY ALERT: Default admin account created');
+        console.log('⚠️  Username: admin');
+        console.log('⚠️  Password: ' + (process.env.INITIAL_ADMIN_PASSWORD ? '[HIDDEN_FROM_LOGS]' : 'admin123'));
+        console.log('⚠️  ACTION REQUIRED: Change this password immediately using server/reset-admin.js');
+        console.log('⚠️  ----------------------------------------------------------------');
     }
 
     console.log('Database initialized');

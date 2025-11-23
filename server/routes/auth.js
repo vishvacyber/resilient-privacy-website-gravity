@@ -19,17 +19,28 @@ router.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const db = getDb();
 
+    // Security: Prevent login if using default secret in production
+    if (process.env.NODE_ENV === 'production' && (!process.env.JWT_SECRET || process.env.JWT_SECRET === 'fallback-secret-for-development')) {
+        console.error('SECURITY CRITICAL: Attempted login with default JWT secret in production.');
+        return res.status(500).json({ error: 'Server configuration error' });
+    }
+
     try {
         const admin = await db.get('SELECT * FROM admins WHERE username = ?', [username]);
 
+        // Security: Use generic error message to prevent user enumeration
+        const invalidCredentialsMsg = 'Invalid credentials';
+
         if (!admin) {
-            return res.status(401).json({ error: 'Invalid credentials' });
+            // Security: Simulate password check time to prevent timing attacks
+            await bcrypt.compare('dummy', '$2a$10$dummyhashdummyhashdummyhashdummyhashdummyhash');
+            return res.status(401).json({ error: invalidCredentialsMsg });
         }
 
         const isMatch = await bcrypt.compare(password, admin.password_hash);
 
         if (!isMatch) {
-            return res.status(401).json({ error: 'Invalid credentials' });
+            return res.status(401).json({ error: invalidCredentialsMsg });
         }
 
         const token = jwt.sign({ id: admin.id, username: admin.username }, JWT_SECRET, { expiresIn: '24h' });

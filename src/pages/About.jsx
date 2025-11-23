@@ -62,7 +62,7 @@ const About = () => {
             <div style={{ textAlign: 'center' }} className="mb-lg">
                 <h2 className="text-h2" style={{ marginBottom: '3rem' }}>Meet the <span className="text-gradient">Guardians</span></h2>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '4rem' }}>
-                    {team.map((member, index) => (
+                    {[...team, ...advisors.map(advisor => ({ ...advisor, isAdvisor: true }))].map((member, index) => (
                         <motion.div
                             key={index}
                             whileHover={{ y: -5 }}
@@ -73,28 +73,10 @@ const About = () => {
                                 <img src={member.img} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </div>
                             <div style={{ padding: '1.5rem' }}>
-                                <h3 className="text-lg" style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>{member.name}</h3>
-                                <p style={{ color: 'var(--primary)', fontSize: '0.9rem' }}>{member.role}</p>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-
-                <h2 className="text-h2" style={{ marginBottom: '3rem' }}>Our <span className="text-gradient">Advisors</span></h2>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', justifyContent: 'center' }}>
-                    {advisors.map((member, index) => (
-                        <motion.div
-                            key={index}
-                            whileHover={{ y: -5 }}
-                            onClick={() => setSelectedMember(member)}
-                            style={{ background: 'var(--bg-card)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-color)', maxWidth: '400px', margin: '0 auto', width: '100%', cursor: 'pointer' }}
-                        >
-                            <div style={{ height: '350px', overflow: 'hidden' }}>
-                                <img src={member.img} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                            </div>
-                            <div style={{ padding: '1.5rem' }}>
-                                <h3 className="text-lg" style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>{member.name}</h3>
-                                <p style={{ color: 'var(--secondary)', fontSize: '0.9rem' }}>{member.role}</p>
+                                <h3 className="text-lg" style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>
+                                    {member.name} {member.isAdvisor && <span style={{ fontSize: '0.8em', color: 'var(--text-muted)', fontWeight: 'normal' }}>(Advisor)</span>}
+                                </h3>
+                                <p style={{ color: member.isAdvisor ? 'var(--secondary)' : 'var(--primary)', fontSize: '0.9rem' }}>{member.role}</p>
                             </div>
                         </motion.div>
                     ))}
@@ -155,9 +137,8 @@ const About = () => {
                                 width: '100%',
                                 overflow: 'hidden',
                                 position: 'relative',
-                                display: 'grid',
-                                gridTemplateColumns: '1fr 1.5fr',
                             }}
+                            className="team-modal-grid"
                         >
                             <button
                                 onClick={() => setSelectedMember(null)}
@@ -200,13 +181,7 @@ const About = () => {
                 )}
             </AnimatePresence>
 
-            <style>{`
-                @media (max-width: 768px) {
-                    div[style*="gridTemplateColumns: 1fr 1.5fr"] {
-                        grid-template-columns: 1fr !important;
-                    }
-                }
-            `}</style>
+
         </div>
     );
 };

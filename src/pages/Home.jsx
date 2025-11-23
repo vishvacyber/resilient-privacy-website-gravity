@@ -157,7 +157,7 @@ const Home = () => {
                         </p>
                     </motion.div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
                         {[
                             {
                                 icon: <Lock size={40} color="var(--secondary)" />,
@@ -395,19 +395,9 @@ const Home = () => {
                         {/* Card 1: Neural Core (Large) */}
                         <motion.div
                             whileHover={{ y: -5 }}
-                            style={{
-                                gridColumn: 'span 2',
-                                background: 'linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)',
-                                border: '1px solid var(--border-color)',
-                                borderRadius: '24px',
-                                padding: '2.5rem',
-                                position: 'relative',
-                                overflow: 'hidden'
-                            }}
+                            className="span-2-desktop bento-card"
                         >
-                            <div style={{ position: 'absolute', top: 0, right: 0, padding: '2rem', opacity: 0.1 }}>
-                                <Cpu size={120} />
-                            </div>
+                            <div className="bento-icon-large"><Cpu size={120} /></div>
                             <Cpu size={40} color="var(--primary)" style={{ marginBottom: '1.5rem' }} />
                             <h3 className="text-h3" style={{ marginBottom: '1rem' }}>Neural Detection Core</h3>
                             <p className="text-body" style={{ color: 'var(--text-muted)', maxWidth: '500px' }}>
@@ -418,12 +408,7 @@ const Home = () => {
                         {/* Card 2: Global Shield */}
                         <motion.div
                             whileHover={{ y: -5 }}
-                            style={{
-                                background: 'var(--bg-card)',
-                                border: '1px solid var(--border-color)',
-                                borderRadius: '24px',
-                                padding: '2rem'
-                            }}
+                            className="bento-card"
                         >
                             <Globe size={32} color="var(--secondary)" style={{ marginBottom: '1.5rem' }} />
                             <h3 className="text-lg" style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>Global Edge Network</h3>
@@ -435,12 +420,7 @@ const Home = () => {
                         {/* Card 3: Compliance */}
                         <motion.div
                             whileHover={{ y: -5 }}
-                            style={{
-                                background: 'var(--bg-card)',
-                                border: '1px solid var(--border-color)',
-                                borderRadius: '24px',
-                                padding: '2rem'
-                            }}
+                            className="bento-card"
                         >
                             <FileCheck size={32} color="var(--primary)" style={{ marginBottom: '1.5rem' }} />
                             <h3 className="text-lg" style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>Auto-Compliance</h3>
@@ -452,18 +432,7 @@ const Home = () => {
                         {/* Card 4: Zero Trust (Wide) */}
                         <motion.div
                             whileHover={{ y: -5 }}
-                            style={{
-                                gridColumn: 'span 2',
-                                background: 'linear-gradient(145deg, rgba(124, 58, 237, 0.05) 0%, rgba(0,0,0,0) 100%)',
-                                border: '1px solid var(--border-color)',
-                                borderRadius: '24px',
-                                padding: '2.5rem',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'space-between',
-                                flexWrap: 'wrap',
-                                gap: '2rem'
-                            }}
+                            className="span-2-desktop bento-card"
                         >
                             <div style={{ maxWidth: '400px' }}>
                                 <Lock size={40} color="var(--secondary)" style={{ marginBottom: '1.5rem' }} />

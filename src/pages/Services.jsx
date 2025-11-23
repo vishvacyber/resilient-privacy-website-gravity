@@ -229,7 +229,7 @@ const Services = () => {
             </div>
 
             {/* Solutions Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2.5rem', marginBottom: '4rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2.5rem', marginBottom: '4rem' }}>
                 {getCurrentSolutions().map((solution, index) => (
                     <motion.div
                         key={index}
