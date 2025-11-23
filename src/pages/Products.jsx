@@ -3,8 +3,10 @@ import { motion } from 'framer-motion';
 import { Shield, Lock, Search, Eye, Zap, Globe, CheckCircle, ArrowRight, Star, Users, Award, Layers } from 'lucide-react';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
+    const navigate = useNavigate();
     const products = [
         {
             title: 'CoreShield™',
@@ -179,7 +181,7 @@ const Products = () => {
                                     transition: 'all 0.3s ease',
                                     cursor: 'pointer'
                                 }}
-                                onClick={() => window.location.href = product.link}
+                                onClick={() => navigate(product.link)}
                             >
                                 {/* Background decoration */}
                                 <div style={{

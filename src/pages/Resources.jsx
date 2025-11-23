@@ -8,6 +8,7 @@ import { API_ENDPOINTS } from '../config/api';
 const Resources = () => {
     const [docs, setDocs] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [fetchError, setFetchError] = useState(null);
 
     useEffect(() => {
         fetchDocumentation();
@@ -16,9 +17,13 @@ const Resources = () => {
     const fetchDocumentation = async () => {
         try {
             const response = await fetch(`${API_ENDPOINTS.documentation}?category=learning-center`);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
             const data = await response.json();
             setDocs(data);
         } catch (error) {
+            setFetchError(error.message);
             // Error handling - only log in development
             if (import.meta.env.DEV) {
                 console.error('Error fetching documentation:', error);
@@ -53,6 +58,16 @@ const Resources = () => {
                 animate={{ opacity: 1, y: 0 }}
                 style={{ textAlign: 'center', marginBottom: '4rem' }}
             >
+                {/* Error Banner */}
+                {fetchError && (
+                    <div style={{ background: 'var(--bg-card)', padding: '1rem', borderRadius: '8px', color: 'var(--error)', marginBottom: '2rem' }}>
+                        <strong>Error:</strong> {fetchError}
+                    </div>
+                )}
+                {/* No Docs Placeholder */}
+                {!loading && docs.length === 0 && !fetchError && (
+                    <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2rem' }}>No documentation available at the moment.</p>
+                )}
                 <h1 className="text-h1" style={{ marginBottom: '1rem' }}>
                     Resource <span className="text-gradient">Library</span>
                 </h1>
