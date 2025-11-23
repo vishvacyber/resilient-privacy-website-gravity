@@ -129,77 +129,89 @@ const DocumentationManager = () => {
             {loading ? (
                 <p>Loading...</p>
             ) : (
-                <div style={{ background: 'var(--bg-card)', borderRadius: '12px', overflow: 'hidden' }}>
-                    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                        <thead style={{ background: 'var(--bg-dark)', borderBottom: '1px solid var(--border-color)' }}>
-                            <tr>
-                                <th style={{ padding: '1rem', textAlign: 'left' }}>Title</th>
-                                <th style={{ padding: '1rem', textAlign: 'left' }}>Slug</th>
-                                <th style={{ padding: '1rem', textAlign: 'left' }}>Category</th>
-                                <th style={{ padding: '1rem', textAlign: 'center' }}>Order</th>
-                                <th style={{ padding: '1rem', textAlign: 'center' }}>Status</th>
-                                <th style={{ padding: '1rem', textAlign: 'right' }}>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {docs.map(doc => (
-                                <tr key={doc.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                                    <td style={{ padding: '1rem' }}>{doc.title}</td>
-                                    <td style={{ padding: '1rem', fontSize: '0.9rem', color: 'var(--text-muted)' }}>{doc.slug}</td>
-                                    <td style={{ padding: '1rem' }}>{doc.category}</td>
-                                    <td style={{ padding: '1rem', textAlign: 'center' }}>{doc.display_order}</td>
-                                    <td style={{ padding: '1rem', textAlign: 'center' }}>
-                                        {doc.is_active ? (
-                                            <span style={{ color: 'green' }}>● Active</span>
-                                        ) : (
-                                            <span style={{ color: 'gray' }}>○ Inactive</span>
-                                        )}
-                                    </td>
-                                    <td style={{ padding: '1rem', textAlign: 'right' }}>
-                                        <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
-                                            <button
-                                                onClick={() => window.open(doc.file_path, '_blank')}
-                                                style={{
-                                                    padding: '0.5rem',
-                                                    background: 'var(--bg-dark)',
-                                                    border: '1px solid var(--border-color)',
-                                                    borderRadius: '4px',
-                                                    cursor: 'pointer'
-                                                }}
-                                            >
-                                                <ExternalLink size={16} />
-                                            </button>
-                                            <button
-                                                onClick={() => handleEdit(doc)}
-                                                style={{
-                                                    padding: '0.5rem',
-                                                    background: 'var(--bg-dark)',
-                                                    border: '1px solid var(--border-color)',
-                                                    borderRadius: '4px',
-                                                    cursor: 'pointer'
-                                                }}
-                                            >
-                                                <Edit size={16} />
-                                            </button>
-                                            <button
-                                                onClick={() => handleDelete(doc.id)}
-                                                style={{
-                                                    padding: '0.5rem',
-                                                    background: 'var(--bg-dark)',
-                                                    border: '1px solid var(--border-color)',
-                                                    borderRadius: '4px',
-                                                    cursor: 'pointer',
-                                                    color: 'red'
-                                                }}
-                                            >
-                                                <Trash2 size={16} />
-                                            </button>
-                                        </div>
-                                    </td>
+                <div style={{
+                    background: 'var(--bg-card)',
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                    border: '1px solid var(--border-color)'
+                }}>
+                    <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+                        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
+                            <thead style={{ background: 'var(--bg-dark)', borderBottom: '1px solid var(--border-color)' }}>
+                                <tr>
+                                    <th style={{ padding: '1rem', textAlign: 'left' }}>Title</th>
+                                    <th style={{ padding: '1rem', textAlign: 'left' }}>Slug</th>
+                                    <th style={{ padding: '1rem', textAlign: 'left' }}>Category</th>
+                                    <th style={{ padding: '1rem', textAlign: 'center' }}>Order</th>
+                                    <th style={{ padding: '1rem', textAlign: 'center' }}>Status</th>
+                                    <th style={{ padding: '1rem', textAlign: 'right' }}>Actions</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {docs.map(doc => (
+                                    <tr key={doc.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
+                                        <td style={{ padding: '1rem' }}>{doc.title}</td>
+                                        <td style={{ padding: '1rem', fontSize: '0.9rem', color: 'var(--text-muted)' }}>{doc.slug}</td>
+                                        <td style={{ padding: '1rem' }}>{doc.category}</td>
+                                        <td style={{ padding: '1rem', textAlign: 'center' }}>{doc.display_order}</td>
+                                        <td style={{ padding: '1rem', textAlign: 'center' }}>
+                                            {doc.is_active ? (
+                                                <span style={{ color: 'green' }}>● Active</span>
+                                            ) : (
+                                                <span style={{ color: 'gray' }}>○ Inactive</span>
+                                            )}
+                                        </td>
+                                        <td style={{ padding: '1rem', textAlign: 'right' }}>
+                                            <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
+                                                <button
+                                                    onClick={() => window.open(doc.file_path, '_blank')}
+                                                    style={{
+                                                        padding: '0.5rem',
+                                                        background: 'var(--bg-dark)',
+                                                        border: '1px solid var(--border-color)',
+                                                        borderRadius: '4px',
+                                                        cursor: 'pointer',
+                                                        color: 'var(--text-main)'
+                                                    }}
+                                                    title="View"
+                                                >
+                                                    <ExternalLink size={16} />
+                                                </button>
+                                                <button
+                                                    onClick={() => handleEdit(doc)}
+                                                    style={{
+                                                        padding: '0.5rem',
+                                                        background: 'var(--bg-dark)',
+                                                        border: '1px solid var(--border-color)',
+                                                        borderRadius: '4px',
+                                                        cursor: 'pointer',
+                                                        color: 'var(--text-main)'
+                                                    }}
+                                                    title="Edit"
+                                                >
+                                                    <Edit size={16} />
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDelete(doc.id)}
+                                                    style={{
+                                                        padding: '0.5rem',
+                                                        background: 'var(--bg-dark)',
+                                                        border: '1px solid var(--border-color)',
+                                                        borderRadius: '4px',
+                                                        cursor: 'pointer',
+                                                        color: 'red'
+                                                    }}
+                                                    title="Delete"
+                                                >
+                                                    <Trash2 size={16} />
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             )}
 
@@ -232,7 +244,7 @@ const DocumentationManager = () => {
                         </h2>
                         <form onSubmit={handleSubmit}>
                             <div style={{ marginBottom: '1rem' }}>
-                                <label>Title</label>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Title</label>
                                 <input
                                     type="text"
                                     value={formData.title}
@@ -242,66 +254,113 @@ const DocumentationManager = () => {
                                             setFormData(prev => ({ ...prev, slug: generateSlug(e.target.value) }));
                                         }
                                     }}
-                                    style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
+                                    style={{
+                                        width: '100%',
+                                        padding: '0.75rem',
+                                        marginTop: '0.25rem',
+                                        background: 'var(--bg-dark)',
+                                        border: '1px solid var(--border-color)',
+                                        borderRadius: '4px',
+                                        color: 'var(--text-main)',
+                                        fontSize: '16px'
+                                    }}
                                     required
                                 />
                             </div>
 
                             <div style={{ marginBottom: '1rem' }}>
-                                <label>Slug</label>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Slug</label>
                                 <input
                                     type="text"
                                     value={formData.slug}
                                     onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-                                    style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
+                                    style={{
+                                        width: '100%',
+                                        padding: '0.75rem',
+                                        marginTop: '0.25rem',
+                                        background: 'var(--bg-dark)',
+                                        border: '1px solid var(--border-color)',
+                                        borderRadius: '4px',
+                                        color: 'var(--text-main)',
+                                        fontSize: '16px'
+                                    }}
                                     required
                                 />
                             </div>
 
                             <div style={{ marginBottom: '1rem' }}>
-                                <label>File Path</label>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>File Path</label>
                                 <input
                                     type="text"
                                     value={formData.file_path}
                                     onChange={(e) => setFormData({ ...formData, file_path: e.target.value })}
-                                    style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
+                                    style={{
+                                        width: '100%',
+                                        padding: '0.75rem',
+                                        marginTop: '0.25rem',
+                                        background: 'var(--bg-dark)',
+                                        border: '1px solid var(--border-color)',
+                                        borderRadius: '4px',
+                                        color: 'var(--text-main)',
+                                        fontSize: '16px'
+                                    }}
                                     placeholder="/resources/documentation/filename.html"
                                     required
                                 />
                             </div>
 
                             <div style={{ marginBottom: '1rem' }}>
-                                <label>Description</label>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Description</label>
                                 <textarea
                                     value={formData.description}
                                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                                    style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem', minHeight: '80px' }}
+                                    style={{
+                                        width: '100%',
+                                        padding: '0.75rem',
+                                        marginTop: '0.25rem',
+                                        minHeight: '80px',
+                                        background: 'var(--bg-dark)',
+                                        border: '1px solid var(--border-color)',
+                                        borderRadius: '4px',
+                                        color: 'var(--text-main)',
+                                        fontSize: '16px',
+                                        resize: 'vertical'
+                                    }}
                                 />
                             </div>
 
                             <div style={{ marginBottom: '1rem' }}>
-                                <label>Display Order</label>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Display Order</label>
                                 <input
                                     type="number"
                                     value={formData.display_order}
                                     onChange={(e) => setFormData({ ...formData, display_order: parseInt(e.target.value) })}
-                                    style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
+                                    style={{
+                                        width: '100%',
+                                        padding: '0.75rem',
+                                        marginTop: '0.25rem',
+                                        background: 'var(--bg-dark)',
+                                        border: '1px solid var(--border-color)',
+                                        borderRadius: '4px',
+                                        color: 'var(--text-main)',
+                                        fontSize: '16px'
+                                    }}
                                 />
                             </div>
 
                             <div style={{ marginBottom: '1rem' }}>
-                                <label>
+                                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
                                     <input
                                         type="checkbox"
                                         checked={formData.is_active}
                                         onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })}
-                                        style={{ marginRight: '0.5rem' }}
+                                        style={{ width: 'auto', margin: 0 }}
                                     />
-                                    Active
+                                    <span style={{ fontWeight: '500' }}>Active</span>
                                 </label>
                             </div>
 
-                            <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+                            <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem', flexDirection: window.innerWidth < 768 ? 'column' : 'row' }}>
                                 <Button variant="primary" type="submit" style={{ flex: 1 }}>
                                     {editingDoc ? 'Update' : 'Create'}
                                 </Button>

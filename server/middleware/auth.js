@@ -36,3 +36,5 @@ export const authenticate = (req, res, next) => {
         return res.status(500).json({ error: 'Authentication error' });
     }
 };
+
+export const authenticateAdmin = authenticate;

@@ -99,13 +99,13 @@ const Contact = () => {
 
     return (
         <div className="container section-padding">
-            <div className="grid-cols-2" style={{ gap: '4rem' }}>
+            <div className="grid-cols-2" style={{ gap: '4rem', alignItems: 'start' }}>
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                 >
-                    <h1 style={{ fontSize: '3rem', marginBottom: '1.5rem' }}>Get in <span className="text-gradient">Touch</span></h1>
-                    <p style={{ color: 'var(--text-muted)', marginBottom: '3rem' }}>
+                    <h1 className="text-h1" style={{ marginBottom: '1.5rem' }}>Get in <span className="text-gradient">Touch</span></h1>
+                    <p className="text-body" style={{ color: 'var(--text-muted)', marginBottom: '3rem' }}>
                         Have questions about our API security solutions? Ready to start your free audit? Reach out to our team of experts.
                     </p>
 
@@ -114,13 +114,19 @@ const Contact = () => {
                             { icon: <Mail size={24} color="var(--primary)" />, title: 'Email Us', value: 'info@resilientprivacy.com' },
                             { icon: <Phone size={24} color="var(--secondary)" />, title: 'Call Us', value: '+1 (469) 504-4135' },
                         ].map((item, index) => (
-                            <div key={index} className="flex-center" style={{ justifyContent: 'flex-start', gap: '1rem' }}>
-                                <div style={{ background: 'var(--bg-card)', padding: '1rem', borderRadius: '50%', border: '1px solid var(--border-color)' }}>
+                            <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                <div style={{
+                                    background: 'var(--bg-card)',
+                                    padding: '1rem',
+                                    borderRadius: '50%',
+                                    border: '1px solid var(--border-color)',
+                                    flexShrink: 0
+                                }}>
                                     {item.icon}
                                 </div>
-                                <div>
+                                <div style={{ minWidth: 0 }}>
                                     <h3 style={{ fontSize: '1.1rem', marginBottom: '0.2rem' }}>{item.title}</h3>
-                                    <p style={{ color: 'var(--text-muted)' }}>{item.value}</p>
+                                    <p style={{ color: 'var(--text-muted)', wordBreak: 'break-word' }}>{item.value}</p>
                                 </div>
                             </div>
                         ))}
@@ -130,7 +136,8 @@ const Contact = () => {
                 <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    style={{ background: 'var(--bg-card)', padding: '3rem', borderRadius: '16px', border: '1px solid var(--border-color)' }}
+                    className="p-lg"
+                    style={{ background: 'var(--bg-card)', borderRadius: '16px', border: '1px solid var(--border-color)' }}
                 >
                     {submitStatus === 'success' && (
                         <div style={{

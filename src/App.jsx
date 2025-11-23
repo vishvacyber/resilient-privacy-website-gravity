@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -15,10 +16,10 @@ import Resources from './pages/Resources';
 import Demo from './pages/Demo';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
-import PrivacyAttackSurfaceManagement from './pages/PrivacyAttackSurfaceManagement';
-import CredentialLeakProtection from './pages/CredentialLeakProtection';
-import UnifiedSecurityShield from './pages/UnifiedSecurityShield';
-import CompletePlatform from './pages/CompletePlatform';
+import CoreShield from './pages/CoreShield';
+import DataGuard from './pages/DataGuard';
+import ThreatWatch from './pages/ThreatWatch';
+import SecureAPI from './pages/SecureAPI';
 
 // Admin Imports
 import Login from './pages/Admin/Login';
@@ -52,10 +53,10 @@ function App() {
               <Route path="/terms-of-service" element={<TermsOfService />} />
 
               {/* Product Pages */}
-              <Route path="/product/privacy-attack-surface-management" element={<PrivacyAttackSurfaceManagement />} />
-              <Route path="/product/credential-leak-protection" element={<CredentialLeakProtection />} />
-              <Route path="/product/unified-security-shield" element={<UnifiedSecurityShield />} />
-              <Route path="/product/complete-platform" element={<CompletePlatform />} />
+              <Route path="/product/coreshield" element={<CoreShield />} />
+              <Route path="/product/dataguard" element={<DataGuard />} />
+              <Route path="/product/threatwatch" element={<ThreatWatch />} />
+              <Route path="/product/secureapi" element={<SecureAPI />} />
 
               {/* Admin Routes */}
               <Route path="/admin/login" element={<Login />} />
@@ -72,9 +73,9 @@ function App() {
           <Footer />
         </div>
       </Router>
+      <Analytics />
     </ErrorBoundary>
   );
 }
 
 export default App;
-

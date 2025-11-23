@@ -45,23 +45,8 @@ class ErrorBoundary extends React.Component {
     render() {
         if (this.state.hasError) {
             return (
-                <div style={{
-                    minHeight: '100vh',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'var(--bg-dark)',
-                    padding: '2rem'
-                }}>
-                    <div style={{
-                        maxWidth: '600px',
-                        width: '100%',
-                        background: 'var(--bg-card)',
-                        border: '1px solid var(--border-color)',
-                        borderRadius: '16px',
-                        padding: '3rem',
-                        textAlign: 'center'
-                    }}>
+                <div className="error-container">
+                    <div className="error-card">
                         <div style={{
                             background: 'rgba(239, 68, 68, 0.1)',
                             width: '80px',

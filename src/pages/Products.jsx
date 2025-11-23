@@ -7,39 +7,39 @@ import { Link } from 'react-router-dom';
 const Products = () => {
     const products = [
         {
-            title: 'Privacy Attack Surface Management',
-            subtitle: 'Discover & Monitor Your Attack Surface',
-            description: 'Agentless detection solution to discover external hosts, identify missing security, detect vulnerabilities, and mitigate credential leaks.',
-            icon: <Search size={48} color="var(--primary)" />,
-            link: '/product/privacy-attack-surface-management',
-            features: ['External Endpoint Discovery', 'Credential Leak Detection', 'Vulnerability Scanning', 'Security Coverage Analysis'],
+            title: 'CoreShield™',
+            subtitle: 'Application Security Platform',
+            description: 'Deploy application security in minutes, not weeks. Protect web apps and APIs from OWASP Top 10, zero-day exploits, and DDoS attacks without code changes or infrastructure overhauls.',
+            icon: <Shield size={48} color="var(--primary)" />,
+            link: '/product/coreshield',
+            features: ['Web Application Firewall', 'API Security', 'DDoS Protection', 'Zero-Day Defense'],
             gradient: 'linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%)'
         },
         {
-            title: 'Credential Leak Protection',
-            subtitle: 'Proactive Credential Security',
-            description: 'Comprehensive protection against hacks involving API keys, credentials, and other sensitive secrets with automated detection and blocking.',
+            title: 'DataGuard™',
+            subtitle: 'Data Privacy & Compliance',
+            description: 'Privacy-first data protection that discovers sensitive data across your infrastructure and automates compliance workflows. Make GDPR, CCPA, and HIPAA audits effortless with intelligent classification.',
             icon: <Lock size={48} color="var(--secondary)" />,
-            link: '/product/credential-leak-protection',
-            features: ['Real-time Leak Detection', 'Automated Remediation', 'Continuous Monitoring', 'Free Assessment Available'],
+            link: '/product/dataguard',
+            features: ['Data Discovery', 'Privacy Compliance', 'Data Encryption', 'Access Control'],
             gradient: 'linear-gradient(135deg, rgba(112, 0, 255, 0.1) 0%, rgba(112, 0, 255, 0.05) 100%)'
         },
         {
-            title: 'Unified Security Shield',
-            subtitle: 'Complete Application Protection',
-            description: 'Web application and API protection with full coverage against OWASP Top 10, emerging threats, and 0-day vulnerabilities.',
-            icon: <Shield size={48} color="var(--primary)" />,
-            link: '/product/unified-security-shield',
-            features: ['OWASP Top-10 Protection', 'Bot Mitigation', 'Virtual Patching', 'Multi-Cloud Deployment'],
+            title: 'ThreatWatch™',
+            subtitle: 'Security Monitoring & Response',
+            description: 'Cut through alert noise with intelligent threat correlation. Our 24/7 monitoring reduces false positives by 90% while detecting real threats in under 2 minutes with automated contextual analysis.',
+            icon: <Eye size={48} color="var(--primary)" />,
+            link: '/product/threatwatch',
+            features: ['24/7 Monitoring', 'Threat Intelligence', 'Automated Response', 'Security Analytics'],
             gradient: 'linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%)'
         },
         {
-            title: 'Complete Platform',
-            subtitle: 'End-to-End Security Solution',
-            description: 'Unified platform to discover, protect, respond, and test your entire privacy and security infrastructure in one integrated solution.',
+            title: 'SecureAPI™',
+            subtitle: 'API Security & Management',
+            description: 'Discover shadow APIs and secure modern architectures without slowing development. Developer-friendly protection for REST, GraphQL, and gRPC that integrates invisibly into your CI/CD pipeline.',
             icon: <Layers size={48} color="var(--secondary)" />,
-            link: '/product/complete-platform',
-            features: ['API Discovery', 'Threat Protection', 'Incident Response', 'Security Testing'],
+            link: '/product/secureapi',
+            features: ['API Discovery', 'Runtime Protection', 'Authentication', 'Rate Limiting'],
             gradient: 'linear-gradient(135deg, rgba(112, 0, 255, 0.1) 0%, rgba(112, 0, 255, 0.05) 100%)'
         }
     ];
@@ -328,44 +328,30 @@ const Products = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         style={{
-                            background: 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)',
+                            background: 'var(--bg-card)',
                             borderRadius: '24px',
+                            border: '1px solid var(--border-color)',
                             padding: '4rem 2rem',
                             textAlign: 'center',
                             position: 'relative',
                             overflow: 'hidden'
                         }}
                     >
-                        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)' }} />
                         <div style={{ position: 'relative', zIndex: 1, maxWidth: '700px', margin: '0 auto' }}>
-                            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)', fontWeight: '700', marginBottom: '1.5rem', color: 'white' }}>
+                            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)', fontWeight: '700', marginBottom: '1.5rem', color: 'var(--text-main)' }}>
                                 Ready to Secure Your Infrastructure?
                             </h2>
-                            <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.9)', marginBottom: '2.5rem', lineHeight: '1.7' }}>
+                            <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', marginBottom: '2.5rem', lineHeight: '1.7' }}>
                                 Join hundreds of enterprises protecting their critical assets with Resilient Privacy. Start with a free demo today.
                             </p>
                             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                                 <Link to="/demo">
-                                    <Button style={{
-                                        background: 'white',
-                                        color: 'var(--primary)',
-                                        border: 'none',
-                                        padding: '1rem 2.5rem',
-                                        fontSize: '1.1rem',
-                                        fontWeight: '600'
-                                    }}>
+                                    <Button variant="primary" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>
                                         Schedule Demo
                                     </Button>
                                 </Link>
                                 <Link to="/contact">
-                                    <Button style={{
-                                        background: 'transparent',
-                                        color: 'white',
-                                        border: '2px solid white',
-                                        padding: '1rem 2.5rem',
-                                        fontSize: '1.1rem',
-                                        fontWeight: '600'
-                                    }}>
+                                    <Button variant="outline" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>
                                         Contact Sales
                                     </Button>
                                 </Link>

@@ -156,7 +156,7 @@ const ServicesManager = () => {
             </div>
 
             {/* Category Tabs */}
-            <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap', overflowX: 'auto' }}>
                 {categories.map(cat => (
                     <button
                         key={cat.id}
@@ -168,7 +168,10 @@ const ServicesManager = () => {
                             background: activeCategory === cat.id ? 'var(--primary-dim)' : 'var(--bg-card)',
                             color: activeCategory === cat.id ? 'var(--primary)' : 'var(--text-main)',
                             fontWeight: 'bold',
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            whiteSpace: 'nowrap',
+                            minHeight: '44px',
+                            transition: 'all 0.2s ease'
                         }}
                     >
                         {cat.label}
@@ -237,11 +240,20 @@ const ServicesManager = () => {
                         </h2>
                         <form onSubmit={handleSubmit}>
                             <div style={{ marginBottom: '1rem' }}>
-                                <label>Category</label>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Category</label>
                                 <select
                                     value={formData.category}
                                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                                    style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
+                                    style={{
+                                        width: '100%',
+                                        padding: '0.75rem',
+                                        marginTop: '0.25rem',
+                                        background: 'var(--bg-dark)',
+                                        border: '1px solid var(--border-color)',
+                                        borderRadius: '4px',
+                                        color: 'var(--text-main)',
+                                        fontSize: '16px'
+                                    }}
                                     required
                                 >
                                     {categories.map(cat => (
@@ -251,47 +263,100 @@ const ServicesManager = () => {
                             </div>
 
                             <div style={{ marginBottom: '1rem' }}>
-                                <label>Title</label>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Title</label>
                                 <input
                                     type="text"
                                     value={formData.title}
                                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                                    style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
+                                    style={{
+                                        width: '100%',
+                                        padding: '0.75rem',
+                                        marginTop: '0.25rem',
+                                        background: 'var(--bg-dark)',
+                                        border: '1px solid var(--border-color)',
+                                        borderRadius: '4px',
+                                        color: 'var(--text-main)',
+                                        fontSize: '16px'
+                                    }}
                                     required
                                 />
                             </div>
 
                             <div style={{ marginBottom: '1rem' }}>
-                                <label>Description</label>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Description</label>
                                 <textarea
                                     value={formData.description}
                                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                                    style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem', minHeight: '100px' }}
+                                    style={{
+                                        width: '100%',
+                                        padding: '0.75rem',
+                                        marginTop: '0.25rem',
+                                        minHeight: '100px',
+                                        background: 'var(--bg-dark)',
+                                        border: '1px solid var(--border-color)',
+                                        borderRadius: '4px',
+                                        color: 'var(--text-main)',
+                                        fontSize: '16px',
+                                        resize: 'vertical'
+                                    }}
                                     required
                                 />
                             </div>
 
                             <div style={{ marginBottom: '1rem' }}>
-                                <label>Features</label>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Features</label>
                                 {formData.features.map((feature, index) => (
-                                    <div key={index} style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
+                                    <div key={index} style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem', alignItems: 'stretch' }}>
                                         <input
                                             type="text"
                                             value={feature}
                                             onChange={(e) => updateFeature(index, e.target.value)}
-                                            style={{ flex: 1, padding: '0.5rem' }}
+                                            style={{
+                                                flex: 1,
+                                                padding: '0.75rem',
+                                                background: 'var(--bg-dark)',
+                                                border: '1px solid var(--border-color)',
+                                                borderRadius: '4px',
+                                                color: 'var(--text-main)',
+                                                fontSize: '16px'
+                                            }}
                                         />
-                                        <button type="button" onClick={() => removeFeature(index)} style={{ padding: '0.5rem' }}>
+                                        <button
+                                            type="button"
+                                            onClick={() => removeFeature(index)}
+                                            style={{
+                                                padding: '0.75rem 1rem',
+                                                background: 'var(--bg-dark)',
+                                                border: '1px solid var(--border-color)',
+                                                borderRadius: '4px',
+                                                color: 'red',
+                                                cursor: 'pointer',
+                                                whiteSpace: 'nowrap'
+                                            }}
+                                        >
                                             Remove
                                         </button>
                                     </div>
                                 ))}
-                                <button type="button" onClick={addFeature} style={{ marginTop: '0.5rem', padding: '0.5rem' }}>
+                                <button
+                                    type="button"
+                                    onClick={addFeature}
+                                    style={{
+                                        marginTop: '0.5rem',
+                                        padding: '0.75rem 1rem',
+                                        background: 'var(--primary-dim)',
+                                        border: '1px solid var(--primary)',
+                                        borderRadius: '4px',
+                                        color: 'var(--primary)',
+                                        cursor: 'pointer',
+                                        width: '100%'
+                                    }}
+                                >
                                     Add Feature
                                 </button>
                             </div>
 
-                            <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+                            <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem', flexDirection: window.innerWidth < 768 ? 'column' : 'row' }}>
                                 <Button variant="primary" type="submit" style={{ flex: 1 }}>
                                     {editingService ? 'Update' : 'Create'}
                                 </Button>

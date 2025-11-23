@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate, Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Briefcase, FileText, MessageSquare, LogOut, Settings, BookOpen } from 'lucide-react';
+import { LayoutDashboard, Briefcase, FileText, MessageSquare, LogOut, Settings, BookOpen, Menu, X } from 'lucide-react';
 
 const AdminLayout = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -12,6 +13,11 @@ const AdminLayout = () => {
             navigate('/admin/login');
         }
     }, [navigate]);
+
+    // Close sidebar when route changes on mobile
+    useEffect(() => {
+        setIsSidebarOpen(false);
+    }, [location]);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -29,16 +35,17 @@ const AdminLayout = () => {
     ];
 
     return (
-        <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--bg-dark)' }}>
+        <div className="admin-layout">
+            {/* Mobile Toggle */}
+            <button
+                className="admin-toggle"
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            >
+                {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+
             {/* Sidebar */}
-            <div style={{
-                width: '250px',
-                background: 'var(--bg-card)',
-                borderRight: '1px solid var(--border-color)',
-                padding: '2rem 1rem',
-                display: 'flex',
-                flexDirection: 'column'
-            }}>
+            <div className={`admin-sidebar ${isSidebarOpen ? 'open' : ''}`}>
                 <div style={{ marginBottom: '3rem', paddingLeft: '1rem' }}>
                     <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Admin Panel</h2>
                 </div>
@@ -91,7 +98,7 @@ const AdminLayout = () => {
             </div>
 
             {/* Main Content */}
-            <div style={{ flex: 1, padding: '2rem', overflowY: 'auto' }}>
+            <div className="admin-content">
                 <Outlet />
             </div>
         </div>
