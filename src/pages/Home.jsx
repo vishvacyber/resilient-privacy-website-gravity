@@ -397,7 +397,6 @@ const Home = () => {
                             whileHover={{ y: -5 }}
                             className="span-2-desktop bento-card"
                         >
-                            <div className="bento-icon-large"><Cpu size={120} /></div>
                             <Cpu size={40} color="var(--primary)" style={{ marginBottom: '1.5rem' }} />
                             <h3 className="text-h3" style={{ marginBottom: '1rem' }}>Neural Detection Core</h3>
                             <p className="text-body" style={{ color: 'var(--text-muted)', maxWidth: '500px' }}>
