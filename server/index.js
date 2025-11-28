@@ -27,7 +27,7 @@ const PORT = process.env.PORT || 3001;
 
 // Security: Helmet middleware for security headers
 app.use(helmet({
-    contentSecurityPolicy: false, // Disable CSP as it's handled by Vite
+    // contentSecurityPolicy: false, // CSP is now set by Helmet; remove this line to enable default CSP
     crossOriginEmbedderPolicy: false,
     hsts: {
         maxAge: 31536000, // 1 year
