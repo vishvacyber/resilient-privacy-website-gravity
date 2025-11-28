@@ -79,8 +79,8 @@ export const removeScriptTags = (str) => {
         sanitized = sanitized.replace(/on\w+\s*=\s*["'][^"']*["']/gi, '');
     } while (sanitized !== prevSanitized);
 
-    // Remove javascript: protocol
-    sanitized = sanitized.replace(/javascript:/gi, '');
+    // Remove protocols that allow script/data execution: javascript:, data:, vbscript:
+    sanitized = sanitized.replace(/(?:javascript:|data:|vbscript:)/gi, '');
 
     return sanitized;
 };
