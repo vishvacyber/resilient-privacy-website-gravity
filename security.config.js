@@ -53,7 +53,8 @@ export const SECURITY_CONFIG = {
     securityPatterns: {
         // Common XSS patterns
         xss: [
-            /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+            // DO NOT use regex to parse/filter <script> tags. Use a library like 'dompurify' or 'sanitize-html'.
+            // See: https://github.com/cure53/DOMPurify, https://github.com/apostrophecms/sanitize-html
             /javascript:/gi,
             /on\w+\s*=/gi, // event handlers like onclick=
             /<iframe/gi,
