@@ -48,7 +48,12 @@ export const removeScriptTags = (str) => {
     sanitized = sanitized.replace(/<embed\b[^<]*>/gi, '');
 
     // Remove event handlers
-    sanitized = sanitized.replace(/on\w+\s*=\s*["'][^"']*["']/gi, '');
+    // Repeat replace until no more event handlers remain
+    let prevSanitized;
+    do {
+        prevSanitized = sanitized;
+        sanitized = sanitized.replace(/on\w+\s*=\s*["'][^"']*["']/gi, '');
+    } while (sanitized !== prevSanitized);
 
     // Remove javascript: protocol
     sanitized = sanitized.replace(/javascript:/gi, '');
