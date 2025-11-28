@@ -36,16 +36,40 @@ export const removeScriptTags = (str) => {
     let sanitized = str;
 
     // Remove script tags
-    sanitized = sanitized.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+    {
+        let prev;
+        do {
+            prev = sanitized;
+            sanitized = sanitized.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+        } while (sanitized !== prev);
+    }
 
     // Remove iframe tags
-    sanitized = sanitized.replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '');
+    {
+        let prev;
+        do {
+            prev = sanitized;
+            sanitized = sanitized.replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '');
+        } while (sanitized !== prev);
+    }
 
     // Remove object tags
-    sanitized = sanitized.replace(/<object\b[^<]*(?:(?!<\/object>)<[^<]*)*<\/object>/gi, '');
+    {
+        let prev;
+        do {
+            prev = sanitized;
+            sanitized = sanitized.replace(/<object\b[^<]*(?:(?!<\/object>)<[^<]*)*<\/object>/gi, '');
+        } while (sanitized !== prev);
+    }
 
     // Remove embed tags
-    sanitized = sanitized.replace(/<embed\b[^<]*>/gi, '');
+    {
+        let prev;
+        do {
+            prev = sanitized;
+            sanitized = sanitized.replace(/<embed\b[^<]*>/gi, '');
+        } while (sanitized !== prev);
+    }
 
     // Remove event handlers
     // Repeat replace until no more event handlers remain
