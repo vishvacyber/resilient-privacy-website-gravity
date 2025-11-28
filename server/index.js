@@ -16,6 +16,14 @@ import activityLogsRoutes from './routes/activityLogs.js';
 import servicesRoutes from './routes/services.js';
 import documentationRoutes from './routes/documentation.js';
 
+// Rate limiter for static file serving (catch-all route)
+const staticFileLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+    standardHeaders: true, // Return rate limit info in the RateLimit-* headers
+    legacyHeaders: false, // Disable the X-RateLimit-* headers
+});
+
 // Load environment variables
 dotenv.config();
 
@@ -101,7 +109,7 @@ initializeDatabase().then(() => {
 
         // The "catchall" handler: for any request that doesn't
         // match one above, send back React's index.html file.
-        app.get('*', (req, res) => {
+        app.get('*', staticFileLimiter, (req, res) => {
             res.sendFile(path.join(__dirname, '../dist/index.html'));
         });
     }
