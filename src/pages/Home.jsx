@@ -5,21 +5,6 @@ import Button from '../components/Button';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-    // SEO: Structured Data for AI Search Optimization
-    const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Resilient Privacy",
-        "applicationCategory": "CybersecurityApplication",
-        "operatingSystem": "Cloud, Web",
-        "description": "Autonomous AI-driven API security and threat neutralization system.",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        }
-    };
-
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -35,11 +20,6 @@ const Home = () => {
 
     return (
         <>
-            {/* SEO Injection - Fixed for React */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-            />
 
             {/* Hero Section */}
             <section style={{ position: 'relative', minHeight: '90vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
