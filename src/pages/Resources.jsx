@@ -58,10 +58,6 @@ const Resources = () => {
                 animate={{ opacity: 1, y: 0 }}
                 style={{ textAlign: 'center', marginBottom: '4rem' }}
             >
-                {/* No Docs Placeholder */}
-                {!loading && docs.length === 0 && (
-                    <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2rem' }}>No documentation available at the moment.</p>
-                )}
                 <h1 className="text-h1" style={{ marginBottom: '1rem' }}>
                     Resource <span className="text-gradient">Library</span>
                 </h1>
