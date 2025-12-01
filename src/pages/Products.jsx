@@ -77,7 +77,7 @@ const Products = () => {
                             fontSize: '0.9rem',
                             letterSpacing: '0.5px'
                         }}>
-                            ✨ COMPREHENSIVE SECURITY SOLUTIONS
+                            COMPREHENSIVE SECURITY SOLUTIONS
                         </div>
                         <h1 style={{
                             fontSize: 'clamp(2.5rem, 5vw, 4rem)',
