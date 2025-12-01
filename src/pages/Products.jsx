@@ -66,19 +66,6 @@ const Products = () => {
                         animate={{ opacity: 1, y: 0 }}
                         style={{ textAlign: 'center', maxWidth: '900px', margin: '0 auto' }}
                     >
-                        <div style={{
-                            display: 'inline-block',
-                            padding: '0.5rem 1.5rem',
-                            background: 'var(--primary-dim)',
-                            color: 'var(--primary)',
-                            borderRadius: '30px',
-                            marginBottom: '2rem',
-                            fontWeight: '600',
-                            fontSize: '0.9rem',
-                            letterSpacing: '0.5px'
-                        }}>
-                            COMPREHENSIVE SECURITY SOLUTIONS
-                        </div>
                         <h1 style={{
                             fontSize: 'clamp(2.5rem, 5vw, 4rem)',
                             fontWeight: '800',
