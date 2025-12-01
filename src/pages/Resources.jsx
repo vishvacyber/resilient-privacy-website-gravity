@@ -58,14 +58,8 @@ const Resources = () => {
                 animate={{ opacity: 1, y: 0 }}
                 style={{ textAlign: 'center', marginBottom: '4rem' }}
             >
-                {/* Error Banner */}
-                {fetchError && (
-                    <div style={{ background: 'var(--bg-card)', padding: '1rem', borderRadius: '8px', color: 'var(--error)', marginBottom: '2rem' }}>
-                        <strong>Error:</strong> {fetchError}
-                    </div>
-                )}
                 {/* No Docs Placeholder */}
-                {!loading && docs.length === 0 && !fetchError && (
+                {!loading && docs.length === 0 && (
                     <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2rem' }}>No documentation available at the moment.</p>
                 )}
                 <h1 className="text-h1" style={{ marginBottom: '1rem' }}>
@@ -128,7 +122,7 @@ const Resources = () => {
                                                 e.target.style.borderColor = 'var(--border-color)';
                                             }}
                                         >
-                                            📄 {doc.title}
+                                            {doc.title}
                                         </a>
                                     ))}
                                 </div>
