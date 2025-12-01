@@ -70,12 +70,6 @@ const ThreatWatch = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="product-hero"
             >
-                <div className="product-hero-badge" style={{
-                    background: 'var(--primary-dim)',
-                    color: 'var(--primary)'
-                }}>
-                    SECURITY MONITORING & RESPONSE
-                </div>
                 <h1 className="text-h1" style={{ marginBottom: '1.5rem' }}>
                     ThreatWatch<sup style={{ fontSize: '0.5em', verticalAlign: 'super' }}>™</sup>
                 </h1>

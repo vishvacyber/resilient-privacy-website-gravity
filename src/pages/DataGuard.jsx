@@ -84,12 +84,6 @@ const DataGuard = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="product-hero"
             >
-                <div className="product-hero-badge" style={{
-                    background: 'rgba(112, 0, 255, 0.1)',
-                    color: 'var(--secondary)'
-                }}>
-                    DATA PRIVACY & COMPLIANCE
-                </div>
                 <h1 className="text-h1" style={{ marginBottom: '1.5rem' }}>
                     DataGuard<sup style={{ fontSize: '0.5em', verticalAlign: 'super' }}>™</sup>
                 </h1>

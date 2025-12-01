@@ -84,18 +84,6 @@ const SecureAPI = () => {
                 animate={{ opacity: 1, y: 0 }}
                 style={{ textAlign: 'center', marginBottom: '4rem' }}
             >
-                <div style={{
-                    display: 'inline-block',
-                    padding: '0.5rem 1.5rem',
-                    background: 'rgba(112, 0, 255, 0.1)',
-                    color: 'var(--secondary)',
-                    borderRadius: '30px',
-                    marginBottom: '1.5rem',
-                    fontWeight: '600',
-                    fontSize: '0.9rem'
-                }}>
-                    API SECURITY & MANAGEMENT
-                </div>
                 <h1 className="text-h1" style={{ marginBottom: '1.5rem' }}>
                     SecureAPI<sup style={{ fontSize: '0.5em', verticalAlign: 'super' }}>™</sup>
                 </h1>
