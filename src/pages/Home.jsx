@@ -435,7 +435,7 @@ const Home = () => {
                         <h2 className="text-h2">The <span className="text-gradient">Neutralization</span> Process</h2>
                     </div>
 
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '2rem' }}>
+                    <div className="process-flow-container">
                         {[
                             { step: '01', title: 'Analyze', desc: 'Traffic ingestion via SDK' },
                             { step: '02', title: 'Detect', desc: 'AI Anomaly Scoring' },
@@ -453,7 +453,7 @@ const Home = () => {
                                     <h3 className="text-lg" style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>{item.title}</h3>
                                     <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{item.desc}</p>
                                 </motion.div>
-                                {i < 2 && <ChevronRight size={32} color="var(--text-muted)" className="hidden-mobile" />}
+                                {i < 2 && <ChevronRight size={32} color="var(--text-muted)" className="hidden-mobile process-arrow" />}
                             </React.Fragment>
                         ))}
                     </div>
