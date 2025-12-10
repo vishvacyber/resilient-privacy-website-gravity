@@ -1,4 +1,5 @@
 import { getDb } from '../database.js';
+import logger from '../utils/logger.js';
 
 /**
  * Middleware to log admin activities
@@ -16,7 +17,7 @@ export const logActivity = (actionType, resourceType) => {
             // Log activity after successful response
             if (res.statusCode >= 200 && res.statusCode < 300) {
                 logActivityToDatabase(req, actionType, resourceType, data).catch(err => {
-                    console.error('Failed to log activity:', err);
+                    logger.error('Failed to log activity:', err);
                 });
             }
             return originalJson.call(this, data);
@@ -26,7 +27,7 @@ export const logActivity = (actionType, resourceType) => {
         res.send = function (data) {
             if (res.statusCode >= 200 && res.statusCode < 300) {
                 logActivityToDatabase(req, actionType, resourceType, data).catch(err => {
-                    console.error('Failed to log activity:', err);
+                    logger.error('Failed to log activity:', err);
                 });
             }
             return originalSend.call(this, data);
@@ -87,6 +88,6 @@ async function logActivityToDatabase(req, actionType, resourceType, responseData
         );
     } catch (error) {
         // Don't throw error - logging should not break the main flow
-        console.error('Activity logging error:', error);
+        logger.error('Activity logging error:', error);
     }
 }

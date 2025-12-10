@@ -3,6 +3,7 @@ import { open } from 'sqlite';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import bcrypt from 'bcryptjs';
+import logger from './utils/logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,9 +22,17 @@ export async function initializeDatabase() {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT UNIQUE NOT NULL,
             password_hash TEXT NOT NULL,
+            must_change_password BOOLEAN DEFAULT 0,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     `);
+
+    // Add must_change_password column if it doesn't exist (migration)
+    try {
+        await db.exec(`ALTER TABLE admins ADD COLUMN must_change_password BOOLEAN DEFAULT 0`);
+    } catch (error) {
+        // Column already exists, ignore error
+    }
 
     // Create Jobs Table
     await db.exec(`
@@ -143,21 +152,28 @@ export async function initializeDatabase() {
     // Create Default Admin if not exists
     const admin = await db.get('SELECT * FROM admins WHERE username = ?', ['admin']);
     if (!admin) {
-        // In production, we should ideally not create a default admin, or create it with a random password
-        // For this setup, we'll stick to a known default but log a CRITICAL warning
         const defaultPassword = process.env.INITIAL_ADMIN_PASSWORD || 'admin123';
         const hashedPassword = await bcrypt.hash(defaultPassword, 10);
-        await db.run('INSERT INTO admins (username, password_hash) VALUES (?, ?)', ['admin', hashedPassword]);
 
-        console.log('⚠️  ----------------------------------------------------------------');
-        console.log('⚠️  SECURITY ALERT: Default admin account created');
-        console.log('⚠️  Username: admin');
-        console.log('⚠️  Password: ' + (process.env.INITIAL_ADMIN_PASSWORD ? '[HIDDEN_FROM_LOGS]' : 'admin123'));
-        console.log('⚠️  ACTION REQUIRED: Change this password immediately using server/reset-admin.js');
-        console.log('⚠️  ----------------------------------------------------------------');
+        // Set must_change_password to true if using default password
+        const mustChangePassword = !process.env.INITIAL_ADMIN_PASSWORD ? 1 : 0;
+
+        await db.run(
+            'INSERT INTO admins (username, password_hash, must_change_password) VALUES (?, ?, ?)',
+            ['admin', hashedPassword, mustChangePassword]
+        );
+
+        logger.warn('⚠️  ----------------------------------------------------------------');
+        logger.warn('⚠️  SECURITY ALERT: Default admin account created');
+        logger.warn('⚠️  Username: admin');
+        logger.warn('⚠️  Password: ' + (process.env.INITIAL_ADMIN_PASSWORD ? '[SET_FROM_ENV]' : 'admin123'));
+        if (mustChangePassword) {
+            logger.warn('⚠️  ACTION REQUIRED: Change password on first login');
+        }
+        logger.warn('⚠️  ----------------------------------------------------------------');
     }
 
-    console.log('Database initialized');
+    logger.info('Database initialized');
     return db;
 }
 

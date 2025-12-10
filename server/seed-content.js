@@ -1,10 +1,11 @@
 import { getDb, initializeDatabase } from './database.js';
+import logger from './utils/logger.js';
 
 async function seedContent() {
     await initializeDatabase();
     const db = getDb();
 
-    console.log('Seeding content...');
+    logger.info('Seeding content...');
 
     // Seed documentation
     await db.run(`DELETE FROM documentation`); // Clear existing
@@ -61,16 +62,16 @@ async function seedContent() {
         `, [doc.title, doc.slug, doc.file_path, doc.category, doc.display_order]);
     }
 
-    console.log(`✅ Seeded ${docs.length} documentation entries`);
+    logger.info(`✅ Seeded ${docs.length} documentation entries`);
 
     // Note: Services are extensive - they should be managed via the admin panel
-    console.log('ℹ️  Services should be added via the admin panel');
-    console.log('✅ Content seeding complete!');
-    
+    logger.info('ℹ️  Services should be added via the admin panel');
+    logger.info('✅ Content seeding complete!');
+
     process.exit(0);
 }
 
 seedContent().catch(err => {
-    console.error('Error seeding content:', err);
+    logger.error('Error seeding content:', err);
     process.exit(1);
 });

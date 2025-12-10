@@ -1,6 +1,7 @@
 import express from 'express';
 import { getDb } from '../database.js';
 import { authenticateAdmin } from '../middleware/auth.js';
+import logger from '../utils/logger.js';
 
 const router = express.Router();
 
@@ -29,7 +30,7 @@ router.get('/', async (req, res) => {
 
         res.json(parsedServices);
     } catch (error) {
-        console.error('Error fetching services:', error);
+        logger.error('Error fetching services:', error);
         res.status(500).json({ error: 'Failed to fetch services' });
     }
 });
@@ -50,7 +51,7 @@ router.get('/:id', async (req, res) => {
             highlights: service.highlights ? JSON.parse(service.highlights) : null
         });
     } catch (error) {
-        console.error('Error fetching service:', error);
+        logger.error('Error fetching service:', error);
         res.status(500).json({ error: 'Failed to fetch service' });
     }
 });
@@ -86,7 +87,7 @@ router.post('/', authenticateAdmin, async (req, res) => {
 
         res.status(201).json({ id: result.lastID, message: 'Service created successfully' });
     } catch (error) {
-        console.error('Error creating service:', error);
+        logger.error('Error creating service:', error);
         res.status(500).json({ error: 'Failed to create service' });
     }
 });
@@ -122,7 +123,7 @@ router.put('/:id', authenticateAdmin, async (req, res) => {
 
         res.json({ message: 'Service updated successfully' });
     } catch (error) {
-        console.error('Error updating service:', error);
+        logger.error('Error updating service:', error);
         res.status(500).json({ error: 'Failed to update service' });
     }
 });
@@ -139,7 +140,7 @@ router.delete('/:id', authenticateAdmin, async (req, res) => {
 
         res.json({ message: 'Service deleted successfully' });
     } catch (error) {
-        console.error('Error deleting service:', error);
+        logger.error('Error deleting service:', error);
         res.status(500).json({ error: 'Failed to delete service' });
     }
 });

@@ -1,6 +1,9 @@
 import express from 'express';
+import multer from 'multer';
+import path from 'path';
 import { getDb } from '../database.js';
-import { authenticateAdmin } from '../middleware/auth.js';
+import { authenticate } from '../middleware/auth.js';
+import logger from '../utils/logger.js';
 
 const router = express.Router();
 
@@ -21,7 +24,7 @@ router.get('/', async (req, res) => {
         const docs = await db.all(query, params);
         res.json(docs);
     } catch (error) {
-        console.error('Error fetching documentation:', error);
+        logger.error('Error fetching documentation:', error);
         res.status(500).json({ error: 'Failed to fetch documentation' });
     }
 });
@@ -38,13 +41,13 @@ router.get('/:slug', async (req, res) => {
 
         res.json(doc);
     } catch (error) {
-        console.error('Error fetching documentation:', error);
+        logger.error('Error fetching documentation:', error);
         res.status(500).json({ error: 'Failed to fetch documentation' });
     }
 });
 
 // POST create documentation (admin only)
-router.post('/', authenticateAdmin, async (req, res) => {
+router.post('/', authenticate, async (req, res) => {
     try {
         const db = getDb();
         const { title, slug, file_path, category, description, display_order } = req.body;
@@ -74,13 +77,13 @@ router.post('/', authenticateAdmin, async (req, res) => {
 
         res.status(201).json({ id: result.lastID, message: 'Documentation created successfully' });
     } catch (error) {
-        console.error('Error creating documentation:', error);
+        logger.error('Error creating documentation:', error);
         res.status(500).json({ error: 'Failed to create documentation' });
     }
 });
 
 // PUT update documentation (admin only)
-router.put('/:id', authenticateAdmin, async (req, res) => {
+router.put('/:id', authenticate, async (req, res) => {
     try {
         const db = getDb();
         const { title, slug, file_path, category, description, display_order, is_active } = req.body;
@@ -116,13 +119,13 @@ router.put('/:id', authenticateAdmin, async (req, res) => {
 
         res.json({ message: 'Documentation updated successfully' });
     } catch (error) {
-        console.error('Error updating documentation:', error);
+        logger.error('Error updating documentation:', error);
         res.status(500).json({ error: 'Failed to update documentation' });
     }
 });
 
 // DELETE documentation (admin only)
-router.delete('/:id', authenticateAdmin, async (req, res) => {
+router.delete('/:id', authenticate, async (req, res) => {
     try {
         const db = getDb();
         const result = await db.run('DELETE FROM documentation WHERE id = ?', [req.params.id]);
@@ -133,7 +136,7 @@ router.delete('/:id', authenticateAdmin, async (req, res) => {
 
         res.json({ message: 'Documentation deleted successfully' });
     } catch (error) {
-        console.error('Error deleting documentation:', error);
+        logger.error('Error deleting documentation:', error);
         res.status(500).json({ error: 'Failed to delete documentation' });
     }
 });

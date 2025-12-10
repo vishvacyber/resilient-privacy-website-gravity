@@ -3,6 +3,7 @@ import multer from 'multer';
 import path from 'path';
 import { getDb } from '../database.js';
 import { authenticate } from '../middleware/auth.js';
+import logger from '../utils/logger.js';
 
 const router = express.Router();
 
@@ -102,7 +103,7 @@ router.post('/', upload.single('resume'), async (req, res) => {
         );
         res.status(201).json({ message: 'Application submitted successfully' });
     } catch (error) {
-        console.error('Error submitting application:', error);
+        logger.error('Error submitting application:', error);
         res.status(500).json({ error: 'Failed to submit application' });
     }
 });
@@ -119,7 +120,7 @@ router.get('/', authenticate, async (req, res) => {
         `);
         res.json(applications);
     } catch (error) {
-        console.error('Error fetching applications:', error);
+        logger.error('Error fetching applications:', error);
         res.status(500).json({ error: 'Failed to fetch applications' });
     }
 });
@@ -151,7 +152,7 @@ router.patch('/:id', authenticate, async (req, res) => {
         );
         res.json({ message: 'Application status updated successfully' });
     } catch (error) {
-        console.error('Error updating application status:', error);
+        logger.error('Error updating application status:', error);
         res.status(500).json({ error: 'Failed to update application status' });
     }
 });

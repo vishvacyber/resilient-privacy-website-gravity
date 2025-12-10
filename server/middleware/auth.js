@@ -1,12 +1,7 @@
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-for-development';
-
-// Warn if using fallback secret
-if (!process.env.JWT_SECRET) {
-    console.warn('⚠️  WARNING: JWT_SECRET not set in environment variables. Using fallback secret.');
-    console.warn('⚠️  This is INSECURE for production. Set JWT_SECRET in your .env file.');
-}
+// JWT secret is required - validated on startup
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export const authenticate = (req, res, next) => {
     try {

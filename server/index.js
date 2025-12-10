@@ -6,7 +6,10 @@ import fs from 'fs';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
+import morgan from 'morgan';
 import { initializeDatabase } from './database.js';
+import logger from './utils/logger.js';
+import { validateEnvironment } from './utils/validateEnv.js';
 
 import authRoutes from './routes/auth.js';
 import jobRoutes from './routes/jobs.js';
@@ -24,8 +27,16 @@ const staticFileLimiter = rateLimit({
     legacyHeaders: false, // Disable the X-RateLimit-* headers
 });
 
-// Load environment variables
+// Load environment variables FIRST
 dotenv.config();
+
+// Validate environment configuration on startup
+try {
+    validateEnvironment();
+} catch (error) {
+    logger.error('Environment validation failed:', error);
+    process.exit(1);
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -84,11 +95,14 @@ const authLimiter = rateLimit({
 app.use(cors(corsOptions));
 app.use(express.json());
 
+// HTTP request logging
+app.use(morgan('combined', { stream: logger.stream }));
+
 // Ensure uploads directory exists
 const uploadsDir = path.join(__dirname, '../uploads');
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
-    console.log('Created uploads directory');
+    logger.info('Created uploads directory');
 }
 app.use('/uploads', express.static(uploadsDir));
 
@@ -116,7 +130,7 @@ initializeDatabase().then(() => {
 
     // Global error handler (must be last)
     app.use((err, req, res, next) => {
-        console.error('Global error handler:', err);
+        logger.error('Global error handler:', err);
 
         // Handle multer errors
         if (err.name === 'MulterError') {
@@ -138,9 +152,10 @@ initializeDatabase().then(() => {
     });
 
     app.listen(PORT, () => {
-        console.log(`Server running on http://localhost:${PORT}`);
+        logger.info(`✅ Server running on http://localhost:${PORT}`);
+        logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
     });
 }).catch(err => {
-    console.error('Failed to initialize database:', err);
+    logger.error('Failed to initialize database:', err);
     process.exit(1);
 });

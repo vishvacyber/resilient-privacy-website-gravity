@@ -1,6 +1,7 @@
 import express from 'express';
 import { getDb } from '../database.js';
 import { authenticate } from '../middleware/auth.js';
+import logger from '../utils/logger.js';
 
 const router = express.Router();
 
@@ -16,7 +17,7 @@ router.get('/', async (req, res) => {
         }));
         res.json(parsedJobs);
     } catch (error) {
-        console.error('Error fetching jobs:', error);
+        logger.error('Error fetching jobs:', error);
         res.status(500).json({ error: 'Failed to fetch jobs' });
     }
 });
@@ -44,7 +45,7 @@ router.post('/', authenticate, async (req, res) => {
         );
         res.status(201).json({ id: result.lastID, message: 'Job created successfully' });
     } catch (error) {
-        console.error('Error creating job:', error);
+        logger.error('Error creating job:', error);
         res.status(500).json({ error: 'Failed to create job' });
     }
 });
@@ -78,7 +79,7 @@ router.put('/:id', authenticate, async (req, res) => {
         );
         res.json({ message: 'Job updated successfully' });
     } catch (error) {
-        console.error('Error updating job:', error);
+        logger.error('Error updating job:', error);
         res.status(500).json({ error: 'Failed to update job' });
     }
 });
@@ -96,7 +97,7 @@ router.delete('/:id', authenticate, async (req, res) => {
         await db.run('DELETE FROM jobs WHERE id = ?', [req.params.id]);
         res.json({ message: 'Job deleted successfully' });
     } catch (error) {
-        console.error('Error deleting job:', error);
+        logger.error('Error deleting job:', error);
         res.status(500).json({ error: 'Failed to delete job' });
     }
 });
