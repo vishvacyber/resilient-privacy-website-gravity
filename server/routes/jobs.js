@@ -22,6 +22,10 @@ router.get('/', async (req, res) => {
     }
 });
 
+import { sanitizeInput } from '../utils/sanitizer.js';
+
+// ... imports ...
+
 // POST create job (Admin)
 router.post('/', authenticate, async (req, res) => {
     const { title, department, location, type, description, requirements } = req.body;
@@ -36,12 +40,22 @@ router.post('/', authenticate, async (req, res) => {
         return res.status(400).json({ error: 'Requirements must be an array' });
     }
 
+    // Sanitize inputs
+    const sanitizedTitle = sanitizeInput(title);
+    const sanitizedDepartment = sanitizeInput(department);
+    const sanitizedLocation = sanitizeInput(location);
+    const sanitizedType = sanitizeInput(type);
+    const sanitizedDescription = sanitizeInput(description);
+
+    // Sanitize requirements array strings
+    const sanitizedRequirements = (requirements || []).map(req => sanitizeInput(req));
+
     const db = getDb();
     try {
         const result = await db.run(
             `INSERT INTO jobs (title, department, location, type, description, requirements) 
              VALUES (?, ?, ?, ?, ?, ?)`,
-            [title, department, location, type, description, JSON.stringify(requirements || [])]
+            [sanitizedTitle, sanitizedDepartment, sanitizedLocation, sanitizedType, sanitizedDescription, JSON.stringify(sanitizedRequirements)]
         );
         res.status(201).json({ id: result.lastID, message: 'Job created successfully' });
     } catch (error) {
@@ -64,6 +78,16 @@ router.put('/:id', authenticate, async (req, res) => {
         return res.status(400).json({ error: 'Requirements must be an array' });
     }
 
+    // Sanitize inputs
+    const sanitizedTitle = sanitizeInput(title);
+    const sanitizedDepartment = sanitizeInput(department);
+    const sanitizedLocation = sanitizeInput(location);
+    const sanitizedType = sanitizeInput(type);
+    const sanitizedDescription = sanitizeInput(description);
+
+    // Sanitize requirements array strings
+    const sanitizedRequirements = (requirements || []).map(req => sanitizeInput(req));
+
     const db = getDb();
     try {
         // Check if job exists
@@ -75,7 +99,7 @@ router.put('/:id', authenticate, async (req, res) => {
         await db.run(
             `UPDATE jobs SET title = ?, department = ?, location = ?, type = ?, description = ?, requirements = ?, is_active = ? 
              WHERE id = ?`,
-            [title, department, location, type, description, JSON.stringify(requirements || []), is_active ?? 1, req.params.id]
+            [sanitizedTitle, sanitizedDepartment, sanitizedLocation, sanitizedType, sanitizedDescription, JSON.stringify(sanitizedRequirements), is_active ?? 1, req.params.id]
         );
         res.json({ message: 'Job updated successfully' });
     } catch (error) {

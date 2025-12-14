@@ -46,6 +46,10 @@ router.get('/:slug', async (req, res) => {
     }
 });
 
+import { sanitizeInput } from '../utils/sanitizer.js';
+
+// ... imports ...
+
 // POST create documentation (admin only)
 router.post('/', authenticate, async (req, res) => {
     try {
@@ -67,11 +71,11 @@ router.post('/', authenticate, async (req, res) => {
             INSERT INTO documentation (title, slug, file_path, category, description, display_order)
             VALUES (?, ?, ?, ?, ?, ?)
         `, [
-            title,
-            slug,
-            file_path,
-            category || 'learning-center',
-            description || null,
+            sanitizeInput(title),
+            sanitizeInput(slug),
+            sanitizeInput(file_path),
+            category ? sanitizeInput(category) : 'learning-center',
+            description ? sanitizeInput(description) : null,
             display_order || 0
         ]);
 
@@ -107,11 +111,11 @@ router.put('/:id', authenticate, async (req, res) => {
                 display_order = ?, is_active = ?, updated_at = CURRENT_TIMESTAMP
             WHERE id = ?
         `, [
-            title || doc.title,
-            slug || doc.slug,
-            file_path || doc.file_path,
-            category || doc.category,
-            description !== undefined ? description : doc.description,
+            title ? sanitizeInput(title) : doc.title,
+            slug ? sanitizeInput(slug) : doc.slug,
+            file_path ? sanitizeInput(file_path) : doc.file_path,
+            category ? sanitizeInput(category) : doc.category,
+            description !== undefined ? sanitizeInput(description) : doc.description,
             display_order !== undefined ? display_order : doc.display_order,
             is_active !== undefined ? is_active : doc.is_active,
             req.params.id

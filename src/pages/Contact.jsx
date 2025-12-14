@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, AlertCircle, CheckCircle } from 'lucide-react';
 import Button from '../components/Button';
+import SEO from '../components/SEO';
 import { validateFormData } from '../utils/validation';
 import { sanitizeFormData, checkInputSafety } from '../utils/sanitize';
 import SECURITY_CONFIG from '../../security.config';
@@ -99,6 +100,12 @@ const Contact = () => {
 
     return (
         <div className="container section-padding">
+            <SEO
+                title="Contact Us - Get in Touch with Resilient Privacy Inc."
+                description="Contact Resilient Privacy Inc. for API security solutions, product demos, and enterprise support. Reach our team at info@resilientprivacy.com or +1 (469) 504-4135."
+                keywords="Contact Resilient Privacy, API Security Contact, Enterprise Security Support, Security Consultation, Demo Request"
+                canonical="https://www.resilientprivacy.com/contact"
+            />
             <div className="grid-cols-2" style={{ gap: '4rem', alignItems: 'start' }}>
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}

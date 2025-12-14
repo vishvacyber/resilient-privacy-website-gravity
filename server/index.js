@@ -44,9 +44,15 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+import { SECURITY_CONFIG, generateCSPHeader } from '../security.config.js';
+
+// ... imports ...
+
 // Security: Helmet middleware for security headers
 app.use(helmet({
-    // contentSecurityPolicy: false, // CSP is now set by Helmet; remove this line to enable default CSP
+    contentSecurityPolicy: {
+        directives: SECURITY_CONFIG.csp
+    },
     crossOriginEmbedderPolicy: false,
     hsts: {
         maxAge: 31536000, // 1 year

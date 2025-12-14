@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Lock, Search, Eye, Zap, Globe, CheckCircle, ArrowRight, Star, Users, Award, Layers } from 'lucide-react';
 import Button from '../components/Button';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -54,6 +55,12 @@ const Products = () => {
 
     return (
         <div style={{ background: 'var(--bg-dark)' }}>
+            <SEO
+                title="API Security Products - CoreShield, DataGuard, ThreatWatch, SecureAPI"
+                description="Comprehensive API security product suite including CoreShield WAF, DataGuard privacy compliance, ThreatWatch monitoring, and SecureAPI management. Enterprise-grade protection for modern applications."
+                keywords="API Security Products, Web Application Firewall, API Protection, Data Privacy, Security Monitoring, API Management, WAAP, CoreShield, DataGuard, ThreatWatch, SecureAPI"
+                canonical="https://www.resilientprivacy.com/products"
+            />
             {/* Hero Section */}
             <section style={{
                 background: 'radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.15) 0%, transparent 70%)',

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Users, Target, Award, Linkedin, X } from 'lucide-react';
 import Button from '../components/Button';
+import SEO from '../components/SEO';
 
 const About = () => {
     const [selectedMember, setSelectedMember] = useState(null);
@@ -21,6 +22,12 @@ const About = () => {
 
     return (
         <div className="container section-padding">
+            <SEO
+                title="About Us - Leading API Security Company"
+                description="Resilient Privacy Inc. is an enterprise API security company founded in 2025. We provide AI-driven threat detection, WAAP solutions, and zero-trust architecture protecting 10M+ APIs worldwide."
+                keywords="About Resilient Privacy, API Security Company, Cybersecurity Company, Enterprise Security, WAAP Provider, Threat Detection"
+                canonical="https://www.resilientprivacy.com/company/about"
+            />
             {/* Mission Section */}
             <div className="grid-cols-2 mb-lg" style={{ alignItems: 'center' }}>
                 <motion.div

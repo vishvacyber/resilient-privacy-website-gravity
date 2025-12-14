@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Server, Code, Lock, Eye, FileCheck, Cpu, Globe, Zap, Search, AlertTriangle, Terminal, Cloud, Heart, DollarSign, ShoppingCart, Database, Layers, Box, GitBranch } from 'lucide-react';
 import Button from '../components/Button';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 
 const Services = () => {
@@ -191,6 +192,12 @@ const Services = () => {
 
     return (
         <div className="container section-padding">
+            <SEO
+                title="Cybersecurity Services - API Security, VAPT, SOC, Consulting"
+                description="Comprehensive cybersecurity services including API security, penetration testing, 24/7 SOC monitoring, compliance consulting, and cloud security. Tailored solutions for every industry and platform."
+                keywords="Cybersecurity Services, API Security Services, VAPT, Penetration Testing, SOC as a Service, Security Consulting, Compliance, Cloud Security, Incident Response"
+                canonical="https://www.resilientprivacy.com/services"
+            />
             {/* Hero Section */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}

@@ -3,6 +3,7 @@ import multer from 'multer';
 import path from 'path';
 import { getDb } from '../database.js';
 import { authenticate } from '../middleware/auth.js';
+import { sanitizeInput } from '../utils/sanitizer.js';
 import logger from '../utils/logger.js';
 
 const router = express.Router();
@@ -87,18 +88,30 @@ router.post('/', upload.single('resume'), async (req, res) => {
                 references
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
-                job_id, name, email, phone, resume_path, cover_letter,
+                job_id,
+                sanitizeInput(name),
+                sanitizeInput(email),
+                sanitizeInput(phone),
+                resume_path,
+                sanitizeInput(cover_letter),
                 boolToInt(work_authorized),
                 boolToInt(requires_sponsorship),
-                veteran_status, disability_status,
-                gender, race_ethnicity,
+                sanitizeInput(veteran_status),
+                sanitizeInput(disability_status),
+                sanitizeInput(gender),
+                sanitizeInput(race_ethnicity),
                 boolToInt(criminal_history),
-                criminal_history_explanation,
-                linkedin_url, current_employer, years_experience,
-                education_level, start_date, salary_expectations,
+                sanitizeInput(criminal_history_explanation),
+                sanitizeInput(linkedin_url),
+                sanitizeInput(current_employer),
+                years_experience, // Should be integer
+                sanitizeInput(education_level),
+                sanitizeInput(start_date),
+                sanitizeInput(salary_expectations),
                 boolToInt(willing_to_relocate),
-                referral_source, portfolio_url,
-                references
+                sanitizeInput(referral_source),
+                sanitizeInput(portfolio_url),
+                sanitizeInput(references)
             ]
         );
         res.status(201).json({ message: 'Application submitted successfully' });

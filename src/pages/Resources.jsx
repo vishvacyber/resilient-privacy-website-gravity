@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Code } from 'lucide-react';
 import Button from '../components/Button';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { API_ENDPOINTS } from '../config/api';
 
@@ -52,6 +53,12 @@ const Resources = () => {
 
     return (
         <div className="container section-padding">
+            <SEO
+                title="Resources - Security Documentation & Learning Center"
+                description="Access comprehensive security documentation, learning resources, API references, and best practices for API security, WAAP, and enterprise cybersecurity."
+                keywords="Security Resources, API Security Documentation, Cybersecurity Learning, Security Best Practices, API Reference, WAAP Documentation"
+                canonical="https://www.resilientprivacy.com/resources"
+            />
             {/* Hero Section */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}

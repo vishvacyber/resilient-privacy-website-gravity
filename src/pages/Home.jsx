@@ -1,10 +1,66 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Lock, Zap, Globe, ChevronRight, Activity, Server, Users, Cpu, Network, FileCheck } from 'lucide-react';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+    // Add Schema.org Organization markup for Google Knowledge Graph
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.text = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Resilient Privacy Inc.",
+            "alternateName": "Resilient Privacy",
+            "url": "https://www.resilientprivacy.com",
+            "logo": "https://www.resilientprivacy.com/company_logo.jpg",
+            "description": "Enterprise API security platform providing AI-driven threat detection, WAAP (Web Application & API Protection), and zero-trust architecture for modern digital infrastructure.",
+            "foundingDate": "2025",
+            "email": "info@resilientprivacy.com",
+            "telephone": "+1-469-504-4135",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+1-469-504-4135",
+                "contactType": "Sales",
+                "email": "info@resilientprivacy.com",
+                "areaServed": "Worldwide",
+                "availableLanguage": ["English"]
+            },
+            "sameAs": [
+                // Add your social media profile URLs here, for example:
+                // "https://www.linkedin.com/company/resilient-privacy",
+                // "https://twitter.com/resilientprivacy",
+                // "https://www.facebook.com/resilientprivacy"
+            ],
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "US"
+                // Add complete address if available:
+                // "streetAddress": "123 Main Street",
+                // "addressLocality": "City",
+                // "addressRegion": "State",
+                // "postalCode": "12345"
+            },
+            "industry": "Cybersecurity",
+            "keywords": "API Security, WAAP, Web Application Protection, Cybersecurity, Enterprise Security, Threat Detection, Zero Trust, Data Privacy",
+            "knowsAbout": [
+                "API Security",
+                "Web Application Security",
+                "WAAP",
+                "Threat Detection",
+                "Zero Trust Architecture",
+                "Data Privacy",
+                "Compliance"
+            ]
+        });
+        document.head.appendChild(script);
+
+        return () => {
+            document.head.removeChild(script);
+        };
+    }, []);
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {

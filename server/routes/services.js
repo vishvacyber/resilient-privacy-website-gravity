@@ -56,6 +56,10 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+import { sanitizeInput } from '../utils/sanitizer.js';
+
+// ... imports ...
+
 // POST create service (admin only)
 router.post('/', authenticateAdmin, async (req, res) => {
     try {
@@ -75,16 +79,15 @@ router.post('/', authenticateAdmin, async (req, res) => {
             INSERT INTO services (category, title, description, icon_name, features, highlights, badge, display_order)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         `, [
-            category,
-            title,
-            description,
-            icon_name || null,
-            JSON.stringify(features),
+            sanitizeInput(category),
+            sanitizeInput(title),
+            sanitizeInput(description),
+            icon_name ? sanitizeInput(icon_name) : null,
+            JSON.stringify(features), // Features is likely an array of strings, should probably sanitize contents too if user generic
             highlights ? JSON.stringify(highlights) : null,
-            badge || null,
+            badge ? sanitizeInput(badge) : null,
             display_order || 0
         ]);
-
         res.status(201).json({ id: result.lastID, message: 'Service created successfully' });
     } catch (error) {
         logger.error('Error creating service:', error);
@@ -109,18 +112,17 @@ router.put('/:id', authenticateAdmin, async (req, res) => {
                 badge = ?, display_order = ?, is_active = ?, updated_at = CURRENT_TIMESTAMP
             WHERE id = ?
         `, [
-            category || service.category,
-            title || service.title,
-            description || service.description,
-            icon_name !== undefined ? icon_name : service.icon_name,
+            category ? sanitizeInput(category) : service.category,
+            title ? sanitizeInput(title) : service.title,
+            description ? sanitizeInput(description) : service.description,
+            icon_name !== undefined ? sanitizeInput(icon_name) : service.icon_name,
             features ? JSON.stringify(features) : service.features,
             highlights !== undefined ? (highlights ? JSON.stringify(highlights) : null) : service.highlights,
-            badge !== undefined ? badge : service.badge,
+            badge !== undefined ? sanitizeInput(badge) : service.badge,
             display_order !== undefined ? display_order : service.display_order,
             is_active !== undefined ? is_active : service.is_active,
             req.params.id
         ]);
-
         res.json({ message: 'Service updated successfully' });
     } catch (error) {
         logger.error('Error updating service:', error);

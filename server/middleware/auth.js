@@ -1,9 +1,10 @@
 import jwt from 'jsonwebtoken';
+import { getDb } from '../database.js';
 
 // JWT secret is required - validated on startup
 const JWT_SECRET = process.env.JWT_SECRET;
 
-export const authenticate = (req, res, next) => {
+export const authenticate = async (req, res, next) => {
     try {
         // Extract token from Authorization header
         const authHeader = req.headers.authorization;
@@ -32,4 +33,21 @@ export const authenticate = (req, res, next) => {
     }
 };
 
-export const authenticateAdmin = authenticate;
+export const authenticateAdmin = async (req, res, next) => {
+    try {
+        // First run standard auth
+        await authenticate(req, res, async () => {
+            // Then verify admin exists in DB (avoids stale tokens)
+            const db = getDb();
+            const admin = await db.get('SELECT id FROM admins WHERE id = ?', [req.user.id]);
+
+            if (!admin) {
+                return res.status(401).json({ error: 'Invalid admin credentials' });
+            }
+
+            next();
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Authentication error' });
+    }
+};
