@@ -77,7 +77,7 @@ class ErrorBoundary extends React.Component {
                             We encountered an unexpected error. Don't worry, our team has been notified and we're working on it.
                         </p>
 
-                        {process.env.NODE_ENV === 'development' && this.state.error && (
+                        {import.meta.env.DEV && this.state.error && (
                             <details style={{
                                 background: 'var(--bg-dark)',
                                 border: '1px solid var(--border-color)',

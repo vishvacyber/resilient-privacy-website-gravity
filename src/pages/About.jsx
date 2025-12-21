@@ -66,44 +66,93 @@ const About = () => {
 
             {/* Team Section */}
             <div style={{ textAlign: 'center' }} className="mb-lg">
-                <h2 className="text-h2" style={{ marginBottom: '3rem' }}>Meet the <span className="text-gradient">Guardians</span></h2>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '4rem' }}>
+                <h2 className="text-h2" style={{ marginBottom: '1rem' }}>Meet the <span className="text-gradient">Guardians</span></h2>
+                <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', marginBottom: '4rem', maxWidth: '600px', margin: '0 auto 4rem' }}>
+                    The visionary leaders driving innovation in API security
+                </p>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2.5rem', marginBottom: '4rem' }}>
                     {[...team, ...advisors.map(advisor => ({ ...advisor, isAdvisor: true }))].map((member, index) => (
                         <motion.div
                             key={index}
-                            whileHover={{ y: -5 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            whileHover={{ y: -10, scale: 1.03 }}
                             onClick={() => setSelectedMember(member)}
-                            style={{ background: 'var(--bg-card)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-color)', cursor: 'pointer' }}
+                            style={{
+                                background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(17, 17, 17, 0.8) 100%)',
+                                backdropFilter: 'blur(10px)',
+                                borderRadius: '20px',
+                                overflow: 'visible',
+                                border: '1px solid rgba(124, 58, 237, 0.3)',
+                                cursor: 'pointer',
+                                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                                padding: '2.5rem 2rem 2rem',
+                                position: 'relative',
+                                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+                            }}
                         >
-                            <div style={{ height: '250px', overflow: 'hidden' }}>
-                                <img src={member.img} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            {/* Decorative gradient orb */}
+                            <div style={{
+                                position: 'absolute',
+                                top: '-50px',
+                                right: '-50px',
+                                width: '150px',
+                                height: '150px',
+                                background: 'radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, transparent 70%)',
+                                borderRadius: '50%',
+                                pointerEvents: 'none',
+                                filter: 'blur(40px)'
+                            }} />
+
+                            <div style={{
+                                width: '160px',
+                                height: '160px',
+                                margin: '0 auto 1.5rem',
+                                borderRadius: '50%',
+                                overflow: 'hidden',
+                                padding: '4px',
+                                background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+                                boxShadow: '0 8px 24px rgba(124, 58, 237, 0.4)',
+                                position: 'relative',
+                                zIndex: 1
+                            }}>
+                                <div style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    borderRadius: '50%',
+                                    overflow: 'hidden',
+                                    background: 'var(--bg-dark)'
+                                }}>
+                                    <img src={member.img} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                </div>
                             </div>
-                            <div style={{ padding: '1.5rem' }}>
-                                <h3 className="text-lg" style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>
-                                    {member.name} {member.isAdvisor && <span style={{ fontSize: '0.8em', color: 'var(--text-muted)', fontWeight: 'normal' }}>(Advisor)</span>}
+                            <div style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
+                                <h3 style={{
+                                    fontSize: '1.25rem',
+                                    fontWeight: '700',
+                                    marginBottom: '0.5rem',
+                                    color: '#fff',
+                                    letterSpacing: '-0.02em'
+                                }}>
+                                    {member.name} {member.isAdvisor && <span style={{ fontSize: '0.75em', color: 'var(--secondary)', fontWeight: '500', display: 'block', marginTop: '0.25rem' }}>(Strategic Advisor)</span>}
                                 </h3>
-                                <p style={{ color: member.isAdvisor ? 'var(--secondary)' : 'var(--primary)', fontSize: '0.9rem' }}>{member.role}</p>
+                                <p style={{
+                                    color: member.isAdvisor ? 'var(--secondary)' : 'var(--primary)',
+                                    fontSize: '0.95rem',
+                                    fontWeight: '500',
+                                    marginBottom: '0.5rem'
+                                }}>{member.role}</p>
+                                <div style={{
+                                    width: '40px',
+                                    height: '3px',
+                                    background: 'linear-gradient(90deg, var(--primary), var(--secondary))',
+                                    margin: '1rem auto 0',
+                                    borderRadius: '2px'
+                                }} />
                             </div>
                         </motion.div>
                     ))}
-                </div>
-            </div>
-
-            {/* Group Photo Section */}
-            <div className="section-padding">
-                <div className="container">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        style={{ borderRadius: '20px', overflow: 'hidden', border: '3px solid var(--primary)', boxShadow: '0 0 30px var(--primary-dim)', position: 'relative' }}
-                    >
-                        <img src="/team_photo.jpg" alt="Resilient Privacy Team" style={{ width: '100%', height: 'auto', display: 'block' }} />
-                        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(0,0,0,0.9))', padding: '4rem 2rem 2rem' }}>
-                            <h3 className="text-h3">Our Wonderful Interns</h3>
-                            <p style={{ color: 'var(--text-muted)' }}>The future guardians of digital privacy.</p>
-                        </div>
-                    </motion.div>
                 </div>
             </div>
 

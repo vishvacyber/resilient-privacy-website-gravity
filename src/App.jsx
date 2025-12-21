@@ -20,6 +20,7 @@ import CoreShield from './pages/CoreShield';
 import DataGuard from './pages/DataGuard';
 import ThreatWatch from './pages/ThreatWatch';
 import SecureAPI from './pages/SecureAPI';
+import HowItWorks from './pages/HowItWorks';
 
 // Admin Imports
 import Login from './pages/Admin/Login';
@@ -44,6 +45,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/company/about" element={<About />} />
               <Route path="/company/careers" element={<Careers />} />
+              <Route path="/company/how-it-works" element={<HowItWorks />} />
               <Route path="/products" element={<Products />} />
               <Route path="/services" element={<Services />} />
               <Route path="/resources" element={<Resources />} />

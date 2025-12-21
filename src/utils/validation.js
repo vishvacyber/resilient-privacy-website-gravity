@@ -81,7 +81,7 @@ export const isValidPhone = (phone) => {
     if (!phone || typeof phone !== 'string') return false;
 
     // Remove common formatting characters
-    const cleanPhone = phone.replace(/[\s\-\(\)\.]/g, '');
+    const cleanPhone = phone.replace(/[\s\-().]/g, '');
 
     // Check length
     if (cleanPhone.length > SECURITY_CONFIG.validation.maxPhoneLength) return false;

@@ -8,9 +8,6 @@ import { API_ENDPOINTS } from '../config/api';
 
 const Resources = () => {
     const [docs, setDocs] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [fetchError, setFetchError] = useState(null);
-
     useEffect(() => {
         fetchDocumentation();
     }, []);
@@ -24,13 +21,10 @@ const Resources = () => {
             const data = await response.json();
             setDocs(data);
         } catch (error) {
-            setFetchError(error.message);
             // Error handling - only log in development
             if (import.meta.env.DEV) {
                 console.error('Error fetching documentation:', error);
             }
-        } finally {
-            setLoading(false);
         }
     };
 

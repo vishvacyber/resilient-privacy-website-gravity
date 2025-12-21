@@ -64,7 +64,7 @@ export const SECURITY_CONFIG = {
         // SQL injection patterns (for reference, not applicable to client-only app)
         sql: [
             /(\b(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|EXECUTE)\b)/gi,
-            /(--|\#|\/\*|\*\/)/g,
+            /(--|#|\/\*|\*\/)/g,
             /(\bOR\b|\bAND\b)\s+\d+\s*=\s*\d+/gi
         ]
     }

@@ -52,7 +52,7 @@ export const validateContactForm = [
         .trim()
         .notEmpty()
         .withMessage('Phone number is required')
-        .matches(/^[\d\s\-\+\(\)]+$/)
+        .matches(/^[\d\s\-+()]+$/)
         .withMessage('Please provide a valid phone number'),
 
     body('subject')
