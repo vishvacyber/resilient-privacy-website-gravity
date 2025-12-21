@@ -638,10 +638,7 @@ const HowItWorks = () => {
                             </div>
                         </div>
 
-                        {/* Interactive Hint */}
-                        <div className="text-center mt-6 text-gray-500 text-sm">
-                            <span style={{ color: '#7C3AED' }}>Interactive Demo:</span> Click on any traffic source on the left
-                        </div>
+
 
                     </div>
                 </section>
