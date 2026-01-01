@@ -12,7 +12,6 @@ const About = () => {
         { name: 'Chief Technology Officer', role: 'Position Open', fullRole: 'Chief Technology Officer - Position Open', bio: 'We\'re seeking an exceptional technology leader to architect our next-generation API security platform. If you\'re passionate about building innovative security solutions, we\'d love to hear from you.', img: '/position_open.jpg', isOpen: true },
         { name: 'Arth Patel', role: 'Chief Operating Officer', fullRole: 'Chief Operating Officer', bio: 'Scaling our global operations and customer success teams. Arth ensures that we deliver value to our customers every single day.', img: '/arth_patel.jpg' },
         { name: 'Aditya Desai', role: 'Chief Information Officer', fullRole: 'Chief Information Officer', bio: 'Overseeing our global information strategy and internal security posture. Aditya ensures that Resilient Privacy practices what it preaches.', img: '/aditya_desai.jpg' },
-        { name: 'Rachna Patel', role: 'Chief of Staff', fullRole: 'Chief of Staff', bio: 'Driving operational excellence and strategic initiatives across the organization. Rachna ensures that our teams are aligned and executing on our mission.', img: '/rachna_patel.jpg' },
         { name: 'Siddhi Patel', role: 'Chief Human Resources Officer', fullRole: 'Chief Human Resources Officer', bio: 'Building a world-class culture and talent organization. Siddhi is dedicated to making Resilient Privacy the best place to work in cybersecurity.', img: '/siddhi_patel.jpg' },
     ];
 

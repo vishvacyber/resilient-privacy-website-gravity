@@ -14,7 +14,7 @@ export const SECURITY_CONFIG = {
         objectSrc: ["'none'"],
         baseUri: ["'self'"],
         formAction: ["'self'"],
-        upgradeInsecureRequests: true
+        upgradeInsecureRequests: []
     },
 
     // Trusted external domains
