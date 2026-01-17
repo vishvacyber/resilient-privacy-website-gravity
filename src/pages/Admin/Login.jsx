@@ -30,7 +30,7 @@ const Login = () => {
             } else {
                 setError(data.error || 'Login failed');
             }
-        } catch (err) {
+        } catch {
             setError('Server error. Please try again.');
         }
     };

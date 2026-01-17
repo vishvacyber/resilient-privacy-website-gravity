@@ -30,7 +30,7 @@ export async function initializeDatabase() {
     // Add must_change_password column if it doesn't exist (migration)
     try {
         await db.exec(`ALTER TABLE admins ADD COLUMN must_change_password BOOLEAN DEFAULT 0`);
-    } catch (error) {
+    } catch {
         // Column already exists, ignore error
     }
 

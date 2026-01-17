@@ -72,28 +72,6 @@ const ContactSubmissions = () => {
         }
     });
 
-    const getStatusBadge = (status) => {
-        const statusConfig = {
-            'new': { color: '#3b82f6', bg: 'rgba(59, 130, 246, 0.1)', label: 'New' },
-            'read': { color: '#8b5cf6', bg: 'rgba(139, 92, 246, 0.1)', label: 'Read' },
-            'replied': { color: '#22c55e', bg: 'rgba(34, 197, 94, 0.1)', label: 'Replied' }
-        };
-        const config = statusConfig[status] || statusConfig['new'];
-
-        return (
-            <span style={{
-                background: config.bg,
-                color: config.color,
-                padding: '0.25rem 0.75rem',
-                borderRadius: '100px',
-                fontSize: '0.75rem',
-                fontWeight: '500'
-            }}>
-                {config.label}
-            </span>
-        );
-    };
-
     return (
         <div>
             {/* Header */}

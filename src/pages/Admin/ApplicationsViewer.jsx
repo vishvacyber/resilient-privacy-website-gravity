@@ -75,30 +75,6 @@ const ApplicationsViewer = () => {
         }
     });
 
-    const getStatusBadge = (status) => {
-        const statusConfig = {
-            'new': { color: '#3b82f6', bg: 'rgba(59, 130, 246, 0.1)', label: 'New' },
-            'reviewed': { color: '#8b5cf6', bg: 'rgba(139, 92, 246, 0.1)', label: 'Reviewed' },
-            'interview': { color: '#f59e0b', bg: 'rgba(245, 158, 11, 0.1)', label: 'Interview' },
-            'rejected': { color: '#ef4444', bg: 'rgba(239, 68, 68, 0.1)', label: 'Rejected' },
-            'hired': { color: '#22c55e', bg: 'rgba(34, 197, 94, 0.1)', label: 'Hired' }
-        };
-        const config = statusConfig[status] || statusConfig['new'];
-
-        return (
-            <span style={{
-                background: config.bg,
-                color: config.color,
-                padding: '0.25rem 0.75rem',
-                borderRadius: '100px',
-                fontSize: '0.75rem',
-                fontWeight: '500'
-            }}>
-                {config.label}
-            </span>
-        );
-    };
-
     return (
         <div>
             {/* Header */}

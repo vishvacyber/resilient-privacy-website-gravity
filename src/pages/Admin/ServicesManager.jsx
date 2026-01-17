@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Plus, Edit, Trash2, Eye, EyeOff } from 'lucide-react';
 import Button from '../../components/Button';
 import { API_ENDPOINTS } from '../../config/api';
@@ -31,6 +30,7 @@ const ServicesManager = () => {
 
     useEffect(() => {
         fetchServices();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeCategory]);
 
     const fetchServices = async () => {

@@ -102,7 +102,7 @@ const Careers = () => {
                 } else {
                     setApplicationStatus('error');
                 }
-            } catch (error) {
+            } catch {
                 setApplicationStatus('error');
             }
         };

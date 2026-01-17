@@ -47,7 +47,7 @@ export const authenticateAdmin = async (req, res, next) => {
 
             next();
         });
-    } catch (error) {
+    } catch {
         res.status(500).json({ error: 'Authentication error' });
     }
 };

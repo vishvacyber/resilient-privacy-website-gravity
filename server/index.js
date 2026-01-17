@@ -44,7 +44,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-import { SECURITY_CONFIG, generateCSPHeader } from '../security.config.js';
+import { SECURITY_CONFIG } from '../security.config.js';
 
 // ... imports ...
 
@@ -135,6 +135,7 @@ initializeDatabase().then(() => {
     }
 
     // Global error handler (must be last)
+    // eslint-disable-next-line no-unused-vars
     app.use((err, req, res, next) => {
         logger.error('Global error handler:', err);
 
