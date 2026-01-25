@@ -536,9 +536,15 @@ const Careers = () => {
                 style={{ textAlign: 'center', marginBottom: '4rem' }}
             >
                 <h1 style={{ fontSize: '3rem', marginBottom: '1rem' }}>Join the <span className="text-gradient">Mission</span></h1>
-                <p style={{ color: 'var(--text-muted)', maxWidth: '700px', margin: '0 auto' }}>
+                <p style={{ color: 'var(--text-muted)', maxWidth: '700px', margin: '0 auto', marginBottom: '2rem' }}>
                     Help us build the future of API security. We are looking for passionate individuals to join our global team.
                 </p>
+                <Button
+                    variant="primary"
+                    onClick={() => window.open('https://resilientprivacy.notion.site/Resilient-Privacy-Careers-24b57ead966880b9b019f3d65c3e3efe?source=copy_link', '_blank')}
+                >
+                    View Open Roles
+                </Button>
             </motion.div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '4rem' }}>
@@ -559,7 +565,13 @@ const Careers = () => {
 
             {jobs.length === 0 ? (
                 <div style={{ textAlign: 'center', padding: '4rem', color: 'var(--text-muted)', background: 'var(--bg-card)', borderRadius: '8px' }}>
-                    <p>No open positions at the moment. Check back soon!</p>
+                    <p style={{ marginBottom: '1.5rem' }}>View all our open positions on our careers board.</p>
+                    <Button
+                        variant="outline"
+                        onClick={() => window.open('https://resilientprivacy.notion.site/Resilient-Privacy-Careers-24b57ead966880b9b019f3d65c3e3efe?source=copy_link', '_blank')}
+                    >
+                        View Open Roles
+                    </Button>
                 </div>
             ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
