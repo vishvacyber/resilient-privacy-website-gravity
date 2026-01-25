@@ -529,48 +529,111 @@ const Careers = () => {
     };
 
     return (
-        <div className="container section-padding">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                style={{ textAlign: 'center', marginBottom: '4rem' }}
-            >
-                <h1 style={{ fontSize: '3rem', marginBottom: '1rem' }}>Join the <span className="text-gradient">Mission</span></h1>
-                <p style={{ color: 'var(--text-muted)', maxWidth: '700px', margin: '0 auto', marginBottom: '2rem' }}>
-                    Help us build the future of API security. We are looking for passionate individuals to join our global team.
-                </p>
-                <Button
-                    variant="primary"
-                    onClick={() => window.open('https://resilientprivacy.notion.site/Resilient-Privacy-Careers-24b57ead966880b9b019f3d65c3e3efe?source=copy_link', '_blank')}
-                >
-                    View Open Roles
-                </Button>
-            </motion.div>
+        <div className="container section-padding" style={{ position: 'relative' }}>
+            {/* Background Glow */}
+            <div style={{
+                position: 'absolute',
+                top: '0',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '600px',
+                height: '600px',
+                background: 'radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(0,0,0,0) 70%)',
+                zIndex: -1,
+                pointerEvents: 'none'
+            }} />
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '4rem' }}>
-                {[
-                    { icon: <Shield size={32} color="var(--primary)" />, title: 'Impact', desc: 'Protect millions of users and critical infrastructure.' },
-                    { icon: <Code size={32} color="var(--secondary)" />, title: 'Innovation', desc: 'Work with cutting-edge AI and security technologies.' },
-                    { icon: <Briefcase size={32} color="var(--primary)" />, title: 'Growth', desc: 'Continuous learning and career development opportunities.' },
-                ].map((item, index) => (
-                    <div key={index} style={{ background: 'var(--bg-card)', padding: '2rem', borderRadius: '8px', border: '1px solid var(--border-color)', textAlign: 'center' }}>
-                        <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}>{item.icon}</div>
-                        <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{item.title}</h3>
-                        <p style={{ color: 'var(--text-muted)' }}>{item.desc}</p>
+            <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', marginBottom: '6rem' }}>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                >
+                    <h1 className="text-hero" style={{ marginBottom: '1.5rem', fontWeight: '800' }}>
+                        Join the <span className="text-gradient">Mission</span>
+                    </h1>
+                    <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)', lineHeight: '1.8', marginBottom: '2.5rem' }}>
+                        Help us build the future of API security. We are looking for passionate, curious, and driven individuals to join our global team and make the digital world safer.
+                    </p>
+                    <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+                        <Button
+                            variant="primary"
+                            onClick={() => window.open('https://resilientprivacy.notion.site/Resilient-Privacy-Careers-24b57ead966880b9b019f3d65c3e3efe?source=copy_link', '_blank')}
+                        >
+                            View Open Roles
+                        </Button>
                     </div>
+                </motion.div>
+            </div>
+
+            <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: '2rem',
+                marginBottom: '6rem'
+            }}>
+                {[
+                    { icon: <Shield size={40} color="var(--primary)" />, title: 'Impact', desc: 'Protect millions of users and critical infrastructure from evolving cyber threats.' },
+                    { icon: <Code size={40} color="var(--secondary)" />, title: 'Innovation', desc: 'Work with cutting-edge AI and security technologies to solve complex problems.' },
+                    { icon: <Briefcase size={40} color="var(--primary)" />, title: 'Growth', desc: 'Accelerate your career with continuous learning, mentorship, and ownership.' },
+                ].map((item, index) => (
+                    <motion.div
+                        key={index}
+                        whileHover={{ y: -5 }}
+                        style={{
+                            background: 'rgba(255,255,255,0.03)',
+                            padding: '3rem 2rem',
+                            borderRadius: '16px',
+                            border: '1px solid var(--border-color)',
+                            textAlign: 'left',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '1.5rem',
+                            backdropFilter: 'blur(10px)'
+                        }}
+                    >
+                        <div style={{
+                            width: '60px',
+                            height: '60px',
+                            borderRadius: '12px',
+                            background: 'rgba(255,255,255,0.05)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}>
+                            {item.icon}
+                        </div>
+                        <div>
+                            <h3 style={{ fontSize: '1.5rem', marginBottom: '0.75rem', fontWeight: '600' }}>{item.title}</h3>
+                            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>{item.desc}</p>
+                        </div>
+                    </motion.div>
                 ))}
             </div>
 
-            <h2 style={{ fontSize: '2rem', marginBottom: '2rem' }}>Open Positions</h2>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem' }}>
+                <h2 className="text-h2">Open Positions</h2>
+            </div>
 
             {jobs.length === 0 ? (
-                <div style={{ textAlign: 'center', padding: '4rem', color: 'var(--text-muted)', background: 'var(--bg-card)', borderRadius: '8px' }}>
-                    <p style={{ marginBottom: '1.5rem' }}>View all our open positions on our careers board.</p>
+                <div style={{
+                    textAlign: 'center',
+                    padding: '6rem 2rem',
+                    color: 'var(--text-muted)',
+                    background: 'rgba(255,255,255,0.02)',
+                    borderRadius: '16px',
+                    border: '1px solid var(--border-color)'
+                }}>
+                    <div style={{ marginBottom: '1.5rem', opacity: 0.5 }}><Briefcase size={48} /></div>
+                    <h3 style={{ fontSize: '1.5rem', color: 'var(--text-main)', marginBottom: '1rem' }}>Explore Opportunities</h3>
+                    <p style={{ marginBottom: '2rem', maxWidth: '400px', margin: '0 auto 2rem' }}>
+                        Browse our latest openings and find your next role with us.
+                    </p>
                     <Button
-                        variant="outline"
+                        variant="primary"
                         onClick={() => window.open('https://resilientprivacy.notion.site/Resilient-Privacy-Careers-24b57ead966880b9b019f3d65c3e3efe?source=copy_link', '_blank')}
                     >
-                        View Open Roles
+                        View All Open Positions
                     </Button>
                 </div>
             ) : (
@@ -578,30 +641,43 @@ const Careers = () => {
                     {jobs.map((job) => (
                         <motion.div
                             key={job.id}
-                            whileHover={{ x: 10, backgroundColor: 'rgba(255,255,255,0.02)' }}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            whileHover={{ scale: 1.01, backgroundColor: 'rgba(255,255,255,0.04)' }}
                             style={{
-                                background: 'var(--bg-card)',
+                                background: 'rgba(255,255,255,0.02)',
                                 padding: '2rem',
-                                borderRadius: '8px',
+                                borderRadius: '12px',
                                 border: '1px solid var(--border-color)',
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 alignItems: 'center',
                                 flexWrap: 'wrap',
-                                gap: '1rem'
+                                gap: '1.5rem',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s ease'
                             }}
+                            onClick={() => handleApply(job)}
                         >
-                            <div>
-                                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.5rem' }}>{job.title}</h3>
-                                <div style={{ display: 'flex', gap: '1rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                                    <span>{job.department}</span>
-                                    <span>•</span>
-                                    <span>{job.location}</span>
-                                    <span>•</span>
-                                    <span>{job.type}</span>
+                            <div style={{ flex: 1 }}>
+                                <h3 style={{ fontSize: '1.4rem', marginBottom: '0.75rem', fontWeight: '600' }}>{job.title}</h3>
+                                <div style={{ display: 'flex', gap: '1.5rem', color: 'var(--text-muted)', fontSize: '0.95rem', alignItems: 'center' }}>
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Briefcase size={16} /> {job.department}</span>
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--text-muted)' }} /> {job.location}</span>
+                                    <span style={{
+                                        padding: '0.25rem 0.75rem',
+                                        borderRadius: '20px',
+                                        background: 'rgba(124, 58, 237, 0.1)',
+                                        color: 'var(--primary)',
+                                        fontSize: '0.8rem',
+                                        fontWeight: '600',
+                                        border: '1px solid rgba(124, 58, 237, 0.2)'
+                                    }}>
+                                        {job.type}
+                                    </span>
                                 </div>
                             </div>
-                            <Button variant="outline" onClick={() => handleApply(job)}>Apply Now</Button>
+                            <Button variant="outline" onClick={(e) => { e.stopPropagation(); handleApply(job); }}>Apply Now</Button>
                         </motion.div>
                     ))}
                 </div>
