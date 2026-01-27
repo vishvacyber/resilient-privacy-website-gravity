@@ -2,7 +2,7 @@ import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import bcrypt from 'bcryptjs';
+
 import logger from './utils/logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -15,24 +15,6 @@ export async function initializeDatabase() {
         filename: path.join(__dirname, 'database.sqlite'),
         driver: sqlite3.Database
     });
-
-    // Create Admins Table
-    await db.exec(`
-        CREATE TABLE IF NOT EXISTS admins (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT UNIQUE NOT NULL,
-            password_hash TEXT NOT NULL,
-            must_change_password BOOLEAN DEFAULT 0,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-        )
-    `);
-
-    // Add must_change_password column if it doesn't exist (migration)
-    try {
-        await db.exec(`ALTER TABLE admins ADD COLUMN must_change_password BOOLEAN DEFAULT 0`);
-    } catch {
-        // Column already exists, ignore error
-    }
 
     // Create Jobs Table
     await db.exec(`
@@ -132,46 +114,8 @@ export async function initializeDatabase() {
         )
     `);
 
-    // Create Activity Logs Table
-    await db.exec(`
-        CREATE TABLE IF NOT EXISTS activity_logs (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            admin_id INTEGER,
-            admin_username TEXT,
-            action_type TEXT NOT NULL, -- login, logout, create, update, delete, view
-            resource_type TEXT, -- job, application, contact, admin
-            resource_id INTEGER,
-            details TEXT, -- JSON string with additional details
-            ip_address TEXT,
-            user_agent TEXT,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY(admin_id) REFERENCES admins(id)
-        )
-    `);
 
-    // Create Default Admin if not exists
-    const admin = await db.get('SELECT * FROM admins WHERE username = ?', ['admin']);
-    if (!admin) {
-        const defaultPassword = process.env.INITIAL_ADMIN_PASSWORD || 'admin123';
-        const hashedPassword = await bcrypt.hash(defaultPassword, 10);
 
-        // Set must_change_password to true if using default password
-        const mustChangePassword = !process.env.INITIAL_ADMIN_PASSWORD ? 1 : 0;
-
-        await db.run(
-            'INSERT INTO admins (username, password_hash, must_change_password) VALUES (?, ?, ?)',
-            ['admin', hashedPassword, mustChangePassword]
-        );
-
-        logger.warn('⚠️  ----------------------------------------------------------------');
-        logger.warn('⚠️  SECURITY ALERT: Default admin account created');
-        logger.warn('⚠️  Username: admin');
-        logger.warn('⚠️  Password: ' + (process.env.INITIAL_ADMIN_PASSWORD ? '[SET_FROM_ENV]' : 'admin123'));
-        if (mustChangePassword) {
-            logger.warn('⚠️  ACTION REQUIRED: Change password on first login');
-        }
-        logger.warn('⚠️  ----------------------------------------------------------------');
-    }
 
     logger.info('Database initialized');
     return db;

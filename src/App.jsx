@@ -22,15 +22,6 @@ import ThreatWatch from './pages/ThreatWatch';
 import SecureAPI from './pages/SecureAPI';
 import HowItWorks from './pages/HowItWorks';
 
-// Admin Imports
-import Login from './pages/Admin/Login';
-import AdminLayout from './pages/Admin/AdminLayout';
-import Dashboard from './pages/Admin/Dashboard';
-import JobsManager from './pages/Admin/JobsManager';
-import ApplicationsViewer from './pages/Admin/ApplicationsViewer';
-import ContactSubmissions from './pages/Admin/ContactSubmissions';
-import ServicesManager from './pages/Admin/ServicesManager';
-import DocumentationManager from './pages/Admin/DocumentationManager';
 
 function App() {
   return (
@@ -59,17 +50,6 @@ function App() {
               <Route path="/product/dataguard" element={<DataGuard />} />
               <Route path="/product/threatwatch" element={<ThreatWatch />} />
               <Route path="/product/secureapi" element={<SecureAPI />} />
-
-              {/* Admin Routes */}
-              <Route path="/admin/login" element={<Login />} />
-              <Route path="/admin" element={<AdminLayout />}>
-                <Route path="dashboard" element={<Dashboard />} />
-                <Route path="jobs" element={<JobsManager />} />
-                <Route path="applications" element={<ApplicationsViewer />} />
-                <Route path="messages" element={<ContactSubmissions />} />
-                <Route path="services" element={<ServicesManager />} />
-                <Route path="documentation" element={<DocumentationManager />} />
-              </Route>
             </Routes>
           </main>
           <Footer />

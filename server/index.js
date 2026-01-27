@@ -11,11 +11,9 @@ import { initializeDatabase } from './database.js';
 import logger from './utils/logger.js';
 import { validateEnvironment } from './utils/validateEnv.js';
 
-import authRoutes from './routes/auth.js';
 import jobRoutes from './routes/jobs.js';
 import applicationRoutes from './routes/applications.js';
 import contactRoutes from './routes/contacts.js';
-import activityLogsRoutes from './routes/activityLogs.js';
 import servicesRoutes from './routes/services.js';
 import documentationRoutes from './routes/documentation.js';
 
@@ -88,14 +86,7 @@ const apiLimiter = rateLimit({
     legacyHeaders: false,
 });
 
-// Security: Stricter rate limiting for auth endpoints
-const authLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 5, // Limit each IP to 5 login attempts per windowMs
-    message: { error: 'Too many login attempts, please try again later.' },
-    standardHeaders: true,
-    legacyHeaders: false,
-});
+
 
 // Middleware
 app.use(cors(corsOptions));
@@ -115,11 +106,9 @@ app.use('/uploads', express.static(uploadsDir));
 // Initialize Database
 initializeDatabase().then(() => {
     // Routes with rate limiting
-    app.use('/api/auth', authLimiter, authRoutes);
     app.use('/api/jobs', apiLimiter, jobRoutes);
     app.use('/api/applications', apiLimiter, applicationRoutes);
     app.use('/api/contact', apiLimiter, contactRoutes);
-    app.use('/api/activity-logs', apiLimiter, activityLogsRoutes);
     app.use('/api/services', apiLimiter, servicesRoutes);
     app.use('/api/documentation', apiLimiter, documentationRoutes);
 

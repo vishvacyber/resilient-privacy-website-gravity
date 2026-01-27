@@ -1,7 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import { getDb } from '../database.js';
-import { authenticate } from '../middleware/auth.js';
+
 import { sanitizeInput } from '../utils/sanitizer.js';
 import logger from '../utils/logger.js';
 
@@ -120,53 +120,6 @@ router.post('/', upload.single('resume'), async (req, res) => {
     }
 });
 
-// GET all applications (Admin)
-router.get('/', authenticate, async (req, res) => {
-    const db = getDb();
-    try {
-        const applications = await db.all(`
-            SELECT a.*, j.title as job_title 
-            FROM applications a 
-            LEFT JOIN jobs j ON a.job_id = j.id 
-            ORDER BY a.created_at DESC
-        `);
-        res.json(applications);
-    } catch (error) {
-        logger.error('Error fetching applications:', error);
-        res.status(500).json({ error: 'Failed to fetch applications' });
-    }
-});
 
-// PATCH update application status (Admin)
-router.patch('/:id', authenticate, async (req, res) => {
-    const { status } = req.body;
-
-    // Validate status value
-    const validStatuses = ['new', 'reviewed', 'interview', 'rejected', 'hired'];
-    if (!status || !validStatuses.includes(status)) {
-        return res.status(400).json({
-            error: `Invalid status. Must be one of: ${validStatuses.join(', ')}`
-        });
-    }
-
-    const db = getDb();
-
-    try {
-        // Check if application exists
-        const existing = await db.get('SELECT id FROM applications WHERE id = ?', [req.params.id]);
-        if (!existing) {
-            return res.status(404).json({ error: 'Application not found' });
-        }
-
-        await db.run(
-            'UPDATE applications SET status = ? WHERE id = ?',
-            [status, req.params.id]
-        );
-        res.json({ message: 'Application status updated successfully' });
-    } catch (error) {
-        logger.error('Error updating application status:', error);
-        res.status(500).json({ error: 'Failed to update application status' });
-    }
-});
 
 export default router;
